@@ -156,9 +156,9 @@ $app->match('/login_access_code', function(Request $request) use ($app) {
         $_SESSION['teamid'] = $user['team'];
         $_SESSION['access'] = $user['access'];
         $admin_user = $db->getUser($user['proxy_user']);
-        $app['session']->set('access_token', $admin_user['token']);
+        $app['session']->set('user_uuid', $admin_user['uuid']);
         $app['session']->set('auth_token', $admin_user['token']);
-        $app['session']->set('access_secret', $admin_user['secret']);
+        $app['session']->set('auth_secret', $admin_user['secret']);
         return $app->redirect('/');
     })->method('GET|POST');
 

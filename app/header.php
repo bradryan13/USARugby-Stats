@@ -49,7 +49,7 @@ if (editCheck(1)) {
 
       </ul>
       <?php
-      if (!empty($_SESSION['user'])) {
+      if (!empty($_SESSION['user']) && strpos($_SESSION['user'], '@') !== FALSE) {
           echo '<ul class="nav pull-right">';
           echo "<li class='welcome_user'>Welcome, " . $_SESSION['user'] . "<li>";
           echo '</ul>';

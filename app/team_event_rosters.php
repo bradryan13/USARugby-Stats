@@ -8,7 +8,7 @@ while ($row=mysql_fetch_assoc($result)) {
     $result2 = mysql_query($query2);
     while ($row2=mysql_fetch_assoc($result2)) {
 
-        echo "<span class='normal'><a href='event_roster.php?id={$row['id']}'>{$row2['name']}<a/></span><br/>";
+        echo "<span class='normal'><a href='event_roster.php?id={$row['id']}'>{$row2['name']}</a></span><br/>";
 
     }
 

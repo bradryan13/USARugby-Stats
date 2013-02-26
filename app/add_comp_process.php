@@ -12,6 +12,7 @@ $start_date = mysql_real_escape_string($request->get('start_date'));
 $end_date = mysql_real_escape_string($request->get('end_date'));
 $top_groups = $request->get('top_groups');
 $bypass_checkin = $request->get('bypass_checkin');
+$bypass_checkin = !empty($bypass_checkin) ? $bypass_checkin == 'on' : 0;
 $result = $db->addupdateCompetition(array(
     'id' => $id,
     'user_create' => $_SESSION['user'],

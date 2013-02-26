@@ -866,6 +866,7 @@ $(document).ready(function() {
             var eId = $(":input").eq($(":input").index(this) + 1).val();
            reloadData('#users', '/edit_user.php?id='+eId, function() {
              $('#useradd').hide();
+             $('#accessadd').hide();
            });
 
     return false;
@@ -892,7 +893,11 @@ $(document).ready(function() {
               $("label#access_error").show();
               $("input#access").focus();
               return false;
-            }
+        }
+        if (access == 1 && (login.indexOf("@") === -1)) {
+              alert('Access code users should not be administrators.');
+              return false;
+        }
 
             var user_id = $("#user_id").val();
 
@@ -951,12 +956,6 @@ $(document).ready(function() {
             $("input#login-access").focus();
             return false;
         }
-        var team = $('#team-access').val();
-        if (team == "") {
-            $("label#team_access_error").show();
-            $("input#team-access").focus();
-            return false;
-        }
 
         var access = $('#access-team').val();
         if (access == "") {
@@ -964,6 +963,14 @@ $(document).ready(function() {
             $("input#access-team").focus();
             return false;
         }
+
+        var team = $('#team-access').val();
+        if ((team == "") && (access != 2)) {
+            $("label#team_access_error").show();
+            $("input#team-access").focus();
+            return false;
+        }
+
         var proxy_user = $('#proxy_user').val();
         $.post('/add_user_process.php',
         {

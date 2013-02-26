@@ -12,6 +12,7 @@ $max_match = '';
 $hidden = 0;
 $league_type = '';
 $top_groups = array();
+$roster_bypass = FALSE;
 
 if (!empty($id)) {
     $competition = $db->getCompetition($id);
@@ -25,6 +26,7 @@ if (!empty($id)) {
     $max_match = $competition['max_game'];
     $hidden = $competition['hidden'];
     $league_type = $competition['league_type'];
+    $roster_bypass = $competition['bypass_checkin'];
 }
 ?>
 
@@ -111,7 +113,7 @@ if (!empty($id)) {
     </select>
 
     <label for="bypass_checkin" id="bypass_checkin_label">Bypass Check-In For Rosters</label>
-    <input id="bypass_checkin" name="bypass_checkin" type="checkbox" value=1>
+    <input id="bypass_checkin" name="bypass_checkin" type="checkbox" <?php if ($roster_bypass) {echo 'checked="checked"';} ?>>
 
     <br/>
     <br/>

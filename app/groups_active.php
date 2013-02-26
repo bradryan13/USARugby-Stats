@@ -1,4 +1,6 @@
 <?php
+
+include_once './config.php';
 include_once './include.php';
 use Source\APSource;
 
@@ -57,7 +59,7 @@ $teams = $db->getAllTeams();
           echo "<input class='btn btn-primary' name='submit' type='submit' value='Hide' />";
       }
       $type = ucfirst($team['type']);
-      echo "  {$team['name']} - {$team['description']} - {$type} (<small>$uuid</small>)";
+      echo "  <a href=\"team.php?id={$team['id']}\">{$team['name']}</a> - {$team['description']} - {$type} (<small><a href=\"{$config['auth_domain']}/groups/uuid/{$uuid}\">$uuid</a></small>)";
       echo '</form></td></tr>';
   }
   ?>

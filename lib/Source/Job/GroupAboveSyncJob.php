@@ -26,7 +26,12 @@ class GroupAboveSyncJob implements Job
         if (!empty($group->groups_above_uuid)) {
             // Note this currently only related the first group above; this
             //  should be more robust and match on all or some type subset.
-            $db->updateTeamAbove($this->uuid, array_pop($group->groups_above_uuid));
+            $group_above = array_pop($group->groups_above_uuid);
+            $db->updateTeamAbove($this->uuid, $group_above);
+            $groupmembersync = new GroupMembersSyncJob($attributes, $group_above);
+            $groupmembersync->run();
         }
+        $groupmembersync = new GroupMembersSyncJob($attributes, $this->uuid);
+        $groupmembersync->run();
     }
 }

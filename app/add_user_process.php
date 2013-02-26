@@ -17,7 +17,7 @@ if (editCheck(1)) {
     $users_with_email = $db->getUser(NULL, $email);
 
     if (!empty($users_with_email)) {
-        echo "That email is already taken.  User not added.";
+        echo "That login is already taken.  User not added.";
     }
     else {
         $user_info = array(
