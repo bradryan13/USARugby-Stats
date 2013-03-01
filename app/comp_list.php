@@ -11,7 +11,7 @@ while ($row=mysql_fetch_assoc($result)) {
     $competition = array();
     $competition['canedit'] = false;
 
-    if (editCheck(1)) {
+    if (editCheck(1, 0)) {
         $competition['canedit'] = true;
         $competition['id'] = $row['id'];
         $competition['name'] = $row['name'];
