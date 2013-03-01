@@ -15,6 +15,7 @@ include_once './include.php';
         <ul class="nav pull-left">
           <li><a href='/'>Competitions</a></li>
           <li><a href='/help.php'>Help</a></li>
+          <li><a href='/logout.php'>Logout</a></li>
 
 <?php
 //If the user has a team specific login, provide link to their roster page.
