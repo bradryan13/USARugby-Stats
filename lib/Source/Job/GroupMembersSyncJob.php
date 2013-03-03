@@ -28,6 +28,11 @@ class GroupMembersSyncJob implements Job
         $members = $client->getGroupMembers($this->group_uuid);
 
         foreach ($members as $member) {
+            $member_roles = $client->groupsGetRoles($this->group_uuid, $member->uuid);
+            $roles = array();
+            foreach ($member_roles as $role) {
+                $roles[] = $role->name;
+            }
             $now = date('Y-m-d H:i:s');
             if (!empty($member->picture)) {
                 $picture_url = substr($member->picture, strpos($member->picture, '/sites/default/'));
@@ -43,6 +48,7 @@ class GroupMembersSyncJob implements Job
                 'firstname' => $member->fname,
                 'lastname' => $member->lname,
                 'picture_url' => $picture_url,
+                'roles' => serialize($roles)
             );
             if (!$existing_players || !key_exists($member->uuid, $existing_players)) {
                 $db->addupdatePlayer($player_info);
