@@ -29,7 +29,7 @@ $players = array();
 // If bypass checkin was selected for the competition, then display players
 // directly from teams.
 if ($competition['bypass_checkin']) {
-    $query = "SELECT id FROM `players` WHERE team_uuid IN ('$uuid', '$above_uuid') AND roles COLLATE UTF8_GENERAL_CI LIKE '%player%' ORDER BY lastname ASC";
+    $query = "SELECT id FROM `players` WHERE team_uuid IN ('$uuid', '$above_uuid') AND roles LIKE '%player%' ORDER BY lastname ASC";
     $result = mysql_query($query);
     while ($row=mysql_fetch_assoc($result)) {
         $players[]=$row['id'];
