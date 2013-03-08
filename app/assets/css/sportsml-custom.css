@@ -18,6 +18,9 @@
   width: 100%;
   margin-bottom: 20px;
   font-size: 14px;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
 }
 
 div.standings-key {
@@ -31,17 +34,25 @@ div.standings-key {
   color: #666;
 }
 
+
 .smalltable td {
-  padding: 7px 5px 4px 5px;
-  text-align: center;
-  width: 30px;
+	padding: 6px;
+	text-align: center;
+	width: 30px;
+	font-size: 13px;
+	box-shadow: inset 0px 1px 7px -5px black;
+	-moz-box-shadow: inset 0px 1px 7px -5px black;
+	-webkit-box-shadow: inset 0px 1px 7px -5px black;
 }
+
+
+
 .smalltable img.team_logo {
   float: left;
   padding-right: 5px;
   width: 18%;
-  margin-top: -5px;
-  max-width: 30px;
+  margin-top: -2px;
+  max-width: 18px;
 }
 
 .smalltable td:first-child {
@@ -53,28 +64,37 @@ div.standings-key {
 }
 
 .smalltable tr.td-stats:nth-child(even) {
-  background-color: #eeeeee;
+   background: #EEE;
+   background: -moz-linear-gradient(top, #F0F0F0 0%, #EBEBEB 100%); 
+   background: -webkit-linear-gradient(top, #F0F0F0 0%, #EBEBEB 100%);
+   background: -o-linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
+   background: -ms-linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
+   background: linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
 }
 
 tr.blueline:nth-child(2) {
-  border-bottom: 1px solid #ccc;
-  font-size: 14px;
-  background-color: #E8E8E8;
-  color: #000;
-  font-weight: bold;
+  background: #001E3C;
+  background: -moz-linear-gradient(top, #003263 0%, #001E3C 100%);
+  background: -webkit-linear-gradient(top, #003263 0%,#001E3C 100%);
+  background: -o-linear-gradient(top, #003263 0%,#001E3C 100%);
+  background: -ms-linear-gradient(top, #003263 0%,#001E3C 100%);
+  background: linear-gradient(top, #003263 0%,#001E3C 100%);
 }
 
-tr.blueline:nth-child(2) td + td {
-  border-left: 3px solid #fff;
-  border-right: 3px solid #fff;
+
+tr.blueline:first-child {
+	display: none;
 }
 
 tr.blueline:nth-child(2) td:last-child {
   border-right: 0;
 }
 
-tr.blueline:nth-child(2) td + td {
-  text-decoration: underline;
+tr.blueline td {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFF;
+  padding: 7px 5px 5px 5px;
 }
 
 /** IE8 **/
@@ -83,6 +103,8 @@ tr.blueline + tr.blueline {
   font-size: 14px;
   background-color: #E8E8E8;
   color: #000;
+  
+  
 }
 .blueline {
   border: 0;
