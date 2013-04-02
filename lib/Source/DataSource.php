@@ -637,14 +637,29 @@ class DataSource {
         return $result;
     }
 
-    public function getPlayer($id) {
-        $search_id = DataSource::uuidIsValid($id) ? $this->getSerialIDByUUID('players', $id) : $id;
-        if (empty($search_id)) {
-            return FALSE;
-        }
-        $query = "SELECT * FROM `players` WHERE id=$search_id";
-        $result = mysql_query($query);
-        return empty($result) ? $result : mysql_fetch_assoc($result);
+    public function removePlayer($id) {
+	$search_id = DataSource::uuidIsValid($id) ? $this->getSerialIDByUUID('players', $id) : $id;
+	if (empty($search_id)) {
+		return FALSE;
+	}
+	$query = "DELETE FROM players WHERE id={$search_id};";
+	$result = mysql_query($query);
+	return $result;
+    }
+
+    public function getPlayer($id, $team_uuid = NULL) {
+	$search_id = DataSource::uuidIsValid($id) ? $this->getSerialIDByUUID('players', $id) : $id;
+	if (empty($search_id)) {
+		return FALSE;
+	}
+	$query = "SELECT * FROM `players` WHERE id=$search_id";
+	if ($team_uuid) {
+		if (DataSource::uuidIsValid($team_uuid)) {
+			$query .= " AND team_uuid='$team_uuid'";
+		}
+	}
+	$result = mysql_query($query);
+	return empty($result) ? $result : mysql_fetch_assoc($result);
     }
 
     public function getTeamPlayers($uuid) {
