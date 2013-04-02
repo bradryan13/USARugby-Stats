@@ -32,6 +32,47 @@
 	 }, 50);
  }
 
+ function playerSyncPoll(t, roster_id) {
+	console.log(t);
+	 $.ajax({
+		 type: "POST",
+		 url: "player_sync_poll.php",
+		 data: { token: t },
+		 success: function(response) {
+			 if (response == '1') {
+				 setTimeout(playerSyncPoll, 5000, t, roster_id);
+			 }
+			 if (response == '2') {
+				 $('.progress > .bar').css('width', '60%');
+				 setTimeout(playerSyncPoll, 5000, t, roster_id);
+			 }
+			 if (response == '4') {
+				 $('.progress > .bar').css('width', '100%');
+				 $('#synching').html('Players synched.');
+				 window.location = '/event_roster.php?sync_roles=1&roster_id=' + roster_id;
+			 }
+		 }});
+}
+
+function playerRoleSyncPoll(t, roster_id) {
+	tokens = JSON.stringify(t);
+	$.ajax({
+		 type: "POST",
+		 url: "player_role_sync_poll.php",
+		 data: { tokens: tokens },
+		 success: function(response) {
+			 console.log(response);
+			 width = Math.round(response).toString() + '%';
+			 $('.progress > .bar').css('width', width);
+			 if (response < 100) {
+				setTimeout(playerRoleSyncPoll, 5000, t, roster_id);
+			 } else {
+				$('#synching').html('Players and roles synched.');
+				window.location = '/event_roster.php?no_sync=1&roster_id=' + roster_id;
+			 }
+		 }});
+}
+
 $(document).ready(function() {
   $('.error').not(function(index){return $(this).hasClass('control-group');}).hide();
   $('input.text-input').css({backgroundColor:"#FFFFFF"});
