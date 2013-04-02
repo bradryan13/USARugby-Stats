@@ -45,8 +45,8 @@ class GroupMembersSyncJob implements Job
                 'last_update' => $now,
                 'uuid' => $member->uuid,
                 'team_uuid' => $this->group_uuid,
-                'firstname' => $member->fname,
-                'lastname' => $member->lname,
+                'firstname' => mysql_real_escape_string($member->fname),
+                'lastname' => mysql_real_escape_string($member->lname),
                 'picture_url' => $picture_url,
                 'roles' => serialize($roles)
             );
@@ -64,3 +64,4 @@ class GroupMembersSyncJob implements Job
         return $added;
     }
 }
+
