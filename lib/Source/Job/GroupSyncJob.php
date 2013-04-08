@@ -57,6 +57,7 @@ class GroupSyncJob implements Job
             else {
                 if (!empty($existing_teams[$team['uuid']]['id']) && is_numeric($existing_teams[$team['uuid']]['id'])) {
                     $team_info['id'] = $existing_teams[$team['uuid']]['id'];
+                    $team_info['group_above_uuid'] = $existing_teams[$team['uuid']]['group_above_uuid'];
                     $db->addupdateTeam($team_info);
                     $existing_teams[$team['uuid']] = $team_info;
                 }
