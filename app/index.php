@@ -6,7 +6,7 @@ use Guzzle\Plugin\Oauth\OauthPlugin;
 use Source\DataSource;
 use Source\QueueHelper;
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
 $app = new Silex\Application();
 // register the session extension
@@ -20,7 +20,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
  */
 $app->before(function (Request $request) use ($app) {
         // Include configuration file.
-        include_once './config.php';
+        include_once 'config.php';
         $app['config'] = $config;
         $app['session']->start();
         $domain = $app['session']->get('domain');
