@@ -1,5 +1,9 @@
 {
-    "hash": "302607778b8b9150922de2563f985371",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "0c833a18aa0d1b1d146c880713c10760",
     "packages": [
         {
             "name": "allplayers/allplayers",
@@ -89,21 +93,32 @@
         },
         {
             "name": "chrisboulton/php-resque",
-            "version": "1.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chrisboulton/php-resque.git",
-                "reference": "1.2"
+                "reference": "72c2afad59546a4c347323fd358cd690627def54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/chrisboulton/php-resque/zipball/1.2",
-                "reference": "1.2",
+                "url": "https://api.github.com/repos/chrisboulton/php-resque/zipball/72c2afad59546a4c347323fd358cd690627def54",
+                "reference": "72c2afad59546a4c347323fd358cd690627def54",
                 "shasum": ""
             },
             "require": {
+                "colinmollenhour/credis": "dev-master",
                 "php": ">=5.3.0"
             },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "ext-proctitle": "Allows php-resque to rename the title of UNIX processes to show the status of a worker.",
+                "ext-redis": "Native PHP extension for Redis connectivity. Credis will automatically utilize when available."
+            },
+            "bin": [
+                "bin/resque"
+            ],
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -128,7 +143,45 @@
                 "redis",
                 "resque"
             ],
-            "time": "2012-10-13 00:23:06"
+            "time": "2013-03-26 15:45:21"
+        },
+        {
+            "name": "colinmollenhour/credis",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colinmollenhour/credis.git",
+                "reference": "1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/1.2",
+                "reference": "1.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Client.php",
+                    "Cluster.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Mollenhour",
+                    "email": "colin@mollenhour.com"
+                }
+            ],
+            "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
+            "homepage": "https://github.com/colinmollenhour/credis",
+            "time": "2013-03-19 02:57:04"
         },
         {
             "name": "doctrine/annotations",
@@ -409,12 +462,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "eef9d7604ec3367fa0dac612dc347876c700a3c9"
+                "reference": "589a5fb9691e95146367efbb9369a2c34d04d51f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/eef9d7604ec3367fa0dac612dc347876c700a3c9",
-                "reference": "eef9d7604ec3367fa0dac612dc347876c700a3c9",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/589a5fb9691e95146367efbb9369a2c34d04d51f",
+                "reference": "589a5fb9691e95146367efbb9369a2c34d04d51f",
                 "shasum": ""
             },
             "require": {
@@ -471,7 +524,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-04-01 21:25:41"
+            "time": "2013-04-08 17:45:00"
         },
         {
             "name": "doctrine/inflector",
@@ -479,12 +532,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "7314da6f9141705f0528c8b72546cb8aeea54ae8"
+                "reference": "8b4b3ccec7aafc596e2fc1e593c9f2e78f939c8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/7314da6f9141705f0528c8b72546cb8aeea54ae8",
-                "reference": "7314da6f9141705f0528c8b72546cb8aeea54ae8",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/8b4b3ccec7aafc596e2fc1e593c9f2e78f939c8c",
+                "reference": "8b4b3ccec7aafc596e2fc1e593c9f2e78f939c8c",
                 "shasum": ""
             },
             "require": {
@@ -527,7 +580,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -539,7 +592,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2013-03-09 20:00:29"
+            "time": "2013-04-10 16:14:30"
         },
         {
             "name": "doctrine/lexer",
@@ -584,9 +637,9 @@
                     "email": "roman@code-factory.org"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -879,12 +932,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rybakit/phive-queue.git",
-                "reference": "c66c01673189a43ed2f6ccf902491b1c34aa56ff"
+                "reference": "3e74d9c6de77031c48b6375bd445865c97dc5a78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rybakit/phive-queue/zipball/c66c01673189a43ed2f6ccf902491b1c34aa56ff",
-                "reference": "c66c01673189a43ed2f6ccf902491b1c34aa56ff",
+                "url": "https://api.github.com/repos/rybakit/phive-queue/zipball/3e74d9c6de77031c48b6375bd445865c97dc5a78",
+                "reference": "3e74d9c6de77031c48b6375bd445865c97dc5a78",
                 "shasum": ""
             },
             "require": {
@@ -919,7 +972,7 @@
             "keywords": [
                 "queue scheduler priority delayed"
             ],
-            "time": "2013-04-02 07:28:58"
+            "time": "2013-04-06 22:15:19"
         },
         {
             "name": "silex/silex",
@@ -927,12 +980,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "803f809cdaa409e5769b24db952655d7e9187677"
+                "reference": "93259933cd7a378abac61f25c94858ed45ee25db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/803f809cdaa409e5769b24db952655d7e9187677",
-                "reference": "803f809cdaa409e5769b24db952655d7e9187677",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/93259933cd7a378abac61f25c94858ed45ee25db",
+                "reference": "93259933cd7a378abac61f25c94858ed45ee25db",
                 "shasum": ""
             },
             "require": {
@@ -945,6 +998,7 @@
             },
             "require-dev": {
                 "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
+                "monolog/monolog": ">=1.4,<2.0,>=1.4.1",
                 "swiftmailer/swiftmailer": "4.2.*",
                 "symfony/browser-kit": ">=2.1,<2.3-dev",
                 "symfony/config": ">=2.1,<2.3-dev",
@@ -1000,7 +1054,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2013-04-01 08:47:32"
+            "time": "2013-04-10 10:09:17"
         },
         {
             "name": "symfony/console",
@@ -1009,12 +1063,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "v2.1.9"
+                "reference": "f98590ded7b4628138613ee3844536a2a4d80140"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/v2.1.9",
-                "reference": "v2.1.9",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/f98590ded7b4628138613ee3844536a2a4d80140",
+                "reference": "f98590ded7b4628138613ee3844536a2a4d80140",
                 "shasum": ""
             },
             "require": {
@@ -1042,7 +1096,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-01 16:50:10"
+            "time": "2013-04-07 14:54:11"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1100,12 +1154,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "9a87bc5856de55ebbc8b3e66c3c686e6aef35ba7"
+                "reference": "v2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/9a87bc5856de55ebbc8b3e66c3c686e6aef35ba7",
-                "reference": "9a87bc5856de55ebbc8b3e66c3c686e6aef35ba7",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/v2.2.1",
+                "reference": "v2.2.1",
                 "shasum": ""
             },
             "require": {
@@ -1141,7 +1195,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-04-01 08:05:23"
+            "time": "2013-04-06 10:15:43"
         },
         {
             "name": "symfony/http-kernel",
@@ -1150,12 +1204,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "3bfc8fda577fb671b2d9395a59fbc87f449fa61f"
+                "reference": "a1e8288f89ec71e448e19df4200ecbc20be930c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/3bfc8fda577fb671b2d9395a59fbc87f449fa61f",
-                "reference": "3bfc8fda577fb671b2d9395a59fbc87f449fa61f",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/a1e8288f89ec71e448e19df4200ecbc20be930c0",
+                "reference": "a1e8288f89ec71e448e19df4200ecbc20be930c0",
                 "shasum": ""
             },
             "require": {
@@ -1210,7 +1264,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-23 10:43:44"
+            "time": "2013-04-07 20:19:55"
         },
         {
             "name": "symfony/routing",
@@ -1219,12 +1273,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing.git",
-                "reference": "6fea997908607f18a970a3848ec89c8e775255f3"
+                "reference": "v2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/6fea997908607f18a970a3848ec89c8e775255f3",
-                "reference": "6fea997908607f18a970a3848ec89c8e775255f3",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/v2.2.1",
+                "reference": "v2.2.1",
                 "shasum": ""
             },
             "require": {
@@ -1318,12 +1372,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "399916916533589c95dc04e1afd4aeefa34928ad"
+                "reference": "1819d97520079ade78abac7255e5b1e115bc7789"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/399916916533589c95dc04e1afd4aeefa34928ad",
-                "reference": "399916916533589c95dc04e1afd4aeefa34928ad",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/1819d97520079ade78abac7255e5b1e115bc7789",
+                "reference": "1819d97520079ade78abac7255e5b1e115bc7789",
                 "shasum": ""
             },
             "require": {
@@ -1359,7 +1413,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-04-01 08:27:18"
+            "time": "2013-04-09 16:55:44"
         }
     ],
     "packages-dev": [
@@ -1488,12 +1542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Mink.git",
-                "reference": "0fdb6c102c421105e177addebdbcfb0a070acbc3"
+                "reference": "03d479f7c9a12876cd5816972ebd944ee52b8a38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Mink/zipball/0fdb6c102c421105e177addebdbcfb0a070acbc3",
-                "reference": "0fdb6c102c421105e177addebdbcfb0a070acbc3",
+                "url": "https://api.github.com/repos/Behat/Mink/zipball/03d479f7c9a12876cd5816972ebd944ee52b8a38",
+                "reference": "03d479f7c9a12876cd5816972ebd944ee52b8a38",
                 "shasum": ""
             },
             "require": {
@@ -1535,7 +1589,7 @@
                 "testing",
                 "web"
             ],
-            "time": "2013-03-26 18:28:00"
+            "time": "2013-04-05 10:16:59"
         },
         {
             "name": "behat/mink-browserkit-driver",
@@ -1852,7 +1906,7 @@
                 {
                     "name": "Anthon Pang",
                     "email": "apang@softwaredevelopment.ca",
-                    "role": "Fork Maintainer"
+                    "role": "developer"
                 }
             ],
             "description": "PHP WebDriver for Selenium 2",
@@ -2146,12 +2200,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "v2.1.9"
+                "reference": "db29a04c9b3a3a8f3afcb1a498b8855d6329db0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/v2.1.9",
-                "reference": "v2.1.9",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/db29a04c9b3a3a8f3afcb1a498b8855d6329db0c",
+                "reference": "db29a04c9b3a3a8f3afcb1a498b8855d6329db0c",
                 "shasum": ""
             },
             "require": {
@@ -2179,7 +2233,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-23 07:44:01"
+            "time": "2013-04-07 14:41:36"
         },
         {
             "name": "symfony/translation",
