@@ -5,7 +5,7 @@ include_once './session.php';
 include_once './user_check.php';
 include_once './db.php';
 ?>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
