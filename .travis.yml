@@ -13,7 +13,7 @@ before_script:
   - mysql -u root usarugby < db/data.sql
   - mv behat.yml.dist behat.yml
   - echo "$(cat .travisci/config.php)" | sudo tee app/config.php
-  - composer install -n --dev
+  - curl -s http://getcomposer.org/installer | php && ./composer.phar install --dev -n
   - sudo service apache2 restart
   - curl -vvv http://localhost
 script:
