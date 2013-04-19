@@ -39,12 +39,16 @@
                     <?php
                     echo "<optgroup label='" . teamName($away_id, FALSE) ."'>";
                     foreach ($awayps as $awayp) {
-                        echo "<option value='$awayp'>".playerName($awayp)."</option>";
+                      if ($awayp != 'NIL') {
+                        echo "<option value='$awayp'>".playerName($awayp)." #" . playerNumber($game_id, $away_id, $awayp) . "</option>";
+                      }
                     }
                     echo "</optgroup>";
                     echo "<optgroup label='" . teamName($home_id, FALSE) ."'>";
                     foreach ($homeps as $homep) {
-                        echo "<option value='$homep'>".playerName($homep)."</option>";
+                      if ($homep != 'NIL') {
+                        echo "<option value='$homep'>".playerName($homep)." #" . playerNumber($game_id, $home_id, $homep) . "</option>";
+                      }
                     }
                     echo "</optgroup>";
                     ?>

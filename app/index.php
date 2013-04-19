@@ -6,7 +6,7 @@ use Guzzle\Plugin\Oauth\OauthPlugin;
 use Source\DataSource;
 use Source\QueueHelper;
 
-require_once __DIR__.'/../../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new Silex\Application();
 // register the session extension

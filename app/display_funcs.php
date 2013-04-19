@@ -108,6 +108,9 @@ function playerName($id, $iframe = FALSE, $game_id = NULL)
       $db = new DataSource();
     }
     $player = $db->getPlayer($id);
+    if (empty($player)) {
+        return '';
+    }
     $player['picture_url'] = getFullImageUrl($player['picture_url']);
     $player['full_name'] = $player['firstname'] . ' ' .$player['lastname'];
     $player['entity'] = 'player';
@@ -115,6 +118,36 @@ function playerName($id, $iframe = FALSE, $game_id = NULL)
     $player['settings'] = array('iframe' => $iframe);
     $output = $twig->render('player_name.twig', $player);
     return $output;
+}
+
+/**
+ * Get Player number on game.
+ *
+ * @param int $game_id
+ * @param int $team_id
+ * @param int $player_id
+ *
+ * @return int $output
+ */
+function playerNumber($game_id, $team_id, $player_id)
+{
+    if (empty($player_id) || $player_id == 'NIL') {
+        return '';
+    }
+    if (empty($db)) {
+      $db = new DataSource();
+    }
+    $roster = $db->getRoster($game_id, $team_id);
+    $player_ids = $roster['player_ids'];
+    $numbers = $roster['numbers'];
+    $numvals = explode('-', $numbers);
+    $cplayers = explode('-', substr($player_ids, 1, (strlen($player_ids)-2)));
+    foreach ($cplayers as $row => $id) {
+        if ($id == $player_id) {
+            return $numvals[$row + 1];
+        }
+    }
+    return '';
 }
 
 /**
