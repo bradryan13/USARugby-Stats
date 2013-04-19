@@ -75,8 +75,11 @@ function updateScore($game_id)
     //update score
     $query = "UPDATE `games` SET home_score='$homep', away_score='$awayp' WHERE id = '$game_id'";
     $result = mysql_query($query);
+    include_once './config.php';
+    if ($config['redis_password'] && $config['redis_host']) {
+        Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
+    }
 
-    $client = APSource::SessionSourceFactory();
     $db = new DataSource;
     $home_team = $db->getTeam($home_id);
     $away_team = $db->getTeam($away_id);
@@ -92,7 +95,7 @@ function updateScore($game_id)
             'score' => $awayp
         )
     );
-    $client->updateEvent($game_uuid, array('competitors' => $competitors));
+    Resque::enqueue('update_game_score', 'UpdateGameScore', array('game_uuid' => $game_uuid, 'competitors' => $competitors));
 }
 
 
