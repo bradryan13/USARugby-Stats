@@ -15,6 +15,5 @@ before_script:
   - echo "$(cat .travisci/config.php)" | sudo tee app/config.php
   - curl -s http://getcomposer.org/installer | php && ./composer.phar install --dev -n
   - sudo service apache2 restart
-  - curl -vvv http://localhost
 script:
   - bin/behat --verbose
