@@ -14,10 +14,10 @@ Feature: Login with AllPlayers
       |Password:         |test123   |
       |Confirm Password: |test123   |
       And I get rand email and fill in "E-mail:"
-      And I select "Jan" from "field_birth_date[0][value][month]"
-      And I select "1" from "field_birth_date[0][value][day]"
-      And I select "1985" from "field_birth_date[0][value][year]"
-      And I select "Male" from "field_user_gender[value]"
+      And I select "Jan" from "field_birth_date[month]"
+      And I select "1" from "field_birth_date[day]"
+      And I select "1985" from "field_birth_date[year]"
+      And I select "Male" from "field_user_gender"
       And I solve captcha and fill in "captcha_response"
       And I press "edit-submit"
     Then I should see "Access content available to your user"
