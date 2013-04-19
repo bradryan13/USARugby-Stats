@@ -39,11 +39,15 @@
               <?php
                 echo "<option value='team$away_id'>--".teamName($away_id)."--</option>";
                 foreach ($awayps as $awayp) {
-                  echo "<option value='$awayp'>".playerName($awayp)."</option>";
+                  if ($awayp != 'NIL') {
+                      echo "<option value='$awayp'>".playerName($awayp)." #" . playerNumber($game_id, $away_id, $awayp) . "</option>";
+                  }
                 }
                 echo "<option value='team$home_id'>--".teamName($home_id)."--</option>";
                 foreach ($homeps as $homep) {
-                  echo "<option value='$homep'>".playerName($homep)."</option>";
+                  if ($homep != 'NIL') {
+                      echo "<option value='$homep'>".playerName($homep)." #" . playerNumber($game_id, $home_id, $homep) . "</option>";
+                  }
                 }
               ?>
               </select>

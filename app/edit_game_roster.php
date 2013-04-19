@@ -157,11 +157,10 @@ for ($j=1;$j<=$max_game;$j++) {
     echo "<td><select id='p$j' data-placeholder='Select Player' class='input-large chzn-select'>\n";
     echo "<option value=''></option>\n";
 
-    $i=1;
+    $current_player = empty($cplayers[$j - 1]) ? 'NIL' : $cplayers[$j - 1];
     foreach ($options as $option => $name) {
-        if (isset($cplayers[$j-1]) && $option==$cplayers[$j-1]) {$s='selected';} else {$s='';}
-        echo "<option value=\"$option\" $s>$name</option>\n";
-        $i++;
+        $selected = $current_player == $option ? 'selected' : '';
+        echo "<option value='$option' $selected>$name</option>\n";
     }
 
     echo "</select></td>\n";
