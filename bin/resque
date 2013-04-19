@@ -3,8 +3,13 @@
 
 // Find and initialize Composer
 $files = array(
+  __DIR__ . '/../../vendor/autoload.php',
+  __DIR__ . '/../../../autoload.php',
+  __DIR__ . '/../../../../autoload.php',
   __DIR__ . '/../vendor/autoload.php'
 );
+
+include_once __DIR__ . '/../app/config.php';
 
 $found = false;
 foreach ($files as $file) {
@@ -13,7 +18,6 @@ foreach ($files as $file) {
 		break;
 	}
 }
-include_once __DIR__ . '/../app/config.php';
 
 if (!class_exists('Composer\Autoload\ClassLoader', false)) {
 	die(
@@ -28,7 +32,7 @@ if(empty($QUEUE)) {
 	die("Set QUEUE env var containing the list of queues to work.\n");
 }
 
-$REDIS_BACKEND = $config['redis_host'];
+$REDIS_BACKEND = 'redis://redis:' . $config['redis_password'] . '@' . $config['redis_host'];
 $REDIS_BACKEND_DB = getenv('REDIS_BACKEND_DB');
 if(!empty($REDIS_BACKEND)) {
 	if (empty($REDIS_BACKEND_DB)) 
@@ -36,8 +40,6 @@ if(!empty($REDIS_BACKEND)) {
 	else
 		Resque::setBackend($REDIS_BACKEND, $REDIS_BACKEND_DB);
 }
-Resque::redis()->auth($config['redis_password']);
-echo $config['redis_host'];
 $logLevel = 0;
 $LOGGING = getenv('LOGGING');
 $VERBOSE = getenv('VERBOSE');
@@ -68,6 +70,12 @@ $count = 1;
 $COUNT = getenv('COUNT');
 if(!empty($COUNT) && $COUNT > 1) {
 	$count = $COUNT;
+}
+
+$PREFIX = getenv('PREFIX');
+if(!empty($PREFIX)) {
+    fwrite(STDOUT, '*** Prefix set to '.$PREFIX."\n");
+    Resque_Redis::prefix($PREFIX);
 }
 
 if($count > 1) {

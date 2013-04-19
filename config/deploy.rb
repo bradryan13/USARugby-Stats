@@ -1,7 +1,7 @@
 set :application, "USA Rugby Stats"
 set :repository, "git@github.com:AllPlayers/USARugby-Stats.git"
 set :branch, "origin/master"
-set :deploy_to, "/mnt/apci/usarugbystats"
+set :deploy_to, "/vol/apci/usarugbystats"
 role :web, "pdup-ap01.allplayers.com", "pdup-ap02.allplayers.com"
 role :app, "pdup-ap01.allplayers.com", "pdup-ap02.allplayers.com"
 
@@ -29,7 +29,10 @@ namespace :deploy do
     dirs += shared_children.map { |d| File.join(shared_path, d) }
     run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
     run "git clone #{repository} #{current_path}"
+    run "ln -sf #{shared_path}/config.php #{current_path}/app/config.php"
+    composer.install
     start
+    start_god
   end
 
   task :update do
@@ -56,13 +59,18 @@ namespace :deploy do
   task :finalize_update, :except => { :no_release => true } do
     run "chmod -R g+w #{latest_release}" if fetch(:group_writable, true)
     run <<-CMD
-      ln -sf #{shared_path}/config.php #{latest_release}/app/config.php
+      ln -sf #{shared_path}/config.php #{current_path}/app/config.php
     CMD
   end
   
-  desc "Stop resque workers"
-  task :stop_resque_workers do
-    run "cd #{current_path}; rake workers:killall"
+  desc "Stop god monitor"
+  task :stop_god_monitor do
+    run "cd #{current_path}; god terminate"
+  end
+
+  desc "Restart resque monitor"
+  task :restart_resque_monitor do
+    run "cd #{current_path}; god restart resque"
   end
   
   desc "Start god monitor"
@@ -71,7 +79,7 @@ namespace :deploy do
   end
 
   desc "Clear apc cache"
-  task :reset_cache
+  task :reset_cache do
     run "wget -O - -q -t 1 http://localhost:8080/sites/scripts/apc_clear.php"
   end
   
@@ -93,6 +101,26 @@ namespace :deploy do
       rollback.cleanup
     end
   end
+
+  namespace :composer do
+    desc "Install composer dependencies"
+    task :install do
+      run "cd #{current_path}; curl -s http://getcomposer.org/installer | php && ./composer.phar install"
+    end
+
+    desc "Update composer dependencies"
+    task :update do
+      run "cd #{current_path}; rm -rf vendor; rm composer.lock; curl -s http://getcomposer.org/installer | php && ./composer.phar update"
+    end
+
+  end
 end
 
-after "deploy", "deploy:reset_cache"
+namespace :destroy do
+  desc "Remove current app directory."
+  task :remove_dir do
+    run "cd #{deploy_to}; rm -rf current"
+  end
+end
+
+after "deploy", "deploy:restart_resque_monitor", "deploy:reset_cache"
