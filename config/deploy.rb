@@ -1,11 +1,11 @@
 set :application, "USA Rugby Stats"
 set :repository, "git@github.com:AllPlayers/USARugby-Stats.git"
 set :branch, "origin/master"
-set :deploy_to, "/vol/apci/usarugbystats"
+set :deploy_to, "/mnt/apci"
 role :web, "pdup-ap01.allplayers.com", "pdup-ap02.allplayers.com"
 role :app, "pdup-ap01.allplayers.com", "pdup-ap02.allplayers.com"
 
-set :migrate_target,  :current
+set :migrate_target,  :current_usarugbystats
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
 set(:current_release) { fetch(:current_path) }
@@ -119,7 +119,7 @@ end
 namespace :destroy do
   desc "Remove current app directory."
   task :remove_dir do
-    run "cd #{deploy_to}; rm -rf current"
+    run "cd #{deploy_to}; rm -rf current_usarugbystats"
   end
 end
 

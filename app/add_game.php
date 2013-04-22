@@ -94,10 +94,9 @@ $comp_id = $_GET['id'];
             </div>
           </div>
         </div>
-
          <div id="field-wrapper" class="span2">
           <div class="control-group">
-            <label for="field" id="field_label" class="control-label">Field #</label>
+            <div id="available-fields"><a href="#" class="add-field"><div style="margin-bottom: 5px;">Show available fields</a></div></div>
             <div class="controls">
               <select id='field' data-placeholder='Select Field' name='field' id='field' class='input-medium chzn-select'>
                 <option value=''></option>
