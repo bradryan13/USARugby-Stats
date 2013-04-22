@@ -96,8 +96,10 @@ $(document).ready(function() {
     });
 
     $(".chzn-select").chosen({allow_single_deselect: true, no_results_test: "No results matched"});
-    $('.addgame-home, .addgame-away').chosen().change(function() {
+    $('#available-fields').live('click', function(e) {
+      e.preventDefault();
       resourceSync.initSync();
+      $(this).html('<label for="field" id="field_label" class="control-label">Playing Field</label>');
     });
     $(".chzn-select-team").chosen({
       template: function (text, templateData) {

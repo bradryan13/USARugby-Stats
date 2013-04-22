@@ -72,43 +72,12 @@ if (!empty($selected_resource)) {
 else {
     $event['groups'] = array($home_team['uuid']);
 }
-$event = $client->createEvent($event);
 
-$db->updateGame($game_id, array('uuid' => $event->uuid));
-
-// Add Resources From Synced Data.
-// Safety check.
-if (!empty($event->resource_ids)) {
-    $event_resource = reset($event->resource_ids);
-    if ($event_resource->uuid == $selected_resource['uuid']) {
-      $location = (array) $event_resource->location;
-      $teams_by_resource[$event_resource->uuid]['location'] = $location;
-    }
+include_once './config.php';
+if ($config['redis_password'] && $config['redis_host']) {
+    Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
 }
-
-if (!empty($teams_by_resource)) {
-    foreach ($teams_by_resource as $res_uuid => $resource_data) {
-        if ($existing_resource = $db->getResource($resource_data['uuid'])) {
-            $db->updateResource($existing_resource['id'], $resource_data);
-        }
-        else {
-            $db->addResource($resource_data);
-        }
-    }
-}
-
-if (!empty($resource_by_team)) {
-    foreach ($resources_by_team as $team_uuid => $synced_team_resources) {
-        $team = $db->getTeam($team_uuid);
-        $team_resources = $team['resources'];
-        foreach ($synced_team_resources as $resource) {
-            $team_resources[] = $resource['uuid'];
-        }
-        $team['resources'] = array_unique($team_resources);
-        $db->updateTeam($team['id'], $team);
-    }
-}
-
+Resque::enqueue('create_game', 'CreateGame', array('event' => $event, 'game_id' => $game_id, 'teams_by_resource' => $teams_by_resource, 'resource_by_team' => $resource_by_team));
 
 $now = date('Y-m-d H:i:s');
 $numbers = '-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-';
