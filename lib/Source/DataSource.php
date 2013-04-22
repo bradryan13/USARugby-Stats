@@ -233,6 +233,24 @@ class DataSource {
             'loss_bonus_total' => 0,
             'forfeits' => 0
             );
+        $query = "SELECT type FROM comps WHERE id = $comp_id";
+        $result = mysql_result(mysql_query($query), 0);
+        $forfeit_points = 1;
+        $tie_points = 1;
+        if ($result) {
+            if ($result == 1) {
+                $win_points = 4;
+                $try_bonus = 1;
+                $loss_bonus = 1;
+                $loss_points = 0;
+            }
+            else {
+                $win_points = 3;
+                $try_bonus = 0;
+                $loss_bonus = 0;
+                $loss_points = 1;
+            }
+        }
         $query = "SELECT g.*, s.status_name FROM `games` g, `game_status` s WHERE (g.home_id = $team_id OR g.away_id = $team_id) AND g.comp_id = $comp_id AND g.status = s.id";
         $result = mysql_query($query);
         if (!empty($result)) {
@@ -248,7 +266,7 @@ class DataSource {
                     $record['against'] += $team_game['away_score'];
                     if ($status == 'Home Forfeit') {
                         $record['favor'] = 0;
-                        $record['points'] -= 1;
+                        $record['points'] -= $forfeit_points;
                         $record['forfeits'] += 1;
                         if ($team_game['away_score'] < 20) {
                             $team_game['away_score'] = 20;
@@ -261,16 +279,21 @@ class DataSource {
                     }
                     if ($team_game['home_score'] > $team_game['away_score']) {
                         $record['home_wins']++;
-                        $record['points'] += 4;
+                        $record['points'] += $win_points;
                     } elseif ($team_game['home_score'] < $team_game['away_score']) {
                         $record['home_losses']++;
-                        if ($team_game['home_score'] + 7 >= $team_game['away_score']) {
-                            $record['points'] += 1;
-                            $record['loss_bonus_total'] ++;
+                        if ($loss_bonus) {
+                            if ($team_game['home_score'] + 7 >= $team_game['away_score']) {
+                                $record['points'] += $loss_bonus;
+                                $record['loss_bonus_total'] ++;
+                            }
+                        }
+                        else {
+                            $record['points'] += $loss_points;
                         }
                     } elseif ($team_game['home_score'] == $team_game['away_score']) {
                         $record['home_ties']++;
-                        $record['points'] += 2;
+                        $record['points'] += $tie_points;
                     }
                 }
                 // Away record.
@@ -279,7 +302,7 @@ class DataSource {
                     $record['against'] += $team_game['home_score'];
                     if ($status == 'Away Forfeit') {
                         $record['favor'] = 0;
-                        $record['points'] -= 1;
+                        $record['points'] -= $forfeit_points;
                         $record['forfeits'] += 1;
                         if ($team_game['home_score'] < 20) {
                             $team_game['home_score'] = 20;
@@ -292,16 +315,21 @@ class DataSource {
                     }
                     if ($team_game['away_score'] > $team_game['home_score']) {
                         $record['away_wins']++;
-                        $record['points'] += 4;
+                        $record['points'] += $win_points;
                     } elseif ($team_game['away_score'] < $team_game['home_score']) {
                         $record['away_losses']++;
-                        if ($team_game['away_score'] + 7 >= $team_game['home_score']) {
-                            $record['points'] += 1;
-                            $record['loss_bonus_total'] ++;
+                        if ($loss_bonus) {
+                            if ($team_game['away_score'] + 7 >= $team_game['home_score']) {
+                                $record['points'] += $loss_bonus;
+                                $record['loss_bonus_total'] ++;
+                            }
+                        }
+                        else {
+                            $record['points'] += $loss_points;
                         }
                     } elseif ($team_game['away_score'] == $team_game['home_score']) {
                         $record['away_ties']++;
-                        $record['points'] += 2;
+                        $record['points'] += $tie_points;
                     }
                 }
 
@@ -312,8 +340,8 @@ class DataSource {
                 if ($tries == 4 && $tries_for_team_in_game < 4) {
                     $tries_for_team_in_game = 4;
                 }
-                if ($tries_for_team_in_game >= 4) {
-                    $record['points'] +=1;
+                if ($tries_for_team_in_game >= 4 && $try_bonus) {
+                    $record['points'] += $try_bonus;
                 }
                 $try_bonus_for_game = 0;
                 if (!empty($tries_for_team_in_game) && $tries_for_team_in_game >= 4) {
