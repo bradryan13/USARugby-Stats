@@ -75,7 +75,7 @@ function updateScore($game_id)
     //update score
     $query = "UPDATE `games` SET home_score='$homep', away_score='$awayp' WHERE id = '$game_id'";
     $result = mysql_query($query);
-    include_once './config.php';
+    include './config.php';
     Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
 
     $db = new DataSource;
