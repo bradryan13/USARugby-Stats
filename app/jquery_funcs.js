@@ -336,7 +336,7 @@ $(document).ready(function() {
       status: formData.status,
       game_id: formData.status_game_id
     }, function(){
-      if (formData.status == 3) {
+      if (formData.status == 28) {
           $('#signoff').show();
       } else {
           $('#signoff').hide();
