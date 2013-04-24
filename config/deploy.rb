@@ -30,6 +30,7 @@ namespace :deploy do
     run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
     run "git clone #{repository} #{current_path}"
     run "ln -sf #{shared_path}/config.php #{current_path}/app/config.php"
+    run "ln -sf #{current_path} /mnt/apci/usarugbystats"
     composer.install
     start
     start_god
