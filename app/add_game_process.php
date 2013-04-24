@@ -74,9 +74,7 @@ else {
 }
 
 include_once './config.php';
-if ($config['redis_password'] && $config['redis_host']) {
-    Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
-}
+Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
 Resque::enqueue('create_game', 'CreateGame', array('event' => $event, 'game_id' => $game_id, 'teams_by_resource' => $teams_by_resource, 'resource_by_team' => $resource_by_team));
 
 $now = date('Y-m-d H:i:s');
