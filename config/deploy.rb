@@ -53,7 +53,7 @@ namespace :deploy do
     transaction do
       update_code
     end
-    migrate
+    run "cd #{current_path}; bin/doctrine migrations:migrate -n"
     restart
   end
 
