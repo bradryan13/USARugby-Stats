@@ -32,23 +32,30 @@
 	 }, 50);
  }
 
- function playerSyncPoll(t, roster_id) {
+ function playerSyncPoll(t, roster_id, game_id, team_id) {
+     roster_id = roster_id || '';
+     game_id = game_id || '';
+     team_id = team_id || '';
 	 $.ajax({
 		 type: "POST",
 		 url: "player_sync_poll.php",
 		 data: { token: t },
 		 success: function(response) {
 			 if (response == '1') {
-				 setTimeout(playerSyncPoll, 2000, t, roster_id);
+				 setTimeout(playerSyncPoll, 2000, t, roster_id, game_id, team_id);
 			 }
 			 if (response == '2') {
 				 $('.progress > .bar').css('width', '60%');
-				 setTimeout(playerSyncPoll, 2000, t, roster_id);
+				 setTimeout(playerSyncPoll, 2000, t, roster_id, game_id, team_id);
 			 }
 			 if (response == '4') {
 				 $('.progress > .bar').css('width', '100%');
 				 $('#synching').html('Players synched.');
-				 window.location = '/event_roster.php?no_sync=1&roster_id=' + roster_id;
+                 if (roster_id == '') {
+                    window.location = '/game_roster.php?no_sync=1&gid=' + game_id + '&tid=' + team_id;
+                 }else {
+                    window.location = '/event_roster.php?no_sync=1&roster_id=' + roster_id;
+                 }
 			 }
 		 }});
 }
