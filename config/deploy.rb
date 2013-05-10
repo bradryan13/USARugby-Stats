@@ -2,8 +2,8 @@ set :application, "USA Rugby Stats"
 set :repository, "git@github.com:AllPlayers/USARugby-Stats.git"
 set :branch, "origin/master"
 set :deploy_to, "/mnt/apci"
-role :web, "pdup-ap01.allplayers.com", "pdup-ap02.allplayers.com"
-role :app, "pdup-ap01.allplayers.com", "pdup-ap02.allplayers.com"
+role :web, "ap01.allplayers.com", "ap02.allplayers.com"
+role :app, "ap01.allplayers.com", "ap02.allplayers.com"
 
 set :migrate_target,  :current_usarugbystats
 set(:latest_release)  { fetch(:current_path) }
