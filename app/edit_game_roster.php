@@ -7,7 +7,8 @@ if (!isset($team_id) || !$team_id) {$team_id=$_GET['tid'];}
 //get our team id and list of current rostered players
 $roster = $db->getRoster($game_id, $team_id);
 $roster_id=$roster['id'];
-$comp_id=$roster['comp_id'];
+$game = $db->getGame($game_id);
+$comp_id = $game['comp_id'];
 $competition = $db->getCompetition($comp_id);
 $player_ids = $roster['player_ids'];
 $numbers = $roster['numbers'];
