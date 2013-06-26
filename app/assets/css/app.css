@@ -11,11 +11,6 @@ table.table {
     min-width: 300px;
 }
 
-/* testing */
-
-a.brand {
-  padding: 0px !important;
-}
 
 div#hero-clipboard {
   overflow: hidden;

@@ -2,17 +2,17 @@
 include_once './include.php';
 ?>
 
-<div class="navbar navbar-inverse">
-  <div class="navbar-inner">
+<div class="navbar">
+  <div class="inner">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="/"><img src="/assets/USA_Rugby_bw.png"/></a>
+      <a class="brand" href="/"><img src="/assets/img/usarugby-2x-logo.png"/></a>
       <div class="nav-collapse collapse">
-        <ul class="nav pull-left">
+        <ul class="nav pull-right">
           <li><a href='/'>Competitions</a></li>
           <li><a href='/help.php'>Help</a></li>
           <li><a href='/logout.php'>Logout</a></li>
@@ -49,18 +49,21 @@ if (editCheck(1)) {
 ?>
 
       </ul>
-      <?php
+     <!--
+ <?php
       if (!empty($_SESSION['user']) && strpos($_SESSION['user'], '@') !== FALSE) {
           echo '<ul class="nav pull-right">';
           echo "<li class='welcome_user'>Welcome, " . $_SESSION['user'] . "<li>";
           echo '</ul>';
       }
       ?>
+-->
       </div>
     </div>
   </div>
 </div>
 <div id="maincontent">
+	<div class="wrapper"
 
 <?php
 if (isset($_SESSION['alert_message'])) {

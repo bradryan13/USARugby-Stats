@@ -21,6 +21,7 @@ include_once './db.php';
   <link href="/assets/css/vendor/datepicker.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/vendor/chosen.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
 
 <?php
 include_once './display_funcs.php';
@@ -46,5 +47,4 @@ if (empty($iframe)) {
   include_once './header.php';
 }
 
-echo "<title>USA Rugby National Championship Series</title>";
 

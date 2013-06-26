@@ -9,5 +9,4 @@ while ($row=mysql_fetch_assoc($result)) {
     echo "Last day of competition: $edate<br/>\r";
     echo "Maximum players on event roster: {$row['max_event']}<br/>\r";
     echo "Maximum players on match roster: {$row['max_game']}<br/>\r";
-
 }

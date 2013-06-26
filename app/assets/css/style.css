@@ -1,0 +1,92 @@
+/*--------------------------------------------------------------------------
+   
+   USA Rugby Competition Management System 2.0
+
+	1. Body
+	2. Typography
+	3. Page Sections
+		3.1. 
+		3.2. Intro
+		3.3. Resume
+		3.4. Works
+			3.4.1 jQuery Reveal Plugin
+		3.5. Contact / References / Testimonials
+		3.6. Footer
+
+--------------------------------------------------------------------------*/
+
+/*---------------------------------------------------
+1. Body
+---------------------------------------------------*/
+
+body {
+	background-color: #F3F3F3;
+}
+
+.wrapper {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+/*---------------------------------------------------
+3. Page Sections
+---------------------------------------------------*/
+
+/* 3.1 Nav Bar  */
+
+.navbar {
+	height: 50px;
+	background: #182945;
+	border-bottom: 5px solid #FFF; 
+}
+
+.navbar .inner {
+}
+
+.navbar .inner .container {
+	max-width: 1000px;
+}
+
+.navbar .nav>li>a {
+	text-shadow: none;
+	color: #FFF;
+	padding: 0 18px;
+	font-size: 13px;
+	border-right: 1px solid #002236;
+	border-left: 1px solid #002E49;
+	height: 50px;
+	line-height: 50px;
+}
+
+.navbar .nav>li>a:hover {
+	background: #001830;
+	color: #FFF;
+}
+
+.navbar .nav .dropdown-toggle .caret {
+	margin-top: 22px;
+	color: #FFF;
+}
+
+.welcome_user {
+	line-height: 50px;
+	color: #999;
+	padding: 0;
+}
+
+.navbar .nav li.dropdown.open>.dropdown-toggle {
+	background: #001830;
+	color: #FFF;
+}
+
+.navbar .brand {
+	width: 200px;
+}
+
+
+/* Main Content  */
+
+.wrapper {
+	max-width: 1000px;
+	margin: 0 auto;
+}
