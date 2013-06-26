@@ -78,15 +78,15 @@ $app->get('/', function() use ($app) {
             $qh = new QueueHelper();
             $queuecount = $qh->Queue()->count();
             echo "<!-- Queue: $queuecount -->";
-
+            
             if (editCheck(1)) {
-                echo "<a class='btn btn-info' href='add_comp.php'>Add New Competition</a><br/>\r";
+                echo "<div class='add-comp'><a class='btn-flat red' href='add_comp.php'>Add New Competition  <i class='icon-plus icon-white'></i></a></div>\r";
             }
 
             // Lists our comptitions
             // Renders twig comp-list for competitions
-            echo "<h2>Competitions</h2>";
-            echo "<div id='comps' class='span6'>";
+            echo "<h1 class='comp'>Competitions</h1>";
+            echo "<div id='comps'>";
             include_once './comp_list.php';
             echo "</div>";
             include_once './footer.php';
