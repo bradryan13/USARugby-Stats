@@ -2,6 +2,10 @@
  <tr>
     {% for competition in competitionrows %}
         <td>{{ competition.compnamelink|raw }}</td>
+        <td>{{ competition.compstartdate|raw }}</td> 
+        <td>{{ competition.compenddate|raw }}</td>
+        <td>{{ competition.compleague_type|raw }}</td> 
+           
             {% if competition.canedit %}
                 <td>
                   <div class="btn-group pull-right">

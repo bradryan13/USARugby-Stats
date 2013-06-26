@@ -38,6 +38,9 @@ while ($row=mysql_fetch_assoc($result)) {
           );
         $competition['competitioniframe'] = $twig->render('modal-template-iframe.twig', array('modal' => $competitioniframe));
         $competition['compnamelink'] = "<a href='comp.php?id={$row['id']}'>{$row['name']}</a>";
+        $competition['compstartdate'] = date('F j, Y', strtotime($row['start_date']));
+        $competition['compenddate'] = date('F j, Y', strtotime($row['end_date']));
+        $competition['compleague_type'] = "{$row['league_type']}";
         $competition_rows[] = $competition;
     }
 }
