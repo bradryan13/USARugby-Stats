@@ -50,5 +50,29 @@ if (empty($twig)) {
     $twig = new Twig_Environment($loader, array());
 }
 
+?>
+
+<script type="text/javascript" charset="utf-8">
+			$(document).ready( function () {
+				
+				$('#sort').dataTable( {
+					"bPaginate": false,
+					"aoColumnDefs": [
+						{ 
+						"bSortable": false, 
+						"aTargets": [ -1 ] // <-- gets last column and turns off sorting
+						} 
+					]
+					} );
+				$('.dataTables_filter input').attr('placeholder', 'Filter Competitions');
+				$('div.dataTables_filter input').focus()
+					} );			
+</script>
+
+<div class="container">
+<div id="maincontent">
+
+<?php
 echo $twig->render('comp-list.twig', array('competitionrows' => $competition_rows));
+?>
 
