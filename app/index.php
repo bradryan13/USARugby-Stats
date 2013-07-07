@@ -18,6 +18,8 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 /**
  * Setup app default settings
  */
+ 
+ 
 $app->before(function (Request $request) use ($app) {
         // Include configuration file.
         include_once 'config.php';
@@ -80,12 +82,12 @@ $app->get('/', function() use ($app) {
             echo "<!-- Queue: $queuecount -->";
             
             if (editCheck(1)) {
-                echo "<div class='add-comp'><a class='btn-flat red' href='add_comp.php'>Add New Competition  <i class='icon-plus icon-white'></i></a></div>\r";
+                echo "<div class='header'><div class='container'><div class='add-comp'><a class='btn-flat red' href='add_comp.php'>Add New Competition  <i class='icon-plus icon-white'></i></a></div>\r";
             }
 
             // Lists our comptitions
             // Renders twig comp-list for competitions
-            echo "<h1 class='comp'>Competitions</h1>";
+            echo "<h1 class='comp'>Competitions</h1></div></div>";
             echo "<div id='comps'>";
             include_once './comp_list.php';
             echo "</div>";
