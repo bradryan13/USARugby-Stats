@@ -36,7 +36,9 @@ include_once './other_funcs.php';
   <script src="/assets/js/vendor/bootstrap-datepicker.js" type="text/javascript"></script>
   <script src="/assets/js/vendor/chosen.jquery.min.js" type="text/javascript"></script>
   <script src="/assets/js/vendor/jquery.dataTables.js" type="text/javascript"></script>
-  <script src='/assets/js/vendor/jquery.timeentry.pack.js' type='text/javascript'></script>
+  <script src="/assets/js/vendor/ColumnFilterWidgets.js" type="text/javascript"></script>
+  <script src="/assets/js/vendor/jquery.timeentry.pack.js" type='text/javascript'></script>
+  <script src="/assets/js/vendor/jquery.dataTables.yadcf.js" type='text/javascript'></script>
 <?php if (!empty($iframe)) { ?>
   <script src='https://www.allplayers.com/iframe.js?usar_stats' type='text/javascript'></script>
 <?php } ?>
@@ -44,18 +46,6 @@ include_once './other_funcs.php';
   <script>
     if (window.name=="ConnectWithOAuth") {window.close();}
   </script>
-  <script type="text/javascript" charset="utf-8">
-			$(document).ready( function () {
-				
-				$('#sort').dataTable( {
-					"bPaginate": false
-					} );
-				$('.dataTables_filter input').attr('placeholder', 'Search Competitions');
-				$('div.dataTables_filter input').focus()
-					} );
-				
-				
-</script>
 
 
 </head>

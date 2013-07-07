@@ -422,13 +422,7 @@ div.location {
   margin-bottom: 5px;
 }
 
-#maincontent .table th, #maincontent .table td {
-  padding: 8px;
-  line-height: 20px;
-  text-align: left;
-  vertical-align: top;
-  border-top: 1px solid #dddddd;
-}
+
 
 #maincontent table.normal.table.team-schedule-games tr.daterow {
   display:none;

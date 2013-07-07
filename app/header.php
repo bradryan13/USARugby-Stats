@@ -62,8 +62,6 @@ if (editCheck(1)) {
     </div>
   </div>
 </div>
-<div class="container">
-<div id="maincontent">
 
 <?php
 if (isset($_SESSION['alert_message'])) {
