@@ -19,12 +19,8 @@
 ---------------------------------------------------*/
 
 body {
-	background-color: #F3F3F3;
-	color: #555;
-}
-
-.container {
-	max-width: 1000px;
+	background: #F0F0F0;
+	color: #666;
 }
 
 :focus {outline:none;}
@@ -44,6 +40,14 @@ h1 {
 	line-height: 70px;
 }
 
+button, input, select, textarea {
+	font-family: "proxima-nova";
+}
+
+a {
+	color: #003A75;
+}
+
 /*---------------------------------------------------
 3. Page Sections
 ---------------------------------------------------*/
@@ -54,6 +58,10 @@ h1 {
 	height: 50px;
 	background: #1D2C46;
 	margin-bottom: 0;
+}
+
+.navbar .container {
+	max-width: 1050px;
 }
 
 .navbar .nav.pull-right {
@@ -105,18 +113,17 @@ h1 {
 }
 
 .header {
-	background: #FFF;
+	position: relative;
 	padding: 10px 0;
-	background-color: #F7F7F7;
-	background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #F7F7F7), color-stop(30%, #FFF));
-	background-image: -webkit-linear-gradient(bottom, #F7F7F7 0%, #FFF 30%);
-	background-image: -moz-linear-gradient(bottom, #F7F7F7 0%, #FFF 30%);
-	background-image: linear-gradient(bottom, #F7F7F7 0%, #FFF 30%);
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	margin-top: 50px;
+	background-color: #FFF;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	border-bottom: 1px solid #CFCFCF;
+	border-top: 1px solid #F0F0F0;
 }
+
 	
 .header .container {
 	height: 90px;
@@ -193,6 +200,17 @@ h1 {
 
 /* 4.2 Tables  */
 
+#maincontent table {
+	background: #FFF;
+border: 1px solid #DBDBDB;
+box-shadow: 0 3px 0 0 #DBDBDB;
+-moz-box-shadow: 0 3px 0 0 #dbdbdb;
+-webkit-box-shadow: 0 3px 0 0 #DBDBDB;
+-webkit-border-radius: 5px 5px 5px 5px;
+-moz-border-radius: 5px 5px 5px 5px;
+border-radius: 5px 5px 5px 5px;
+}
+
 
 #maincontent table th, #maincontent table td {
 	vertical-align: middle;
@@ -201,14 +219,14 @@ h1 {
 }
 
 #maincontent table tr:nth-child(even) {
-	background: #EEE;
-	border-top: 1px solid #E6E6E6;
+	background: #FAFAFA;
+	border-top: 1px solid #F5F5F5;
+	border-bottom: 1px solid #F5F5F5;
 }
 
 #maincontent table th, #maincontent .able td {
 	border-top: none;
 }
-
 
 
 #maincontent table th {
@@ -219,15 +237,15 @@ h1 {
 }
 
 #maincontent table th:first-child  {
-    -moz-border-radius-topleft:4px;
-    -webkit-border-top-left-radius:4px;
-    border-top-left-radius:4px
+    -moz-border-radius-topleft:3px;
+    -webkit-border-top-left-radius:3px;
+    border-top-left-radius:3px
 }
 
 #maincontent table th:last-child {
-    -moz-border-radius-topright:4px;
-    -webkit-border-top-right-radius:4px;
-    border-top-right-radius:4px
+    -moz-border-radius-topright:3px;
+    -webkit-border-top-right-radius:3px;
+    border-top-right-radius:3px
 }
 
 #maincontent table td > a {
@@ -257,6 +275,10 @@ h1 {
 	position: relative;
 }
 
+#maincontent table th a {
+	color: #FFF;
+}
+ 
 #maincontent table thead {
 	background: #1D2C46;
 }
@@ -409,7 +431,7 @@ select:focus {
 	width: 100%
 }
 
-.home-team {
+td.home-team {
 	text-align: right;
 }
 
@@ -426,4 +448,144 @@ select:focus {
 
 .team-name h1 {
 	margin-left: 100px;
+}
+
+
+/* 5.3 Game Page  */
+
+
+.scoreboard .away-team h1, .scoreboard .home-team h1 {
+	font-size: 28px;
+	line-height: 78px;
+}
+
+.scoreboard .away-team h1 a, .scoreboard .home-team h1 a {
+	color: #1D2C46;
+}
+
+.scoreboard .away-team {
+	float: left;
+}
+
+.scoreboard .home-team {
+	float: left;
+}
+
+
+.scoreboard .score {
+	display: inline-block;
+	text-align: center;
+	line-height: 94px;
+	font-size: 48px;
+	float: left;
+	margin: 0 20px;
+	color: #999;
+}
+
+.game-meta {
+	background-color: #FFF;
+	display: inline-block;
+	border-top: 1px solid #F0F0F0;
+	margin: 0 auto;
+	width: 100%;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid #CFCFCF;
+	border-top: 1px solid #F0F0F0;
+}
+
+.game-meta ul {
+	list-style: none;
+	margin: 0;
+}
+
+.game-meta li {
+	float: left;
+	padding: 10px 20px;
+	border-right: 1px solid #F0F0F0;
+	font-size: 13px;
+}
+
+.game-meta li:first-child {
+	padding-left: 0;
+}
+
+
+.game-meta .btn-flat.red {
+	color: #FFF;
+	background: #B52437;
+	padding: 4px 18px;
+	margin-top: 4px;
+	font-size: 12px;
+	float: right;
+	text-shadow: none;
+}
+
+
+td.frout {
+	border-right: 2px solid #E7E7E7;
+	width: 5%
+}
+
+td.player-name {
+	width: 30%;
+}
+
+td.player-pos {
+	width: 10%
+}
+
+td.player-num {
+	width: 5%
+}
+
+.header.meta {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-bottom: none;
+	border-top: none;
+	
+}
+
+
+.btn-no {
+	width: 80px;
+	background: none;
+	cursor: pointer;
+	font-size: 13px;
+	color: #A00000;
+	border: none;
+	margin: 0 0 0 20px;
+	padding: 0px;
+}
+
+#eShow {
+	line-height: 40px;
+}
+
+#info form {
+	margin-bottom: 0;	
+}
+
+#info form li:first-child, #info form li:last-child {
+	padding-left: 0;
+	height: 65px;
+}
+
+.game-meta .btn-flat.red {
+	border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+	margin-top: -2px;
+}
+
+
+/* Player view */
+
+.popover {
+	max-width: 600px;
+}
+
+.player-popover-iframe body {
+	background: #FFF;
 }
