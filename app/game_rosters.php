@@ -34,10 +34,14 @@ if (count($homeps) > count($awayps)) {
 } else {
     $max = count($awayps);
 }
+?>
+<div class="row-fluid">
+<div class="span6">
 
+<?php
 echo "<table class='table rosters'>";
 $link = empty($iframe);
-echo "<thead><tr><th>#</th><th>Position</th><th>" . teamName($away_id, $link) . "</th><th class='frout'>FR</th><th>#</th><th>Position</th><th>" . teamName($home_id, $link) . "</th><th class='frout'>FR</th></tr></thead>";
+echo "<thead><tr><th>#</th><th>Position</th><th>" . teamName($away_id, $link) . "</th><th class='frout'>FR</th></tr></thead>";
 
 //0 element has been filtered above so start at 1
 //displaying number, name, FR capable
@@ -52,22 +56,43 @@ for ($i=1; $i<=$max; $i++) {
     echo $away_player_name_string;
     if (isset($awayfrs[$i]) && $awayfrs[$i]==1) {$frout='FR';} else {$frout='';}
     echo "<td class='frout'>$frout</td>\r";
-    echo "<td class='player-num'>{$homens[$i]}</td>\r";
-    echo "<td class='player-pos'>";
-    if (!empty($home_positions[$i])) {
-        echo($positions[$home_positions[$i]]);
-    }
-    echo "</td>";
-    echo "<td class='player-name'>". (isset($homeps[$i]) ? playerName($homeps[$i], !$link, $game_id) : '') ."</td>\r";
-    if (isset($homefrs[$i]) && $homefrs[$i]==1) {$frout='FR';} else {$frout='';}
-    echo "<td class='frout-home'>$frout</td>";
     echo "</tr>";
 }
 
 if (editCheck() && empty($iframe)) {
     echo "<td colspan='4'><a class='left' href='game_roster.php?gid=$game_id&tid=$away_id'>Edit Roster</a></td>\n";
-    echo "<td>&nbsp;</td>";
-    echo "<td colspan='4'><a href='game_roster.php?gid=$game_id&tid=$home_id'>Edit Roster</a></td>\n";
 }
 
 echo "</table>";
+?>
+</div><div class="span6">
+
+
+<?php
+echo "<table class='table rosters'>";
+$link = empty($iframe);
+echo "<thead><tr><th>#</th><th>Position</th><th>" . teamName($home_id, $link) . "</th><th class='frout'>FR</th></tr></thead>";
+
+//0 element has been filtered above so start at 1
+//displaying number, name, FR capable
+for ($i=1; $i<=$max; $i++) {
+    echo "<tr><td class='player-num'>{$homens[$i]}</td>\r";
+    echo "<td class='player-pos'>";
+    if (!empty($away_positions[$i])) {
+        echo($positions[$away_positions[$i]]);
+    }
+    echo "</td>";
+    $home_player_name_string = empty($homeps[$i]) ? "<td class='player-name'>&nbsp;</td>\r" : "<td class='player-name'>".playerName($homeps[$i], !$link, $game_id)."</td>\r";
+    echo $home_player_name_string;
+    if (isset($homefrs[$i]) && $homefrs[$i]==1) {$frout='FR';} else {$frout='';}
+    echo "<td class='frout'>$frout</td>\r";
+    echo "</tr>";
+}
+
+if (editCheck() && empty($iframe)) {
+    echo "<td colspan='4'><a class='left' href='game_roster.php?gid=$game_id&tid=$away_id'>Edit Roster</a></td>\n";
+}
+
+echo "</table>";
+?>
+</div></div>
