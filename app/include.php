@@ -17,12 +17,11 @@ include_once './db.php';
   <meta name="google" content="notranslate">
 
   <!-- Styles -->
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/vendor/datepicker.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/vendor/chosen.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
-  
+  <link href="/assets/css/style.css" rel="stylesheet" type="text/css">  
   <!-- Fonts -->
   <script type="text/javascript" src="//use.typekit.net/dqm3mdr.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
