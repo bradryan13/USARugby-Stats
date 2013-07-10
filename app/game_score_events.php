@@ -8,6 +8,8 @@ if (empty($game_id)) {
 }
 
 echo "<table class='table game-score-events'>";
+	echo "<tr><th>Minute</th><th>Score</th><th>Team</th><th>Player</th><th></th></tr>";
+
 
 $game_score_events = $db->getGameScoreEvents($game_id);
 if (!empty($iframe)) {
@@ -21,7 +23,7 @@ foreach ($game_score_events as $game_score_event) {
 
     if (editCheck() && empty($iframe)) {
         echo "<td><form style='margin: 0; padding: 0' name='dForm{$game_score_event['id']}' id='dForm{$game_score_event['id']}'>";
-        echo "<a href='#' class='dScore' id='dScore{$game_score_event['id']}' data-del-score-id='{$game_score_event['id']}'> <i class='icon-trash'></i></a>";
+        echo "<a href='#' class='dScore' id='dScore{$game_score_event['id']}' data-del-score-id='{$game_score_event['id']}'><i class='icon-trash'></i> Remove Score</a>";
         echo "<input type='hidden' class='dId' name='event_id' id='event_id' value='{$game_score_event['id']}' />";
         echo "<input type='hidden' name='refresh' id='refresh' value='game_score_events.php?id=$game_id' />";
 

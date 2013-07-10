@@ -22,37 +22,34 @@ if ((!$ops = $request->get('ops')) || empty($iframe)) {
   );
 }
 ?>
-<div id="wrapper" class="container-fluid game">
-  <div class="row-fluid span-12 game_info">
-    <?php
+
+<?php
+    
+//Get the Team Header 
+include_once './game_header.php';
+    
     if (!empty($game_id)) {
       $game = $db->getGame($game_id);
       // Game Information.
       if (in_array('game_info', $ops)) {
         if (empty($iframe)) {
-          echo "<h1>Game Info</h1>";
         }
         echo "<div id='info'>\r";
         // Get the teams and kickoff and competition.
         include_once './game_info.php';
         echo "</div>\r";
-      }
+      }  
+    
+    
+?>    
+      <div id="maincontent" class="container">
 
-      // Overall Game Score.
-      if (in_array('game_score', $ops)) {
-        if (empty($iframe)) {
-          echo "<h2>Score</h2>";
-        }
-        echo "<div id='score'>\r";
-        // Get the rosters for this game.
-        include_once './game_score.php';
-        echo "</div>\r";
-      }
+	  <?php
 
       // Rosters
       if (in_array('game_rosters', $ops)) {
         if (empty($iframe)) {
-          echo "<h2>Rosters</h2> ";
+          echo "<h3>Rosters</h3> ";
         }
         $home_id = $game['home_id'];
         $away_id = $game['away_id'];
@@ -63,7 +60,7 @@ if ((!$ops = $request->get('ops')) || empty($iframe)) {
       // Player Scores - Individual
       if (in_array('game_score_events', $ops)) {
         if (empty($iframe)) {
-          echo "<h2>Scores</h2>\r";
+          echo "<h3>Scores</h3>\r";
         }
         echo "<div id='scores'>";
         // Get the scoring events for this game.
@@ -80,7 +77,7 @@ if ((!$ops = $request->get('ops')) || empty($iframe)) {
       // Subs.
       if (in_array('game_sub_events', $ops)) {
         if (empty($iframe)) {
-          echo "<h2>Subs</h2>";
+          echo "<h3>Subs</h3>";
         }
          echo "<div id='subs'>";
         // Get the subs for this game.
@@ -97,7 +94,7 @@ if ((!$ops = $request->get('ops')) || empty($iframe)) {
       // Cards.
       if (in_array('game_card_events', $ops)) {
         if (empty($iframe)) {
-          echo "<h2>Cards</h2>";
+          echo "<h3>Cards</h3>";
         }
         echo "<div id='cards'>";
         // Get the yellow/red cards for this game.
@@ -115,7 +112,7 @@ if ((!$ops = $request->get('ops')) || empty($iframe)) {
       // Status.
       if (in_array('game_status', $ops)) {
         if (empty($iframe)) {
-          echo "<h2>Status</h2>";
+          echo "<h3>Status</h3>";
         }
 
         // If we can edit/add, show the necessary form info.
