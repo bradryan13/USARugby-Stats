@@ -9,16 +9,15 @@ $comp = $db->getCompetition($game['comp_id']);
 $kickoff = new DateTime($game['kickoff']);
 
 ?>
-<div id="wrapper" class="container-fluid">
-  <div class="row-fluid">
+<div class="game-meta" id="game-id"><div class="container"><ul>  
     <form name='editgame' id='editgame' method='POST' action='' class="form-inline">
       <div class="alert error alert-error" id="form-validation-error">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <div class="error-message"></div>
       </div>
       <div class="row-fluid">
-
-        <div id="comp-wrapper" class="span1">
+	     <li>
+        <div id="comp-wrapper">
           <div class="control-group">
             <label for="comp" id="comp_label" class="control-label">Comp</label>
             <div class="controls">
@@ -27,27 +26,14 @@ $kickoff = new DateTime($game['kickoff']);
           </div>
         </div>
 
-        <div id="field-wrapper" class="span1">
-          <div class="control-group">
-            <label for="field" id="field_label" class="control-label">Field #</label>
-            <div class="controls">
-               <input id='field' name='field' type='text' size='1' value=<?php print '"' .  $game['field_num'] . '"'; ?> class="input-small" placeholder="Field #">
-            </div>
-          </div>
-        </div>
 
-        <div id="game-wrapper" class="span1">
+         </li>
+         
+         
+         <li>
+        <div id="date-wrapper">
           <div class="control-group">
-            <label for="gnum" id="gnum_label" class="control-label">Game #</label>
-            <div class="controls">
-               <input id='gnum' name='gnum' value=<?php print '"' .  $game['comp_game_id'] . '"'; ?> type='text' size='1' class="input-small required" placeholder="Game #">
-            </div>
-          </div>
-        </div>
-
-        <div id="date-wrapper" class="span1">
-          <div class="control-group">
-            <label for="kdate" id="kdate_label" class="control-label">Start Date</label>
+            <label for="kdate" id="kdate_label" class="control-label">Date</label>
             <div class="controls">
                <?php
                 // Determine date start. and end.
@@ -60,9 +46,14 @@ $kickoff = new DateTime($game['kickoff']);
           </div>
         </div>
 
-        <div id="time-wrapper" class="span1">
+         </li>
+         
+         
+          
+         <li>
+        <div id="time-wrapper">
           <div class="control-group">
-            <label for="ko_time" id="ko_time_label" class="control-label">Time</label>
+            <label for="ko_time" id="ko_time_label" class="control-label">Kickoff</label>
             <div class="controls">
               <?php
                   $value = $kickoff->format('h:iA');
@@ -72,28 +63,37 @@ $kickoff = new DateTime($game['kickoff']);
           </div>
         </div>
 
-        <div id="time-wrapper" class="span1">
+         </li>
+         
+           <li>
+        <div id="field-wrapper">
           <div class="control-group">
-            <label for="ko_time" id="ko_time_label" class="control-label">Game</label>
+            <label for="field" id="field_label" class="control-label">Field #</label>
             <div class="controls">
-              <?php
-                  echo teamName($game['away_id'])." @ ".teamName($game['home_id']);
-              ?>
+               <input id='field' name='field' type='text' size='1' value=<?php print '"' .  $game['field_num'] . '"'; ?> class="input-small" placeholder="Field #">
             </div>
           </div>
         </div>
 
+     
+         </li>
+         
+       
+
+         
+         
+         <li>
         <?php if (editCheck()) { ?>
-        <div id="submit-wrapper" class="span1">
+        <div id="submit-wrapper">
           <div class="control-group">
             <label for="submit" id="submit_label" class="control-label">&nbsp;</label>
             <div class="controls">
                <input type='hidden' id='game_id' value=<?php print '"' . $game_id . '"' ?>>
-               <input type='button' class='edit btn btn-primary' id='eGame' name='eGame' value='Submit Edits' />
+               <input type='button' class='btn-no btn-flat red' id='eGame' name='eGame' value='Submit Edits' />
             </div>
           </div>
         </div>
-
+        </li>
         <?php } ?>
 
       </div>
