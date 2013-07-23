@@ -120,7 +120,6 @@ a {
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-	border-bottom: 1px solid #CFCFCF;
 	border-top: 1px solid #F0F0F0;
 }
 
@@ -191,7 +190,7 @@ a {
 .btn-flat.red {
 	color: #FFF;
 	background: #B52437;
-	padding: 8px 18px;
+	padding: 4px 18px;
 }
 
 .btn-flat.red:hover {
@@ -472,7 +471,7 @@ td.home-team {
 }
 
 
-.scoreboard .score {
+.scoreboard #score {
 	display: inline-block;
 	text-align: center;
 	line-height: 94px;
@@ -491,7 +490,6 @@ td.home-team {
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-	border-bottom: 1px solid #CFCFCF;
 	border-top: 1px solid #F0F0F0;
 }
 
@@ -516,8 +514,6 @@ td.home-team {
 	color: #FFF;
 	background: #B52437;
 	padding: 4px 18px;
-	margin-top: 4px;
-	font-size: 12px;
 	float: right;
 	text-shadow: none;
 }
@@ -546,19 +542,17 @@ td.player-num {
 	box-shadow: none;
 	border-bottom: none;
 	border-top: none;
-	
 }
 
 
 .btn-no {
-	width: 80px;
 	background: none;
 	cursor: pointer;
-	font-size: 13px;
+	font-size: 12px;
 	color: #A00000;
 	border: none;
-	margin: 0 0 0 20px;
-	padding: 0px;
+	margin: -2px 0 0 20px;
+	padding: 0 20px;
 }
 
 #eShow {
@@ -574,7 +568,7 @@ td.player-num {
 	height: 65px;
 }
 
-.game-meta .btn-flat.red {
+.btn-flat.red {
 	border-bottom: 3px solid rgba(0, 0, 0, 0.2);
 	margin-top: -2px;
 }

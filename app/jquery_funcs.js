@@ -216,11 +216,11 @@ $(document).ready(function() {
   }
 
   var reloadData = function(elementName, loaderTarget, extraOpsPostLoad) {
-    $(elementName).fadeOut('slow', function(){
-          $(elementName).html('Please wait...');
+    $(elementName).fadeOut('fast', function(){
+          $(elementName).html('<img src="/assets/img/ajax-loader.gif">');
           $(elementName).fadeIn('fast');
           $(elementName).load(loaderTarget, function(){
-            $(elementName).fadeIn('slow');
+            $(elementName).fadeIn('fast');
             initDateTime();
             if (extraOpsPostLoad) {
               extraOpsPostLoad();
@@ -669,10 +669,10 @@ $(document).ready(function() {
 
             var game_id = $("#game_id").val();
 
-            $('#info').html('Please wait...');
+            $('#info').html('<img src="/assets/img/ajax-loader.gif">');
         $('#info').fadeIn('fast');
                $('#info').load('/edit_game_info.php?id='+game_id, function(){
-             $('#info').fadeIn('slow');
+             $('#info').fadeIn('fast');
              initDateTime();
              });
 
