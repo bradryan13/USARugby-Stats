@@ -94,6 +94,25 @@ function compName($id, $link = TRUE)
  * @param unknown $id
  * @return unknown
  */
+
+function compNameNL($id)
+{
+    $query = "SELECT id, name FROM `comps` WHERE id = $id";
+    $result = mysql_query($query);
+    while ($row=mysql_fetch_assoc($result)) {
+            $output = $row['name'];
+    }
+    return $output;
+}
+
+
+
+/**
+ *
+ *
+ * @param unknown $id
+ * @return unknown
+ */
 function playerName($id, $iframe = FALSE, $game_id = NULL)
 {
     if (empty($twig)) {

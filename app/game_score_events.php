@@ -18,7 +18,7 @@ if (!empty($iframe)) {
 foreach ($game_score_events as $game_score_event) {
     echo "<tr><td>{$game_score_event['minute']}'</td>\r";
     echo "<td>".eType($game_score_event['type'])."</td>\r";
-    echo "<td>".teamName($game_score_event['team_id'], empty($iframe))."</td>\r";
+    echo "<td>".teamNameNL($game_score_event['team_id'], empty($iframe))."</td>\r";
     echo "<td>".playerName($game_score_event['player_id'], !empty($iframe), $game_id)."</td>\r";
 
     if (editCheck() && empty($iframe)) {

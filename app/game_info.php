@@ -11,7 +11,7 @@ if (empty($game)) {
 ?>
 <div class="game-meta" id="game-id"><div class="container"><ul>
 <?php
-echo "<li>". compName($game['comp_id'], empty($iframe))."</li>";
+echo "<li>". compNameNL($game['comp_id'], empty($iframe))."</li>";
 echo "<li>". date('F j, Y', strtotime($game['kickoff']))."</li>";
 echo "<li>Kickoff: ".date('g:i', strtotime($game['kickoff']))."</li>";
 
