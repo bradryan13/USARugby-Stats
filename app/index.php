@@ -76,15 +76,11 @@ $app->get('/', function() use ($app) {
             // @TODO: Change this to use a twig template.
             // Originally "index.php"
             include_once './include.php';
-
             $qh = new QueueHelper();
             $queuecount = $qh->Queue()->count();
             echo "<!-- Queue: $queuecount -->";
-            
             if (editCheck(1)) {
                 echo "<div class='header'><div class='container'><div class='add-comp'><a class='btn-flat red' href='add_comp.php'>Add New Competition  <i class='icon-plus icon-white'></i></a></div>\r";
-            }
-
             // Lists our comptitions
             // Renders twig comp-list for competitions
             echo "<h1 class='comp'>Competitions</h1></div></div>";
@@ -92,8 +88,15 @@ $app->get('/', function() use ($app) {
             include_once './comp_list.php';
             echo "</div>";
             include_once './footer.php';
+            }
+            else {
+				function Redirect($url, $permanent = false) {
+				header('Location: ' . $url, true, $permanent ? 301 : 302);
+				exit();
+				}
+				Redirect('/team.php?id='.$_SESSION['teamid'], false);
+            }
             mysql_close();
-
             return '';
         }
     });
