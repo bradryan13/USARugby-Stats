@@ -1,41 +1,28 @@
-<div id="wrapper" class="container-fluid">
-  <div class="row-fluid">
+<div class='span4'>
+<div class='add-controls'>
+<div class='section-header'><h3><span>Add Sub</span></h3></div>
     <form name='addsub' id='addsub' method='POST' action=''>
       <div class="alert error alert-error" id="form-validation-error">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <div class="error-message"></div>
       </div>
 
-      <div class="row-fluid">
-        <div id="submin-wrapper" class="span1">
-          <div class="control-group">
-            <label for="submin" id="submin_label" class="control-label">Min.</label>
-            <div class="controls">
+	  		 <div class="control">
               <input type="text" name="submin" id="submin" placeholder='Min' class='input-mini required' data-minute-max-value="121">
-            </div>
-          </div>
-        </div>
+         
 
-        <div id="subtype-wrapper" class="span2">
-          <div class="control-group">
-            <label for="subtype" id="subtype_label" class="control-label">Type</label>
-            <div class="controls">
-              <select name='subtype' id='subtype' data-placeholder='Type' class='chzn-select input-medium required'>
+              <select name='subtype' id='subtype' data-placeholder='Sub Type' class='chzn-select input-200p required'>
                 <option value=''></option>
                 <option value='15'>Blood</option>
                 <option value='13'>Injury</option>
                 <option value='17'>Front Row Card</option>
-                <option value='11'>Tactical</option>
+                <option value='11' selected="selected">Tactical</option>
               </select>
-            </div>
-          </div>
-        </div>
+     		 </div>
+         		 <div class="control">
 
-        <div id="player_on-wrapper" class="span2">
-          <div class="control-group">
-           <label for="player_on" id="player_on_label" class="control-label">Player On</label>
-            <div class="controls">
-                <select name='player_on' id='player_on' data-placeholder="Player On" class='input-medium required chzn-select'>
+    
+                <select name='player_on' id='player_on' data-placeholder="Player On" class='input-100 required chzn-select'>
                   <option value=""></option>
                 <?php
                   echo "<optgroup label='" . teamName($away_id, FALSE) ."'>";
@@ -54,15 +41,11 @@
                   echo "</optgroup>";
                 ?>
               </select>
-            </div>
-          </div>
-        </div>
+         		 </div>
+      		 <div class="control">
 
-        <div id="player_off-wrapper" class="span2">
-          <div class="control-group">
-            <label for="player_off" id="player_off_label" class="control-label">Player Off</label>
-            <div class="controls">
-              <select name='player_off' id='player_off' data-placeholder="Player Off" class='input-medium required chzn-select'>
+    
+              <select name='player_off' id='player_off' data-placeholder="Player Off" class='input-100 required chzn-select'>
                 <option value=""></option>
                 <?php
                   echo "<optgroup label='" . teamName($away_id, FALSE) ."'>";
@@ -81,22 +64,15 @@
                   echo "</optgroup>";
                 ?>
               </select>
-            </div>
-          </div>
-        </div>
+      		 </div>
+           
+		 <div class="control">
 
-        <div id="submit-wrapper" class="span1">
-            <div class="control-group">
-              <label for="submit" id="submit_label" class="control-label">&nbsp;</label>
-              <div class="controls">
-                <input type='hidden' name='subrefresh' id='subrefresh' value='<?php echo $request->getScheme() . '://' . $request->getHost() . "/game_sub_events.php?game_id=$game_id"; ?>'>
+                <input type='hidden' name='subrefresh' id='subrefresh' value='<?php echo $request->getScheme() . '://' . $request->getHost() . "/game_score_events.php?game_id=$game_id"; ?>'>
                 <input type='hidden' name='sub_game_id' id='sub_game_id' value=<?php echo "$game_id"; ?>>
-                <input type='submit' name='submit' class='button btn btn-primary' id='add_sub' value='Add Sub'>
-              </div>
-            </div>
-          </div>
-
-      </div>
+                <input type='submit' name='submit' class='btn-flat btn-no red' id='add_sub' value='Add Sub'>
+		 </div>
+          
     </form>
-  </div>
 </div>
+  </div>

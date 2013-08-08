@@ -22,7 +22,14 @@
           </tr>
           {% endif %}
           <tr class="game">
-          {% if game.canedit %}
+          <td class="schide">{{ game.comp_game_id|raw }}</td>
+          <td class="admindate">{{ game.kickoff}}</td>
+          <td class="home-right">{{ game.home_id|raw}}</td>
+          <td class="score-center">{{ game.score|raw }}</td>
+          <td>{{ game.away_id|raw }}</td>
+          <td class="league">{{ game.league }}</td>
+          <td><div class="location">{{ game.field|raw }}<span class="icon-map-marker"></span></div></td>
+           {% if game.canedit %}
             <td>
               <div class="btn-group pull-left">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -55,13 +62,6 @@
           {% else %}
             <td></td>
           {% endif %}
-          <td class="schide">{{ game.comp_game_id|raw }}</td>
-          <td class="admindate">{{ game.kickoff}}</td>
-          <td class="home-right">{{ game.home_id|raw}}</td>
-          <td class="score-center">{{ game.score|raw }}</td>
-          <td>{{ game.away_id|raw }}</td>
-          <td class="league">{{ game.league }}</td>
-          <td><div class="location">{{ game.field|raw }}<span class="icon-map-marker"></span></div></td>
         </tr>
     {% endfor %}
   </table>

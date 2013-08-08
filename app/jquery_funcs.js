@@ -214,10 +214,10 @@ $(document).ready(function() {
     });
     return formData;
   }
-
+  var storedHeight = $('.loader-height').height();
   var reloadData = function(elementName, loaderTarget, extraOpsPostLoad) {
-    $(elementName).fadeOut('fast', function(){
-          $(elementName).html('<img src="/assets/img/ajax-loader.gif">');
+    $(elementName).fadeOut('slow', function(){
+          $(elementName).html('<div style="width: 100%; position:relative;"><img src="/assets/img/ajax-loader.gif"></div>').find('div').height(storedHeight);
           $(elementName).fadeIn('fast');
           $(elementName).load(loaderTarget, function(){
             $(elementName).fadeIn('fast');
@@ -298,7 +298,7 @@ $(document).ready(function() {
       player_off: formData.player_off,
       game_id: formData.game_id
     }, function(){
-      reloadData('#subs', formData.subrefresh);
+      reloadData('#subs, #scores', formData.subrefresh);
     });
 
     return false;
@@ -323,7 +323,7 @@ $(document).ready(function() {
       cardplayer: formData.cardplayer,
       card_game_id: formData.card_game_id
     }, function(){
-      reloadData('#cards', formData.cardrefresh);
+      reloadData('#cards, #scores', formData.cardrefresh);
     });
     return false;
   });
@@ -385,7 +385,7 @@ $(document).ready(function() {
         $.post('/delete_sub_process.php',
         {id: dId, game_id: game_id},
         function(){
-          reloadData('#subs', subDrefresh);
+          reloadData('#scores', subDrefresh);
         });
 
     return false;
@@ -402,7 +402,7 @@ $(document).ready(function() {
         $.post('/delete_card_process.php',
         {id: dId, game_id: game_id},
         function(){
-          reloadData('#cards', cardDrefresh);
+          reloadData('#scores', cardDrefresh);
         });
 
     return false;
@@ -656,7 +656,7 @@ $(document).ready(function() {
         $.post('/signatures_process.php',
         {ref: ref, num4: num4, homec: homec, awayc: awayc, game_id: game_id},
         function(){
-          reloadData('#signoff', srefresh);
+/*           reloadData('#signoff', srefresh);  do we need to refresh since they're checkboxes? Change language to signature: vs. "signed/not signed"*/
         });
 
     return false;
@@ -666,15 +666,14 @@ $(document).ready(function() {
 
     //show edit info
             $("#eShow").live('click', function() {
-
             var game_id = $("#game_id").val();
-
-            $('#info').html('<img src="/assets/img/ajax-loader.gif">');
+            $('#info').html('<div style="height:93px; width: 100%; background: #FFF;"<img src="/assets/img/ajax-loader.gif">');
         $('#info').fadeIn('fast');
                $('#info').load('/edit_game_info.php?id='+game_id, function(){
              $('#info').fadeIn('fast');
              initDateTime();
              });
+             
 
     return false;
     });

@@ -43,92 +43,67 @@ include_once './game_header.php';
     
 ?>    
       <div id="maincontent" class="container">
-
+		  
 	  <?php
 
       // Rosters
       if (in_array('game_rosters', $ops)) {
-        if (empty($iframe)) {
-          echo "<h3>Rosters</h3> ";
-        }
+          echo "<div class='section-head'><h3><span>Rosters</span></h3></div>";
         $home_id = $game['home_id'];
         $away_id = $game['away_id'];
         // Get the rosters for this game.
         include_once './game_rosters.php';
       }
-
+      
+    ?>    
+    <?php
+    
       // Player Scores - Individual
       if (in_array('game_score_events', $ops)) {
         if (empty($iframe)) {
-          echo "<h3>Scores</h3>\r";
-        }
-        echo "<div id='scores'>";
+          echo "<div class='row-fluid'><div class='span12'><div class='section-head'><h3><span>Game Summary</span></h3></div>\r";
+        echo "<div class='loader-height'><div id='scores'>";
         // Get the scoring events for this game.
-        include_once './game_score_events.php';
-        echo "</div>";
-        // If we can edit/add, show the necessary form info.
-        if (editCheck() && empty($iframe)) {
-          echo "<div id='score_submit'>";
-          include './add_score.php';
-          echo "</div>";
+        echo "</div></div></div></div>";
         }
+         include_once './game_score_events.php';
       }
-
-      // Subs.
-      if (in_array('game_sub_events', $ops)) {
-        if (empty($iframe)) {
-          echo "<h3>Subs</h3>";
-        }
-         echo "<div id='subs'>";
-        // Get the subs for this game.
-        include_once './game_sub_events.php';
-        echo "</div>";
+	  
         // If we can edit/add, show the necessary form info.
         if (editCheck() && empty($iframe)) {
+        
+          // If we can edit/add, show the necessary form info.
+          echo "<div class='row'><div id='score_submit'>";
+          include './add_score.php';
+          echo "</div>"; 
           echo "<div id='sub_submit'>";
           include './add_sub.php';
           echo "</div>";
+          echo "<div id='card_submit'>";
+          include './add_card.php';
+          echo "</div></div>";
         }
-      }
-
-      // Cards.
-      if (in_array('game_card_events', $ops)) {
-        if (empty($iframe)) {
-          echo "<h3>Cards</h3>";
-        }
-        echo "<div id='cards'>";
-        // Get the yellow/red cards for this game.
-        include_once './game_card_events.php';
-        echo "</div>";
-
-        // If we can edit/add, show the necessary form info.
-        if (editCheck() && empty($iframe)) {
-            echo "<div id='card_submit'>";
-            include './add_card.php';
-            echo "</div></div>";
-        }
-      }
-
       // Status.
       if (in_array('game_status', $ops)) {
         if (empty($iframe)) {
-          echo "<h3>Status</h3>";
+          echo "<div class='section-head'><h3><span>Game Status</span></h3></div>";
         }
 
         // If we can edit/add, show the necessary form info.
         if (editCheck() && empty($iframe)) {
-            echo "<div id='status_submit'>";
+            echo "<div id='status_submit' class='row-fluid'>";
             include './add_status.php';
+             echo "<div id='signoff' class='$status span8'>";
+        // Get the ref, coaches, and #4's signoffs.
+        	include_once './signatures.php';
+			echo "</div>";
             echo "</div>";
         }
       }
 
       $status = game_status($game_id);
       if (empty($iframe) && editCheck()) {
-        echo "<div id='signoff' class='$status'>";
-        // Get the ref, coaches, and #4's signoffs.
-        include_once './signatures.php';
-        echo "</div>";
+      
       }
     }
     else {

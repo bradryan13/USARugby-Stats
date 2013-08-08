@@ -40,6 +40,24 @@ h1 {
 	line-height: 70px;
 }
 
+h3 {
+	font-size: 14.5px;
+	line-height: 19.5px;
+	font-weight: 700;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+h3 span {
+	border-bottom: 2px solid #1D2C46;
+}
+
+.section-head {
+	border-bottom:  1px solid #FFF;
+	margin: 20px 0 10px 0;
+}
+
+
 button, input, select, textarea {
 	font-family: "proxima-nova";
 }
@@ -115,12 +133,12 @@ a {
 .header {
 	position: relative;
 	padding: 10px 0;
-	margin-top: 50px;
 	background-color: #FFF;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	border-top: 1px solid #F0F0F0;
+	margin-bottom: 20px;
 }
 
 	
@@ -201,13 +219,6 @@ a {
 
 #maincontent table {
 	background: #FFF;
-border: 1px solid #DBDBDB;
-box-shadow: 0 3px 0 0 #DBDBDB;
--moz-box-shadow: 0 3px 0 0 #dbdbdb;
--webkit-box-shadow: 0 3px 0 0 #DBDBDB;
--webkit-border-radius: 5px 5px 5px 5px;
--moz-border-radius: 5px 5px 5px 5px;
-border-radius: 5px 5px 5px 5px;
 }
 
 
@@ -258,16 +269,17 @@ border-radius: 5px 5px 5px 5px;
 	display: none;
 }
 
-#sort_filter input[type="text"], #sort-games_filter input[type="text"] {
+input[type="text"] {
 	background: #FFF;
 	font-size: 15px;
 	border: none;
 	box-shadow: none;
-	margin-top: 10px;
 	padding: 8px;
 	border-radius: 0;
 	font-family: "proxima-nova";
 	border: 1px solid #E4E4E4;
+	margin: 0;
+	border-radius: 3px;
 }
 
 #maincontent table th {
@@ -342,7 +354,7 @@ border-radius: 5px 5px 5px 5px;
 /* YADCF -- Content Filter */
 
 
-.no-clear-filter .yadcf-filter-reset-button {
+.yadcf-filter-reset-button {
 	display: none;
 }
 
@@ -378,6 +390,10 @@ border-radius: 5px 5px 5px 5px;
 	bottom: 16px;
 }
 
+span.scores, span.cards, span.subs {
+	display: none;
+}
+
 /*
 #maincontent .table th.sorting:last-child:after, #maincontent .table th.sorting:last-child:before{
 	border: none;
@@ -407,6 +423,18 @@ select {
 select:focus {
 	outline: none;
 }
+
+/* Bootstrap additions */
+
+.input-100 {
+	width: 100%;
+}
+
+.input-200p  {
+	width: 200px;
+}
+
+
 
 /*---------------------------------------------------
 5. Page Views
@@ -505,6 +533,10 @@ td.home-team {
 	font-size: 13px;
 }
 
+.control-group {
+	margin-bottom: 0;
+}
+
 .game-meta li:first-child {
 	padding-left: 0;
 }
@@ -516,6 +548,7 @@ td.home-team {
 	padding: 4px 18px;
 	float: right;
 	text-shadow: none;
+	margin-left: 20px;
 }
 
 
@@ -542,6 +575,7 @@ td.player-num {
 	box-shadow: none;
 	border-bottom: none;
 	border-top: none;
+	margin-bottom: 0;
 }
 
 
@@ -551,12 +585,13 @@ td.player-num {
 	font-size: 12px;
 	color: #A00000;
 	border: none;
-	margin: -2px 0 0 20px;
 	padding: 0 20px;
 }
 
 #eShow {
 	line-height: 40px;
+	font-size: 13px;
+	margin: 0;
 }
 
 #info form {
@@ -571,6 +606,116 @@ td.player-num {
 .btn-flat.red {
 	border-bottom: 3px solid rgba(0, 0, 0, 0.2);
 	margin-top: -2px;
+}
+
+#events td:first-child:after {
+	content: "'"; /* Add minute marker with css so it doesn't mess up sort	 */	
+}
+
+#events td.dataTables_empty:after  {
+	content: '';
+}
+
+#maincontent #events .points {
+	background: #D8ECFF;
+}
+
+.add-controls{
+	padding: 20px;
+	background: #E7E7E7;
+	position: relative;
+	height: 228px;
+	border: 1px solid #E6E6E6;	
+}
+.add-controls form {
+	margin: 0;
+}
+.control {
+	margin-bottom: 10px;
+}
+
+
+.add-controls input[type="text"] {
+	margin-right: 6px;
+}
+
+.add-controls .btn-flat.red {
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
+	padding: 9px 0;
+}
+
+.add-controls .section-header {
+	margin: 0 0 10px 0;
+	border-bottom: 1px solid #FFF;
+}
+
+.add-controls .alert {
+	border: 1px solid #FBEED5;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 18px;
+	background-color: #F2DEDE;
+	border-color: #EED3D7;
+	color: #B94A48;
+	margin: 0;
+	border-radius: 0;
+	opacity: .95;
+}
+.add-controls .close {
+	opacity: .8;
+}
+
+.add-controls.status {
+	height: 45px;
+}
+
+.add-controls.status .btn-flat.red {
+	left: 190px;
+	top: 22px;
+	width: 120px;
+	height: 40px;
+}
+
+
+.add-controls.status ul {
+	list-style: none;
+	margin: 0;
+}
+
+.add-controls.status ul li {
+	float: left;
+	padding: 10px;
+	background: #FFF;
+	margin-right: 20px;
+	font-size: 13px;
+}
+
+.add-controls.status li.last /* for >IE8 */{
+	margin-right: 0;
+}
+
+.add-controls.status ul li input {
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+#events td:last-child a {
+	text-decoration: none;
+	font-size: 12px;
+	color: #333;
+}
+
+#events td:last-child .icon-trash {
+	vertical-align: text-bottom;
 }
 
 
