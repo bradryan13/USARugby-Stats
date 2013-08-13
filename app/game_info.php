@@ -1,19 +1,37 @@
 <?php
 include_once './include_mini.php';
 
+$base_url = $request->getScheme() . '://' . $request->getHost();
+$game_url= $base_url . "/" . "game.php?iframe=1&id=".$game_id."&ops[0]=game_info&ops[1]=game_score&ops";
+$iframe_url = "<iframe height='2000px' width='100%' src='".$game_url."'></iframe>"; ?>
+
+<div id="iframe-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">×</a>
+									<h3>Game iFrame </h3>
+					</div>
+				<div class="modal-body">
+					<div class="divDialogElements">
+						<input class="input-100" style="max-width: 512px;" id="xlInput" name="xlInput" value="<?php echo $iframe_url ?>" type="text">
+						</div>
+					</div>
+</div>
+
+
+<?php
 
 if (empty($game)) {
   $game_id = empty($game_id) ? $request->get('id') : $game_id;
   $game = $db->getGame($game_id);
 }
-
-
 ?>
 <div class="game-meta" id="game-id"><div class="container"><ul>
 <?php
 echo "<li>". compNameNL($game['comp_id'], empty($iframe))."</li>";
 echo "<li>". date('F j, Y', strtotime($game['kickoff']))."</li>";
 echo "<li>Kickoff: ".date('g:i', strtotime($game['kickoff']))."</li>";
+echo '<li><a href="#iframe-modal" data-toggle="modal">Game iFrame</a></li>';
+
 
 if (!empty($game['field_num'])) {
     $resource = $db->getResource($game['field_num']);
