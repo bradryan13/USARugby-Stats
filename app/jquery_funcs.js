@@ -275,7 +275,7 @@ $(document).ready(function() {
       player: formData.player,
       game_id: game_id
     }, function(){
-        reloadData('#scores', refresh);
+        reloadData('#events_wrapper', refresh);
         reloadData('#score', game_score);
       });
     return false;
@@ -298,7 +298,7 @@ $(document).ready(function() {
       player_off: formData.player_off,
       game_id: formData.game_id
     }, function(){
-      reloadData('#subs, #scores', formData.subrefresh);
+      reloadData('#subs, #events_wrapper', formData.subrefresh);
     });
 
     return false;
@@ -323,7 +323,7 @@ $(document).ready(function() {
       cardplayer: formData.cardplayer,
       card_game_id: formData.card_game_id
     }, function(){
-      reloadData('#cards, #scores', formData.cardrefresh);
+      reloadData('#cards, #events_wrapper', formData.cardrefresh);
     });
     return false;
   });
@@ -366,7 +366,7 @@ $(document).ready(function() {
         $.post('/delete_score_process.php',
         {id: dId, game_id: game_id},
         function(){
-          reloadData('#scores', refresh);
+          reloadData('#events_wrapper', refresh);
           reloadData('#score', game_score);
 
         });
@@ -385,7 +385,7 @@ $(document).ready(function() {
         $.post('/delete_sub_process.php',
         {id: dId, game_id: game_id},
         function(){
-          reloadData('#scores', subDrefresh);
+          reloadData('#events_wrapper', subDrefresh);
         });
 
     return false;
@@ -402,7 +402,7 @@ $(document).ready(function() {
         $.post('/delete_card_process.php',
         {id: dId, game_id: game_id},
         function(){
-          reloadData('#scores', cardDrefresh);
+          reloadData('#events_wrapper', cardDrefresh);
         });
 
     return false;

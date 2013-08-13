@@ -66,6 +66,10 @@ a {
 	color: #003A75;
 }
 
+.red {
+	color: #A00000;
+}
+
 /*---------------------------------------------------
 3. Page Sections
 ---------------------------------------------------*/
@@ -424,6 +428,10 @@ select:focus {
 	outline: none;
 }
 
+label {
+	cursor: default;
+}
+
 /* Bootstrap additions */
 
 .input-100 {
@@ -617,7 +625,7 @@ td.player-num {
 }
 
 #maincontent #events .points {
-	background: #D8ECFF;
+	background: #ECF6FF;
 }
 
 .add-controls{

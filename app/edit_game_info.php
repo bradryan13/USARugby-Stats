@@ -21,7 +21,7 @@ $kickoff = new DateTime($game['kickoff']);
           <div class="control-group">
             <label for="comp" id="comp_label" class="control-label">Comp</label>
             <div class="controls">
-               <?php echo compName($game['comp_id']); ?>
+               <?php echo compNameNL($game['comp_id']); ?>
             </div>
           </div>
         </div>
