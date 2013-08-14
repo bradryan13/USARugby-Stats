@@ -61,11 +61,13 @@ else {
 			$kickofftime = date('g:i A', strtotime($team_game['kickoff']));
 			$kickoffdate = date('D, M d, Y', strtotime($team_game['kickoff']));
 			$game['league'] = $team_game['league_type'];
+			$base_url = $request->getScheme() . '://' . $request->getHost();
+			$game_url = $base_url . "/" . "game.php?iframe=1&id=".$team_game['id']."&ops[0]=game_info&ops[1]=game_score&ops";
+			$iframe_url = '<iframe height="2000px" width="100%" src="'.$game_url.'"></iframe>';
 			echo "<tr>";
 			echo "<td>" . $kickoffdate. "</td>";
 			echo "<td class='home-team'>" . teamNameNL($team_game['home_id']) . "</td>";
 			echo "<td class='score-time'><a href='game.php?id={$team_game['id']}'>";
-			
 			// If game score has not been entered, replace 0-0 with N/A
 			if($team_game['away_score'] == "0" && $team_game['home_score'] == "0") {
 				$game['score'] = "N/A";
@@ -86,9 +88,11 @@ else {
 							<ul class='dropdown-menu'>
 								<li><a href='game.php?id={$team_game['id']}'><i class='icon-edit'></i> Edit</a></li>
 								<li><a href='game_roster.php?gid={$team_game['id']}'><i class='icon-list'></i> Rosters</a></li>
+								<li><a href='#{$team_game['id']}' data-toggle='modal' class='red'>Game iFrame</a></li>
 							</ul></div></td>";
 			echo "</tr>";
-		}
+			echo "<div id='{$team_game['id']}' class='modal hide fade' tabindex='-1'><div class='modal-header'><a href='#' class='close' data-dismiss='modal'>×</a><h3>Game iFrame</h3><div class='modal-body'><div class='divDialogElements'><input class='input-100' style='max-width: 482px;' id='xlInput' name='xlInput' value='$iframe_url' type='text'></div></div></div>";
+			};
 		echo "</table>";
 	}
 	// Iframe.
