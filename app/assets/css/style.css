@@ -19,7 +19,7 @@
 ---------------------------------------------------*/
 
 body {
-	background: #F0F0F0;
+	background: #F5F5F5;
 	color: #666;
 }
 
@@ -223,6 +223,8 @@ a {
 
 #maincontent table {
 	background: #FFF;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+	border-radius: 3px;
 }
 
 
@@ -630,7 +632,7 @@ td.player-num {
 
 .add-controls{
 	padding: 20px;
-	background: #E7E7E7;
+	background: #FFF;
 	position: relative;
 	height: 228px;
 	border: 1px solid #E6E6E6;	
