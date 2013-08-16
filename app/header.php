@@ -5,24 +5,19 @@ include_once './include.php';
 <div class="navbar navbar">
   <div class="inner">
     <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
       <a class="brand" href="/"><img src="/assets/img/usarugby-2x-logo.png"/></a>
-      <div class="nav-collapse collapse">
         <ul class="nav pull-right">
-          <li><a href='/'>Competitions</a></li>
+        <?php
+//If the user has a team specific login, provide link to their roster page.
+if ($_SESSION['teamid'] > 0) {
+    echo "<li><a href='/'>Fixtures</a></li>";
+} else {
+	echo "<li><a href='/'>Competitions</a></li>";
+	 } ?>
           <li><a href='/help.php'>Help</a></li>
           <li><a href='/logout.php'>Logout</a></li>
 
 <?php
-//If the user has a team specific login, provide link to their roster page.
-if ($_SESSION['teamid'] > 0) {
-    echo "<li><a href='/team.php?id={$_SESSION['teamid']}'>My Rosters</a></li>";
-}
-
 //only display Admin Options to admins
 if (editCheck(1)) {
     ?>
@@ -49,17 +44,7 @@ if (editCheck(1)) {
 ?>
 
       </ul>
-     <!--
- <?php
-      if (!empty($_SESSION['user']) && strpos($_SESSION['user'], '@') !== FALSE) {
-          echo '<ul class="nav pull-right">';
-          echo "<li class='welcome_user'>Welcome, " . $_SESSION['user'] . "<li>";
-          echo '</ul>';
-      }
-      ?>
--->
       </div>
-    </div>
   </div>
 </div>
 
