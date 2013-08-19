@@ -16,7 +16,6 @@ class GetTeamPlayers {
 	public function __construct()
 	{
 		include __DIR__ . '/../../../app/config.php';
-		Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
 		$this->config = $config;
 	}
 	

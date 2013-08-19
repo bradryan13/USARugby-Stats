@@ -1,6 +1,6 @@
 app_root = ENV['RESQUE_APP_ROOT']
 app_root ||= "/mnt/apci/usarugbystats"
-num_workers = 2
+num_workers = 5
 
 num_workers.times do |num|
   God.watch do |w|
@@ -8,7 +8,7 @@ num_workers.times do |num|
     w.name     = "resque-#{num}"
     w.group    = 'resque'
     w.interval = 30.seconds
-    w.env      = {'QUEUE' => 'create_game,get_team_players,get_player_roles,update_game_score', 'APP_INCLUDE' => 'autoload.php'}
+    w.env      = {'QUEUE' => 'get_groups,get_group,create_game,get_team_players,get_player_roles,update_game_score', 'APP_INCLUDE' => 'autoload.php'}
     w.start    = "php bin/resque"
 
     # restart if memory gets too high
