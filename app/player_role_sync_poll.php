@@ -1,7 +1,6 @@
 <?php
 include_once './config.php';
 include_once './include_mini.php';
-Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
 $tokens = $_POST['tokens'];
 $done = 0;
 $total = 0;
