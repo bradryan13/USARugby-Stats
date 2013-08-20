@@ -1,7 +1,8 @@
 {% extends "base.twig" %}
   {% block content %}
-    <div class='container-fluid'>
-      <div class="grid row-fluid">
+  <div id='bg'>
+  <div class="index-logo"><a href="login"><img src="assets/img/usarugby-2x-logo.png"></a></div>
+  <div class="index-contact"><a href="https://usarugby.zendesk.com/anonymous_requests/new" target="_blank">Contact Support <i class="icon-comment icon-white"></i></a></div>
 {% block flash %}
 {% if flash.ext is defined %}
         <div class="span span8 offset2 clearfix" style="margin-top: 30px;">
@@ -12,31 +13,17 @@
         </div>
 {% endif %}
 {% endblock flash %}
-
-        <div class="span span3 clearfix">
-          <div style="height: 250px; margin: 5px;" id="hero-clipboard">
-            <center><img style="height: 100%;" src="/assets/clipboard.png"/></center>
-          </div>
-        </div>
-        <div class="span span8 clearfix">
-          <div class="hero-unit">
-            <h1>USA Rugby Stats</h1>
-
-            <p>Online Rugby competition statistics management and reporting.</p>
-
-            <p><a href="/login" id="login-allplayers"><img src="/assets/blue_signup_btn.png" /></a></p>
+			<div id='login'>
+            <h1>Scores, Standings, and Rosters.</h1>
             <p>- or -</p>
             <p>
               <form class="form-inline" action="login_access_code" method="post">
                 <input id='access-code' name='access-code' type='password' placeholder="Access Code" class="input-small">
                 <input type='button' class='add btn btn-primary' id='provideAccess' name='provideAccess' value='Login' />
               </form>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- By: Matt Trenary, AllPlayers.com (source: https://github.com/AllPlayers/USARugby-Stats) -->
+            </p>            
+		</div>
+     </div>
   {% endblock %}
   {% block jsfooter %}
     {{ parent() }}
