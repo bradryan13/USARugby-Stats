@@ -10,6 +10,7 @@
 		4.1. Buttons
 	5. Page Views
 		5.1. Competition list view
+	6. Responsive
 		
 
 --------------------------------------------------------------------------*/
@@ -19,7 +20,7 @@
 ---------------------------------------------------*/
 
 body {
-	background: #F5F5F5;
+	background: #E4E4E4;
 	color: #666;
 }
 
@@ -89,6 +90,10 @@ a {
 .navbar .nav.pull-right {
 	border-right: 1px solid #243844;
 	border-left: 1px solid #0B2331;
+}
+
+.navbar .nav>li {
+	background: #1D2C46;
 }
 
 .navbar .nav>li>a {
@@ -359,6 +364,11 @@ input[type="text"] {
 
 /* YADCF -- Content Filter */
 
+#events_filter {
+	width: 225px;
+	display: inline-block;
+}
+
 
 .yadcf-filter-reset-button {
 	display: none;
@@ -552,7 +562,7 @@ td.home-team {
 }
 
 
-.game-meta .btn-flat.red {
+.game-meta .606 {
 	color: #FFF;
 	background: #B52437;
 	padding: 4px 18px;
@@ -595,13 +605,12 @@ td.player-num {
 	font-size: 12px;
 	color: #A00000;
 	border: none;
-	padding: 0 20px;
 }
 
 #eShow {
-	line-height: 40px;
 	font-size: 13px;
 	margin: 0;
+	line-height: 13px;
 }
 
 #info form {
@@ -609,8 +618,7 @@ td.player-num {
 }
 
 #info form li:first-child, #info form li:last-child {
-	padding-left: 0;
-	height: 65px;
+	height: 63px;
 }
 
 .btn-flat.red {
@@ -738,3 +746,244 @@ td.player-num {
 .player-popover-iframe body {
 	background: #FFF;
 }
+
+.row.player-info {
+	background: #FFF;
+}
+
+/*---------------------------------------------------
+6. Website Tour
+---------------------------------------------------*/
+
+.introjs-overlay {
+  position: absolute;
+  background-color: #000;
+  opacity: 0;
+  background: -moz-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  background: -webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,rgba(0,0,0,0.4)),color-stop(100%,rgba(0,0,0,0.9)));
+  background: -webkit-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  background: -o-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  background: -ms-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  background: radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000',endColorstr='#e6000000',GradientType=1);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+
+.introjs-fixParent {
+  z-index: auto !important;
+}
+
+.introjs-showElement {
+  z-index: 10 !important;
+}
+
+.introjs-relativePosition {
+  position: relative;
+}
+
+.introjs-helperLayer {
+  position: absolute;
+  background-color: #FFF;
+  background-color: rgba(255,255,255,.9);
+  border: 1px solid #777;
+  border: 1px solid rgba(0,0,0,.5);
+  border-radius: 4px;
+  box-shadow: 0 2px 15px rgba(0,0,0,.4);
+  -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+
+.introjs-helperNumberLayer {
+  position: absolute;
+  bottom: -16px;
+  left: -16px;
+  z-index: 11;
+  padding: 2px;
+  font-family: Arial, verdana, tahoma;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  background: #001830; /* Old browsers */
+  width: 20px;
+  height:20px;
+  line-height: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404', GradientType=0); /* IE6-9 */ 
+  filter: progid:DXImageTransform.Microsoft.Shadow(direction=135, strength=2, color=ff0000); /* IE10 text shadows */
+  box-shadow: 0 2px 5px rgba(0,0,0,.4);
+}
+
+.introjs-arrow {
+  border: 5px solid white;
+  content:'';
+  position: absolute;
+}
+.introjs-arrow.top {
+  top: -10px;
+  border-top-color:transparent;
+  border-right-color:transparent;
+  border-bottom-color:white;
+  border-left-color:transparent;
+}
+.introjs-arrow.right {
+  right: -10px;
+  top: 10px;
+  border-top-color:transparent;
+  border-right-color:transparent;
+  border-bottom-color:transparent;
+  border-left-color:white;
+}
+.introjs-arrow.bottom {
+  bottom: -10px;
+  border-top-color:white;
+  border-right-color:transparent;
+  border-bottom-color:transparent;
+  border-left-color:transparent;
+}
+.introjs-arrow.left {
+  left: -10px;
+  top: 10px;
+  border-top-color:transparent;
+  border-right-color:white;
+  border-bottom-color:transparent;
+  border-left-color:transparent;
+}
+
+.introjs-tooltip {
+  position: absolute;
+  padding: 10px;
+  background-color: white;
+  min-width: 200px;
+  max-width: 300px;
+  border-radius: 3px;
+  box-shadow: 0 1px 10px rgba(0,0,0,.4);
+  -webkit-transition: opacity 0.1s ease-out;
+     -moz-transition: opacity 0.1s ease-out;
+      -ms-transition: opacity 0.1s ease-out;
+       -o-transition: opacity 0.1s ease-out;
+          transition: opacity 0.1s ease-out;
+}
+
+.introjs-tooltipbuttons {
+  text-align: right;
+}
+
+/* 
+ Buttons style by http://nicolasgallagher.com/lab/css3-github-buttons/ 
+ Changed by Afshin Mehrabani
+*/
+.introjs-button {
+  position: relative;
+  overflow: visible;
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border: 1px solid #d4d4d4;
+  margin: 0;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 #fff;
+  font: 11px/normal sans-serif;
+  color: #333;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  background-color: #ececec;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+  background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+  background-image: -o-linear-gradient(#f4f4f4, #ececec);
+  background-image: linear-gradient(#f4f4f4, #ececec);
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  -o-background-clip: padding-box;
+  /*background-clip: padding-box;*/ /* commented out due to Opera 11.10 bug */
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  /* IE hacks */
+  zoom: 1;
+  *display: inline;
+  margin-top: 10px;
+}
+
+.introjs-button:hover {
+  border-color: #bcbcbc;
+  text-decoration: none; 
+  box-shadow: 0px 1px 1px #e3e3e3;
+}
+
+.introjs-button:focus,
+.introjs-button:active {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ececec), to(#f4f4f4));
+  background-image: -moz-linear-gradient(#ececec, #f4f4f4);
+  background-image: -o-linear-gradient(#ececec, #f4f4f4);
+  background-image: linear-gradient(#ececec, #f4f4f4);
+}
+
+/* overrides extra padding on button elements in Firefox */
+.introjs-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+.introjs-skipbutton {
+  margin-right: 5px;
+  color: #7a7a7a;
+}
+
+.introjs-prevbutton {
+  -webkit-border-radius: 0.2em 0 0 0.2em;
+  -moz-border-radius: 0.2em 0 0 0.2em;
+  border-radius: 0.2em 0 0 0.2em;
+  border-right: none;
+}
+
+.introjs-nextbutton {
+  -webkit-border-radius: 0 0.2em 0.2em 0;
+  -moz-border-radius: 0 0.2em 0.2em 0;
+  border-radius: 0 0.2em 0.2em 0;
+}
+
+.introjs-disabled, .introjs-disabled:hover, .introjs-disabled:focus {
+  color: #9a9a9a;
+  border-color: #d4d4d4;
+  box-shadow: none;
+  cursor: default;
+  background-color: #f4f4f4;
+  background-image: none;
+  text-decoration: none;
+}
+
+
+
+/*---------------------------------------------------
+7. Responsive
+---------------------------------------------------*/
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) 
+	{
+	.navbar .brand {
+		margin-left: 20px;
+	}
+	h1 {
+		font-size: 28px;
+	}
+	#maincontent table {
+		font-size: 13px;
+	}
+}
+
+

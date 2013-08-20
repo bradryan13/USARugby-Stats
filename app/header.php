@@ -14,7 +14,15 @@ if ($_SESSION['teamid'] > 0) {
 } else {
 	echo "<li><a href='/'>Competitions</a></li>";
 	 } ?>
-          <li><a href='/help.php'>Help</a></li>
+          <li class = "dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support <b class = "caret"></b></a>
+          <ul class = "dropdown-menu">
+          	<li><a id="startButton" href="#">Site Tutorial</a></li>
+          	<li><a href="#">Support Center</a></li>
+          	<li><a href="#">Contact</a></li>
+          </ul>
+      </li>
+          <li><a id="startButton" href="#">Tour</a></li>
           <li><a href='/logout.php'>Logout</a></li>
 
 <?php
