@@ -42,12 +42,12 @@ if (!empty($game['field_num'])) {
     }
 }
 if (empty($iframe)) {
-echo '<li><a href="#iframe-modal" data-toggle="modal" class="red">Game iFrame</a></li>';
+echo '<li class="game-iframe"><a href="#iframe-modal" data-toggle="modal" class="red">Game iFrame</a></li>';
 }
 
 if (editCheck() && empty($iframe)) {
-    echo "<input type='button' class='btn-no' id='eShow' name='eShow' value='Edit Game' />";
-    echo "<input type='hidden' id='game_id' value='$game_id' />";
+    echo "<li class='edit-game-button'><input type='button' class='btn-no' id='eShow' name='eShow' value='Edit Game' />";
+    echo "<input type='hidden' id='game_id' value='$game_id' /></li>";
 }
 ?>
 </ul></div></div>
