@@ -53,7 +53,6 @@ $teams = $db->getAllTeams();
 				$('#group-sort').dataTable( {
 					"bScrollCollapse": true,
 					"sScrollX": "100%",
-					"sScrollXInner": "160%",
 					"aoColumnDefs": [
 						{ 
 						"bSortable": false, 
