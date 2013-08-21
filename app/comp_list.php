@@ -54,14 +54,9 @@ if (empty($twig)) {
 
 <script type="text/javascript" charset="utf-8">
 			$(document).ready( function () {
-				var aaData = [];
-				for ( var i=1 ; i<50000 ; i++ ) {
-					aaData.push( [ i, i, i, i, i ] );
-					}
+				
 				$('#sort').dataTable( {
 					"bPaginate": false,
-					"aaData": aaData,
-					"bDeferRender": true
 					"aoColumnDefs": [
 						{ 
 						"bSortable": false, 
@@ -71,7 +66,7 @@ if (empty($twig)) {
 					} );
 				$('.dataTables_filter input').attr('placeholder', 'Filter Competitions');
 				$('div.dataTables_filter input').focus()
-					});			
+					} );			
 </script>
 
 <div class="container">
