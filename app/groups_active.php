@@ -48,9 +48,6 @@ $teams = $db->getAllTeams();
 <script type="text/javascript" charset="utf-8">
 			$(document).ready( function () {
 				$('#sort').dataTable( {
-					"bSortClasses": false,
-					"sDom": "frtiS",
-					"sScrollY": "600px",
 					"aoColumnDefs": [
 						{ 
 						"bSortable": false, 
