@@ -47,7 +47,6 @@ $teams = $db->getAllTeams();
 
 <script type="text/javascript" charset="utf-8">
 			$(document).ready( function () {
-				
 				$('#sort').dataTable( {
 					"aoColumnDefs": [
 						{ 
@@ -61,10 +60,7 @@ $teams = $db->getAllTeams();
 					} );			
 </script>
 
-
-<hr />
-
-<table id="sort"><thead><tr><th></th><th></th><th></th></tr></thead>
+<table id="sort"><thead><tr><th>Show/Hide</th><th>Group</th><th>Details</th></tr></thead>
   <?php
   foreach ($teams as $uuid => $team) {
       echo '<tr><td><form name="teams_showhide" id="teams_showhide" method="POST" action="">';
@@ -77,7 +73,7 @@ $teams = $db->getAllTeams();
           echo "<input class='btn btn-primary' name='submit' type='submit' value='Hide' />";
       }
       $type = ucfirst($team['type']);
-      echo "  <a href=\"team.php?id={$team['id']}\">{$team['name']}</a> - {$team['description']} - {$type} (<small><a href=\"{$config['auth_domain']}/groups/uuid/{$uuid}\">$uuid</a></small>)";
+      echo "</td><td><a href=\"team.php?id={$team['id']}\">{$team['name']}</a></td><td> {$team['description']} - {$type} (<small><a href=\"{$config['auth_domain']}/groups/uuid/{$uuid}\">$uuid</a></small>)</td>";
       echo '</form></td></tr>';
   }
   ?>
