@@ -51,9 +51,11 @@ $teams = $db->getAllTeams();
 <script type="text/javascript" charset="utf-8">
 			$(document).ready( function () {
 				$('#group-sort').dataTable( {
+					"bScrollCollapse": true,
+					"sScrollX": "100%",
+					"sScrollXInner": "160%",
 					"aoColumnDefs": [
 						{ 
-						"bScrollCollapse": true,
 						"bSortable": false, 
 						"aTargets": [ -1, -2] // <-- gets last column and turns off sorting
 						} 
