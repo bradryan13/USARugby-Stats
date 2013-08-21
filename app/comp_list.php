@@ -64,7 +64,7 @@ if (empty($twig)) {
 						} 
 					]
 					} );
-				$('.dataTables_filter input').attr('placeholder', 'Filter Competitions');
+				$('.dataTables_filter input').attr('value', '2013');
 				$('div.dataTables_filter input').focus()
 					} );			
 </script>
