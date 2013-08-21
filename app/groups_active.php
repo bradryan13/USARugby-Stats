@@ -50,9 +50,10 @@ $teams = $db->getAllTeams();
 
 <script type="text/javascript" charset="utf-8">
 			$(document).ready( function () {
-				$('#sort').dataTable( {
+				$('#group-sort').dataTable( {
 					"aoColumnDefs": [
 						{ 
+						"bScrollCollapse": true,
 						"bSortable": false, 
 						"aTargets": [ -1, -2] // <-- gets last column and turns off sorting
 						} 
@@ -64,7 +65,7 @@ $teams = $db->getAllTeams();
 </script>
 
 
-<table id="sort"><thead><tr><th>Show/Hide</th><th>Group</th><th>Details</th></tr></thead>
+<table id="group-sort"><thead><tr><th>Show/Hide</th><th>Group</th><th>Details</th></tr></thead>
   <?php
   foreach ($teams as $uuid => $team) {
       echo '<tr><td><form name="teams_showhide" id="teams_showhide" method="POST" action="">';

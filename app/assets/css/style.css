@@ -276,9 +276,6 @@ a {
 
 /* Datatables */
 
-#maincontent #sort_length, #sort_info, #sort_paginate, #maincontent #sort-games_length, #sort-games_info, #sort-games_paginate  {
-	display: none;
-}
 
 input[type="text"] {
 	background: #FFF;
@@ -735,7 +732,11 @@ td.player-num {
 #events td:last-child .icon-trash {
 	vertical-align: text-bottom;
 }
+/* Group Management view */
 
+#group-sort_wrapper {
+	margin-bottom: 200px;
+}
 
 /* Player view */
 
