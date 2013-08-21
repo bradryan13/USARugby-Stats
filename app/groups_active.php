@@ -44,9 +44,27 @@ $teams = $db->getAllTeams();
   <input class="btn" name="submit" type="submit" value="Hide All" />
   <input class="btn" name="submit" type="submit" value="Show Teams Only" />
 </form>
+
+<script type="text/javascript" charset="utf-8">
+			$(document).ready( function () {
+				
+				$('#sort').dataTable( {
+					"aoColumnDefs": [
+						{ 
+						"bSortable": false, 
+						"aTargets": [ -1, -2] // <-- gets last column and turns off sorting
+						} 
+					]
+					} );
+				$('.dataTables_filter input').attr('placeholder', 'Filter Groups');
+				$('div.dataTables_filter input').focus()
+					} );			
+</script>
+
+
 <hr />
 
-<table>
+<table id="sort"><thead><tr><th></th><th></th><th></th></tr></thead>
   <?php
   foreach ($teams as $uuid => $team) {
       echo '<tr><td><form name="teams_showhide" id="teams_showhide" method="POST" action="">';
