@@ -36,6 +36,9 @@ if (isset($_POST['submit'])) {
 $teams = $db->getAllTeams();
 ?>
 
+<div class="container">
+<div id="maincontent">
+
 <h2>Group Management</h2>
 <label class="flabel" for="check_all">Manage teams to display in competitions by checking the groups you would like to display as hidden.</label>
 
@@ -60,6 +63,7 @@ $teams = $db->getAllTeams();
 					} );			
 </script>
 
+
 <table id="sort"><thead><tr><th>Show/Hide</th><th>Group</th><th>Details</th></tr></thead>
   <?php
   foreach ($teams as $uuid => $team) {
@@ -78,4 +82,6 @@ $teams = $db->getAllTeams();
   }
   ?>
 </table>
+</div>
+</div>
 
