@@ -26,6 +26,7 @@ $date_time_ap = $date_time_ap->format('Y-m-d\TH:i:s');
 $kfull = $date_time->format('Y-m-d H:i:\0\0');
 
 $game_info = array(
+    'id' => '',
     'user_create' => $_SESSION['user'],
     'comp_id' => $comp_id,
     'comp_game_id' => $game_num,
@@ -74,8 +75,7 @@ else {
 }
 
 include './config.php';
-Resque::enqueue('create_game', 'CreateGame', array('event' => $event, 'game_id' => $game_id, 'teams_by_resource' => $teams_by_resource, 'resource_by_team' => $resource_by_team));
-
+Resque::enqueue('create_game', 'CreateGame', array('event' => $event, 'game_id' => $game_id, 'teams_by_resource' => $teams_by_resource, 'resource_by_team' => $resources_by_team));
 $now = date('Y-m-d H:i:s');
 $numbers = '-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-';
 $frontrows = '-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-';

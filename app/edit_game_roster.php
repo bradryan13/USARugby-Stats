@@ -149,7 +149,7 @@ for ($j=1;$j<=$max_game;$j++) {
     //show number select, 0-99
     echo "<td><select id='n$j' class='input-small chzn-select'>\n";
     for ($k=0;$k<100;$k++) {
-        if ($k==$numvals[$j]) {$stest = 'selected';} else {$stest='';}
+        if (!empty($numvals[$j]) && $k==$numvals[$j]) {$stest = 'selected';} else {$stest='';}
         echo "<option id='n$j' $stest>$k</option>\n";
     }
     echo "</select></td>\n";
@@ -176,7 +176,7 @@ for ($j=1;$j<=$max_game;$j++) {
     echo "</select></td>";
     //show front row checkbox if this is a 15s comp
     if ($comp_type==1) {
-        if ($frows[$j]==1) {$c="checked='checked'";} else {$c='';}
+        if (!empty($frows[$j]) && $frows[$j]==1) {$c="checked='checked'";} else {$c='';}
         echo "<td><input type='checkbox' id='fr$j' $c/></td>\n";
     }
     echo "</tr>\n";
