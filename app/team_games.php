@@ -21,15 +21,18 @@ if (empty($team_id)) {
 $(document).ready(function(){
   $('#sort-games').dataTable({
     "bAutoWidth": true,
+    "bPaginate" : false,
     "aoColumnDefs": [
 			{ 
 				"bSortable": false, 
 				 "aTargets": [ -1 ] // <-- gets last column and turns off sorting
 			} ]
   })
+/*
     .yadcf([
     {column_number : 0, data:["2013","2012"], filter_container_id: "external_filter_container", filter_default_label: "All Seasons", filter_reset_button_text: false}
     ]);
+*/
     $('.dataTables_filter input').attr('placeholder', 'Filter Games');
 	$('div.dataTables_filter input').focus()
 });
@@ -87,7 +90,6 @@ else {
 						<a class='btn dropdown-toggle' data-toggle='dropdown' href='#'><i class='icon-cog'></i><span class='caret'></span></a>
 							<ul class='dropdown-menu'>
 								<li><a href='game.php?id={$team_game['id']}'><i class='icon-edit'></i> Edit</a></li>
-								<li><a href='game_roster.php?gid={$team_game['id']}'><i class='icon-list'></i> Rosters</a></li>
 								<li><a href='#{$team_game['id']}' data-toggle='modal' class='red'>Game iFrame</a></li>
 							</ul></div></td>";
 			echo "</tr>";

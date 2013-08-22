@@ -136,7 +136,7 @@ a {
 }
 
 .navbar .brand {
-	width: 300px;
+	width: 401px;
 }
 
 .header {
@@ -276,6 +276,9 @@ a {
 
 /* Datatables */
 
+#sort-games_info {
+	display: none;
+}
 
 input[type="text"] {
 	background: #FFF;
