@@ -5,24 +5,23 @@ include_once './include.php';
 <div class="navbar navbar">
   <div class="inner">
     <div class="container">
-      <a class="brand" href="/"><img src="/assets/img/usarugby-2x-logo.png"/></a>
+      <a class="brand" href="/"><img src="/assets/img/usarugby-2x-logo-beta.png"/></a>
         <ul class="nav pull-right">
         <?php
 //If the user has a team specific login, provide link to their roster page.
 if ($_SESSION['teamid'] > 0) {
-    echo "<li><a href='/'>Fixtures</a></li>";
+    echo "<li><a href='/'>Games</a></li>";
 } else {
 	echo "<li><a href='/'>Competitions</a></li>";
 	 } ?>
           <li class = "dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support <b class = "caret"></b></a>
           <ul class = "dropdown-menu">
-          	<li><a id="startButton" href="#">Site Tutorial</a></li>
-          	<li><a href="#">Support Center</a></li>
-          	<li><a href="#">Contact</a></li>
+          	<li><a id="startButton" href="#">Page Tutorial</a></li>
+          	<li><a href="https://usarugby.zendesk.com/forums/22264177-Competition-Management-System" target="_blank">Support Center</a></li>
+          	<li><a href="https://usarugby.zendesk.com/anonymous_requests/new" target="_blank">Contact</a></li>
           </ul>
       </li>
-          <li><a id="startButton" href="#">Tour</a></li>
           <li><a href='/logout.php'>Logout</a></li>
 
 <?php
