@@ -5,7 +5,7 @@ include_once './include.php';
 <div class="navbar navbar">
   <div class="inner">
     <div class="container">
-      <a class="brand" href="/"><img src="/assets/img/usarugby-2x-logo-beta.png"/></a>
+      <a class="brand" href="/"><img src="http://usarugby.org/images/usarugby-2x-logo-beta.png"/></a>
         <ul class="nav pull-right">
         <?php
 //If the user has a team specific login, provide link to their roster page.
