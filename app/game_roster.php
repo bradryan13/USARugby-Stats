@@ -1,15 +1,24 @@
  <?php
 include_once './header.php';
+?>
 
-echo "<h1>Game Roster</h1>";
+<div class="container">
+<div id="main-content">
+
+
+<?php
+
 
 $game_id = $_GET['gid'];
 $team_id = $_GET['tid'];
 
 //provide some game info
-include_once './game_roster_info.php';
 include './config.php';
 $team = $db->getTeam($team_id);
+
+echo "<h1>".$team['name']." Game Roster</h1>";
+
+
 if (!empty($_GET['sync_roles'])) {
 	$players = $db->getTeamPlayers($team['uuid']);
 	$tokens = array();
@@ -56,7 +65,7 @@ if (editCheck(2, $team_id)) {
     //output names in lastname, firstname convention
     include_once './game_player_sort.php';
 }
-echo "</div>";
+echo "</div></div></div>";
 
 mysql_close();
 ?>
