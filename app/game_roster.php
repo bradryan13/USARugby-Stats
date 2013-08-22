@@ -10,7 +10,6 @@ $team_id = $_GET['tid'];
 include_once './game_roster_info.php';
 include './config.php';
 $team = $db->getTeam($team_id);
-Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
 if (!empty($_GET['sync_roles'])) {
 	$players = $db->getTeamPlayers($team['uuid']);
 	$tokens = array();
