@@ -90,7 +90,7 @@ for ($i=1; $i<=$max; $i++) {
 }
 
 if (editCheck() && empty($iframe)) {
-    echo "<td class='edit-rosters-intro' colspan='4'><a class='left' href='game_roster.php?gid=$game_id&tid=$away_id'>Edit Roster</a></td>\n";
+    echo "<td class='edit-rosters-intro' colspan='4'><a class='left' href='game_roster.php?gid=$game_id&tid=$home_id'>Edit Roster</a></td>\n";
 }
 
 echo "</table>";
