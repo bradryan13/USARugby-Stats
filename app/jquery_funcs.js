@@ -1062,13 +1062,13 @@ $(document).ready(function() {
         if (($numWords >= 1) && ($numWords < 25)) {
             return "14px";
         }
-        else if (($numWords >= 22) && ($numWords < 30)) {
+        else if (($numWords >= 22) && ($numWords < 35)) {
             return "12px";
         }
-        else if (($numWords >= 30) && ($numWords < 35)) {
+        else if (($numWords >= 35) && ($numWords < 45)) {
             return "11px";
         }
-        else if (($numWords >= 35) && ($numWords < 40)) {
+        else if (($numWords >= 45) && ($numWords < 50)) {
             return "10px";
         }
         else {
