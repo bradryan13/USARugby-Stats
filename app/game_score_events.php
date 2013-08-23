@@ -37,7 +37,7 @@ $(document).ready(function(){
 <?php
 
 echo "<table class='table game-score-events' id='events'>";
-	echo "<thead><th>Minute</th><th>Event</th><th>Team</th><th>Player</th>";
+	echo "<thead><th>Min.</th><th>Event</th><th>Team</th><th>Player</th>";
 	if (editCheck() && empty($iframe)) { 
 		echo "<th></th>"; }
 	echo "</thead>";

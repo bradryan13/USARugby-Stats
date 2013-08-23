@@ -1041,53 +1041,53 @@ $(document).ready(function() {
     $(".scoreboard h1").css('font-size',function(){
         var $numWords = $(this).text().length; // get length of text for current p element
         if (($numWords >= 1) && ($numWords < 25)) {
-            return "1.8em";
+            return "200%";
         }
         else if (($numWords >= 22) && ($numWords < 40)) {
-            return "1.4em";
+            return "150%";
         }
         else if (($numWords >= 40) && ($numWords < 100)) {
-            return "1.2em";
+            return "100%";
         }
         else if (($numWords >= 100) && ($numWords < 140)) {
-            return "0.9em";
+            return "75%";
         }
         else {
-            return "0.8em";
+            return "100%";
         }           
     });  
     
     $(".table.rosters th").css('font-size',function(){
         var $numWords = $(this).text().length; // get length of text for current p element
         if (($numWords >= 1) && ($numWords < 25)) {
-            return "14px";
+            return "100%";
         }
         else if (($numWords >= 22) && ($numWords < 35)) {
-            return "12px";
+            return "90%";
         }
         else if (($numWords >= 35) && ($numWords < 45)) {
-            return "11px";
+            return "60%";
         }
         else if (($numWords >= 45) && ($numWords < 50)) {
-            return "10px";
+            return "70%";
         }
         else {
-            return "8px";
+            return "60%";
         } 
      });   
       
      $(".team-name h1").css('font-size',function(){
         var $numWords = $(this).text().length; // get length of text for current p element
         if (($numWords >= 1) && ($numWords < 30)) {
-            return "48px";
+            return "300%";
         }
         else if (($numWords >= 30) && ($numWords < 45)) {
-            return "40px";
+            return "250%";
         }
         else {
-            return "30px";
-        }                     
-      
-});
+            return "200%";
+        }  
+    });
+                                 
 
 });
