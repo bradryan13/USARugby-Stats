@@ -1036,5 +1036,58 @@ $(document).ready(function() {
 
         return false;
     });
+    
+   
+    $(".scoreboard h1").css('font-size',function(){
+        var $numWords = $(this).text().length; // get length of text for current p element
+        if (($numWords >= 1) && ($numWords < 25)) {
+            return "1.8em";
+        }
+        else if (($numWords >= 22) && ($numWords < 40)) {
+            return "1.4em";
+        }
+        else if (($numWords >= 40) && ($numWords < 100)) {
+            return "1.2em";
+        }
+        else if (($numWords >= 100) && ($numWords < 140)) {
+            return "0.9em";
+        }
+        else {
+            return "0.8em";
+        }           
+    });  
+    
+    $(".table.rosters th").css('font-size',function(){
+        var $numWords = $(this).text().length; // get length of text for current p element
+        if (($numWords >= 1) && ($numWords < 25)) {
+            return "14px";
+        }
+        else if (($numWords >= 22) && ($numWords < 30)) {
+            return "12px";
+        }
+        else if (($numWords >= 30) && ($numWords < 35)) {
+            return "11px";
+        }
+        else if (($numWords >= 35) && ($numWords < 40)) {
+            return "10px";
+        }
+        else {
+            return "8px";
+        } 
+     });   
+      
+     $(".team-name h1").css('font-size',function(){
+        var $numWords = $(this).text().length; // get length of text for current p element
+        if (($numWords >= 1) && ($numWords < 30)) {
+            return "48px";
+        }
+        else if (($numWords >= 30) && ($numWords < 45)) {
+            return "40px";
+        }
+        else {
+            return "30px";
+        }                     
+      
+});
 
 });

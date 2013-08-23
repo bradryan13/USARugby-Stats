@@ -504,6 +504,8 @@ td.home-team {
 .scoreboard .away-team h1, .scoreboard .home-team h1 {
 	font-size: 28px;
 	line-height: 78px;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .scoreboard .away-team h1 a, .scoreboard .home-team h1 a {
@@ -574,11 +576,11 @@ td.home-team {
 
 td.frout {
 	border-right: 2px solid #E7E7E7;
-	width: 5%
+	width: 10%
 }
 
 td.player-name {
-	width: 30%;
+	width: 70%;
 }
 
 td.player-pos {
@@ -586,7 +588,7 @@ td.player-pos {
 }
 
 td.player-num {
-	width: 5%
+	width: 10%
 }
 
 .header.meta {
