@@ -283,22 +283,36 @@ $app->get('/processqueue', function() use ($app) {
  */
 $app->post('/sync', function(Request $request) use ($app) {
     $data = $request->request->get('event_data');
-    if ($data['webhook_type'] == 'user_creates_group') {
-        include_once './db.php';
-        $db = new Source\DataSource();
-        $user = $db->getUser($data['uuid']);
-        $team_info = array(
-            'hidden' => 0,
-            'user_create' => ($user) ? $user['login'] : 'usarugbyallplayers@gmail.com',
-            'uuid' => $data['group']['uuid'],
-            'name' => $data['group']['name'],
-            'short' => $data['group']['name'],
-            'logo_url' => '',
-            'description' => '',
-            'type' => $data['group']['group_category'],
-            'group_above_uuid' => $data['group']['group_above']
-        );
-        $db->addupdateTeam($team_info);
+    include_once './db.php';
+    $db = new Source\DataSource();
+    $user = $db->getUser($data['uuid']);
+    $team_info = array(
+        'hidden' => 0,
+        'user_create' => ($user) ? $user['login'] : 'usarugbyallplayers@gmail.com',
+        'uuid' => $data['group']['uuid'],
+        'name' => $data['group']['name'],
+        'short' => $data['group']['name'],
+        'logo_url' => $data['group']['logo'],
+        'description' => $data['group']['description'],
+        'type' => strtolower($data['group']['group_type']),
+        'group_above_uuid' => $data['group']['group_above']
+    );
+
+    switch ($data['webhook_type']) {
+        case 'user_creates_group':
+            $db->addupdateTeam($team_info);
+            break;
+
+        case 'user_updates_group':
+            $team = $db->getTeam($team_info['uuid']);
+            $team_info['id'] = $team['id'];
+            unset($team_info['group_above_uuid']);
+            $db->addupdateTeam($team_info);
+            break;
+
+        case 'user_deletes_group':
+            $db->removeTeam($team_info['uuid']);
+            break;
     }
 });
 
