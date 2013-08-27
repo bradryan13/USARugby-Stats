@@ -18,8 +18,8 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 /**
  * Setup app default settings
  */
- 
- 
+
+
 $app->before(function (Request $request) use ($app) {
         // Include configuration file.
         include_once 'config.php';
@@ -276,6 +276,30 @@ $app->get('/processqueue', function() use ($app) {
     }
 
     return $app->redirect('/');
+});
+
+/**
+ * Post callback for updating and synching groups and players from allplayers.
+ */
+$app->post('/sync', function(Request $request) use ($app) {
+    $data = $request->request->get('event_data');
+    if ($data['webhook_type'] == 'user_creates_group') {
+        include_once './db.php';
+        $db = new Source\DataSource();
+        $user = $db->getUser($data['uuid']);
+        $team_info = array(
+            'hidden' => 0,
+            'user_create' => ($user) ? $user['login'] : 'usarugbyallplayers@gmail.com',
+            'uuid' => $data['group']['uuid'],
+            'name' => $data['group']['name'],
+            'short' => $data['group']['name'],
+            'logo_url' => '',
+            'description' => '',
+            'type' => $data['group']['group_category'],
+            'group_above_uuid' => $data['group']['group_above']
+        );
+        $db->addupdateTeam($team_info);
+    }
 });
 
 /**
