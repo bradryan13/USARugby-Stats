@@ -18,8 +18,8 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 /**
  * Setup app default settings
  */
- 
- 
+
+
 $app->before(function (Request $request) use ($app) {
         // Include configuration file.
         include_once 'config.php';
@@ -276,6 +276,44 @@ $app->get('/processqueue', function() use ($app) {
     }
 
     return $app->redirect('/');
+});
+
+/**
+ * Post callback for updating and synching groups and players from allplayers.
+ */
+$app->post('/sync', function(Request $request) use ($app) {
+    $data = $request->request->get('event_data');
+    include_once './db.php';
+    $db = new Source\DataSource();
+    $user = $db->getUser($data['uuid']);
+    $team_info = array(
+        'hidden' => 0,
+        'user_create' => ($user) ? $user['login'] : 'usarugbyallplayers@gmail.com',
+        'uuid' => $data['group']['uuid'],
+        'name' => $data['group']['name'],
+        'short' => $data['group']['name'],
+        'logo_url' => $data['group']['logo'],
+        'description' => $data['group']['description'],
+        'type' => strtolower($data['group']['group_type']),
+        'group_above_uuid' => $data['group']['group_above']
+    );
+
+    switch ($data['webhook_type']) {
+        case 'user_creates_group':
+            $db->addupdateTeam($team_info);
+            break;
+
+        case 'user_updates_group':
+            $team = $db->getTeam($team_info['uuid']);
+            $team_info['id'] = $team['id'];
+            unset($team_info['group_above_uuid']);
+            $db->addupdateTeam($team_info);
+            break;
+
+        case 'user_deletes_group':
+            $db->removeTeam($team_info['uuid']);
+            break;
+    }
 });
 
 /**
