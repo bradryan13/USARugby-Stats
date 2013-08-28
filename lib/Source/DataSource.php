@@ -138,6 +138,12 @@ class DataSource {
         return $result;
     }
 
+    public function removeTeam($id) {
+        $search_id = DataSource::uuidIsValid($id) ? $this->getSerialIDByUUID('teams', $id) : $id;
+        $query = "DELETE FROM `teams` WHERE id={$search_id};";
+        $result = mysql_query($query);
+    }
+
     public function updateTeam($team_id, $team_info) {
         $original_team = $this->getTeam($team_id);
         $query = "UPDATE `teams` SET ";
