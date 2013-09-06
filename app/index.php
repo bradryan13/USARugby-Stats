@@ -301,6 +301,7 @@ $app->post('/sync', function(Request $request) use ($app) {
     switch ($data['webhook_type']) {
         case 'user_creates_group':
             $db->addupdateTeam($team_info);
+            return new Response('Group ' . $team_info['name'] . ' deleted.', 201);
             break;
 
         case 'user_updates_group':
@@ -308,10 +309,69 @@ $app->post('/sync', function(Request $request) use ($app) {
             $team_info['id'] = $team['id'];
             unset($team_info['group_above_uuid']);
             $db->addupdateTeam($team_info);
+            return new Response('Group ' . $team_info['name'] . ' updated.', 201);
             break;
 
         case 'user_deletes_group':
             $db->removeTeam($team_info['uuid']);
+            return new Response('Group ' . $team_info['name'] . ' deleted.', 201);
+            break;
+
+        case 'user_adds_role':
+            $now = date('Y-m-d H:i:s');
+            $player_info = array(
+                'user_create' => ($user) ? $user['login'] : 'usarugbyallplayers@gmail.com',
+                'last_update' => $now,
+                'uuid' => $data['member']['uuid'],
+                'team_uuid' => $team_info['uuid'],
+                'firstname' => mysql_real_escape_string($data['member']['first_name']),
+                'lastname' => mysql_real_escape_string($data['member']['last_name']),
+                'picture_url' => '/sites/default/files/imagecache/profile_mini/sites/all/themes/allplayers960/images/default_profile.png',
+                'roles' => serialize(array($data['member']['role_name']))
+            );
+
+            $player = $db->getPlayer($player_info['uuid'], $team_info['uuid']);
+            if ($player) {
+                $player_info['id'] = $player['id'];
+                $roles = unserialize($player['roles']);
+                $roles[] = $data['member']['role_name'];
+                $player_info['roles'] = serialize($roles);
+            }
+
+            $db->addUpdatePlayer($player_info);
+            return new Response('Role added to ' . $player_info['uuid'] . ' in ' . $team_info['name'], 200);
+            break;
+        case 'user_removes_role':
+            $now = date('Y-m-d H:i:s');
+            $player_info = array(
+                'user_create' => ($user) ? $user['login'] : 'usarugbyallplayers@gmail.com',
+                'last_update' => $now,
+                'uuid' => $data['member']['uuid'],
+                'team_uuid' => $team_info['uuid'],
+                'firstname' => mysql_real_escape_string($data['member']['first_name']),
+                'lastname' => mysql_real_escape_string($data['member']['last_name']),
+                'picture_url' => '/sites/default/files/imagecache/profile_mini/sites/all/themes/allplayers960/images/default_profile.png',
+                'roles' => $data['member']['role_name']
+            );
+
+            $player = $db->getPlayer($player_info['uuid'], $team_info['uuid']);
+            if ($player) {
+                $player_info['id'] = $player['id'];
+                $roles = unserialize($player['roles']);
+                $key = array_search($player_info['roles'], $roles);
+                if ($key !== FALSE) {
+                  unset($roles[$key]);
+                }
+                if (sizeof($roles) == 0) {
+                  $db->removePlayer($player['id']);
+                  return new Response('Player ' . $player_info['uuid'] . ' removed from ' . $team_info['name'], 200);
+                  break;
+                }
+                $player_info['roles'] = serialize($roles);
+            }
+
+            $db->addUpdatePlayer($player_info);
+            return new Response('Role removed from ' . $player_info['uuid'] . ' in ' . $team_info['name'], 200);
             break;
     }
 });
