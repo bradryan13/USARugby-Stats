@@ -48,7 +48,7 @@ include_once './other_funcs.php';
 
 
 </head>
-<body>
+<body class="<?php if (empty($iframe)) {echo "app"; }?>">
 
 <?php
 if (empty($iframe)) {
