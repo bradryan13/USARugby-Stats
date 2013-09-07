@@ -19,9 +19,13 @@
 1. Body
 ---------------------------------------------------*/
 
-body {
-	background: #E4E4E4;
+body.app{
 	color: #666;
+	background: #E4E4E4;
+}
+
+body {
+	background: transparent;
 }
 
 :focus {outline:none;}
@@ -34,7 +38,7 @@ body, h1, h2, h3, h4, h5, h6 {
   font-family: "proxima-nova";
 }
 
-h1 {
+h1 {`
 	font-size: 48px;
 	color: #173652;
 	text-transform: uppercase;
@@ -148,10 +152,11 @@ a {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	border-top: 1px solid #F0F0F0;
 	margin-bottom: 20px;
+	max-height: 122px;
 }
 
 	
-.header .container {
+.header .title.container {
 	height: 90px;
 	position: relative;
 }
@@ -208,6 +213,7 @@ a {
 	-moz-transition: 120ms linear all;
 	transition: 120ms linear all;
 	text-decoration: none;
+	border: none;
 }
 
 .btn-flat:hover {
@@ -472,7 +478,18 @@ label {
 	padding: 4px 20px;
 }
 
-/* 5.2 Team Page  */
+/* 5.2 Competition list view  */
+
+form.addteam {
+	margin: 0;
+}
+
+#addteamdiv .btn-flat.red {
+	margin: 3px;
+	padding: 7px 18px;
+}
+
+/* 5.3 Team Page  */
 
 .games-table {
 	width: 100%
@@ -757,8 +774,31 @@ td.player-num {
 	background: #FFF;
 }
 
+
 /*---------------------------------------------------
-6. Website Tour
+6. iFrame Views
+---------------------------------------------------*/
+
+#comp-iframe {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+#comp-iframe th {
+	background: #676E75;
+	color: #FFF;
+}
+
+.daterow {
+background: #F5F5F5;
+}
+
+.daterow td:last-child {
+	display: none;
+}
+
+/*---------------------------------------------------
+7. Website Tour
 ---------------------------------------------------*/
 
 .introjs-overlay {
@@ -973,7 +1013,7 @@ td.player-num {
 
 
 /*---------------------------------------------------
-7. Responsive
+8. Responsive
 ---------------------------------------------------*/
 
 @media all and (max-width: 1024px) and (min-width: 700px) {

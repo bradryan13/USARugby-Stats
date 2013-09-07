@@ -91,12 +91,6 @@ text-align: center;
 div.navbar-inverse {
   padding: 0 10px;
 }
-table.table {
-    max-width: 800px;
-    min-width: 300px;
-}
-
-
 div#hero-clipboard {
   overflow: hidden;
 }
@@ -168,14 +162,6 @@ table.normal.table.team-schedule-games a {
   text-decoration: none;
 }
 
-table.normal.table.team-schedule-games tr.daterow {
-   background: #EEE;
-   background: -moz-linear-gradient(top, #F0F0F0 0%, #EBEBEB 100%); 
-   background: -webkit-linear-gradient(top, #F0F0F0 0%, #EBEBEB 100%);
-   background: -o-linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
-   background: -ms-linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
-   background: linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
-}
 table.normal.table.team-schedule-games tr.game:nth-child(2n+1) {
 }
 
@@ -186,13 +172,6 @@ table.normal.table.team-schedule-games td.iframedate {
 table.normal.table.team-schedule-games a:hover {
   color: #000;
   text-decoration: underline;
-}
-
-table.normal.table.team-schedule-games td {
-  padding: 5px;
-  box-shadow: inset 0px 2px 6px -5px black;
-  -webkit-box-shadow: inset 0px 2px 6px -5px black;
-  -moz-box-shadow: inset 0px 2px 6px -5px black;
 }
 
 table.normal.table.team-schedule-games th {
@@ -540,10 +519,6 @@ div.location {
 
 #maincontent div.location {
   float:none;
-}
-
-#maincontent div#games {
-  margin-right: 20px;
 }
 
 #maincontent table.normal.table.team-schedule-games a {

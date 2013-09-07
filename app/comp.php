@@ -5,20 +5,23 @@ $comp_id = $request->get('id');
 $comp = $db->getCompetition($comp_id);
 ?>
 
-
-<h1><?php print $comp['name']; ?></h1>
+<div class="header"><div class="title container">
+<h1><?php print $comp['name']; ?></h1></div>
 <?php include_once './comp_info.php'; ?>
-<?php
+</div></div>
 
-echo "<h2>Teams</h2>";
-echo "<div id='teams' class='span8'>";
+<div class="container">
+<div id="maincontent">
+
+<?php
+echo "<div class='section-head'><h3><span>Teams</span></h3></div>";
+echo "<div id='teams' class='row-fluid'><div class='span12'>";
 // Get the teams in this comp
 include_once './comp_teams.php';
-echo "</div>";
+echo "</div></div>";
 
 if (editCheck(1)) {
-    echo "<div class='clearfix'></div>";
-    echo "<div id='addteamdiv' class='span6'>";
+    echo "<div id='addteamdiv'>";
     include_once './add_team.php';
     echo "</div>";
 }
@@ -29,7 +32,7 @@ echo "<div id='games'>";
 // Get the games in this comp
 // Replace include_once with comp_games.twig
 include_once './comp_games.php';
-echo "</div>";
+echo "</div></div></div>";
 
 if (editCheck(1)) {
     echo "<div id='addgamediv'>";
