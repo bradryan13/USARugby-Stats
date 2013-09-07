@@ -371,10 +371,14 @@ class DataSource {
      * Retrieve a serial id by uuid.
      * @param string $table_name
      * @param string $uuid
+     * @param string $team_uuid
      * @return string $id.
      */
-    public function getSerialIDByUUID($table_name, $uuid) {
+    public function getSerialIDByUUID($table_name, $uuid, $team_uuid = NULL) {
         $query = "SELECT id FROM `$table_name` WHERE uuid='$uuid'";
+        if ($team_uuid) {
+          $query .= "AND team_uuid='$team_uuid'";
+        }
         $result = mysql_query($query);
         $serial_id = array();
         if (!empty($result)) {
@@ -682,16 +686,11 @@ class DataSource {
     }
 
     public function getPlayer($id, $team_uuid = NULL) {
-	$search_id = DataSource::uuidIsValid($id) ? $this->getSerialIDByUUID('players', $id) : $id;
+	$search_id = DataSource::uuidIsValid($id) ? $this->getSerialIDByUUID('players', $id, $team_uuid) : $id;
 	if (empty($search_id)) {
 		return FALSE;
 	}
 	$query = "SELECT * FROM `players` WHERE id=$search_id";
-	if ($team_uuid) {
-		if (DataSource::uuidIsValid($team_uuid)) {
-			$query .= " AND team_uuid='$team_uuid'";
-		}
-	}
 	$result = mysql_query($query);
 	return empty($result) ? $result : mysql_fetch_assoc($result);
     }
