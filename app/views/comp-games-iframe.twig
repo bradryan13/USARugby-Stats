@@ -1,21 +1,36 @@
 <div>
-  <table class="normal table team-schedule-games">
-    <tr class="schedules-table-header">
+<script type="text/javascript" charset="utf-8">   
+$(document).ready(function(){
+  $('#comp-games').dataTable({
+    "bAutoWidth": true,
+    "bPaginate" : false,
+    "bProcessing": false,
+    "sScrollY": "1400",
+    "bSort": false
+  })
+  $('.dataTables_filter input').attr('placeholder', 'Filter Games');
+  $('div.dataTables_filter input').focus()
+});
+</script>
+
+<div id="external_filter_container" class="no-clear-filter"></div>
+
+<div id="comp-iframe">
+  <table id="comp-games" class="normal table team-schedule-games">
+    <thead class="schedules-table-header"><tr>
       <th>Game</th>
-      <th class="admindate">Date</th>
+      <th class="schide">Game #</th>
       <th class="home-right">Home</th>
       <th class="score-center">Score</th>
-      <th class="opponentgames">Opponent</th>
-      <th class="league">Type</th>
-      <th class="teamgameslocation">Location</th>
-      <th></th>
-    </tr>
+      <th class="opponentgames">Away</th>
+       {% if game.canedit %}<th></th>{% endif %}
+      </tr></th>
+    </thead>
     {% for game in gamerows %}
           {% if game.pre_date %}
           <tr class="daterow">
             <td class="schide"></td>
             <td class="iframedate"><b>{{ game.kickoff }}</b></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -27,8 +42,6 @@
           <td class="home-right">{{ game.home_id|raw}}</td>
           <td class="score-center">{{ game.score|raw }}</td>
           <td>{{ game.away_id|raw }}</td>
-          <td class="league">{{ game.league }}</td>
-          <td><div class="location">{{ game.field|raw }}<span class="icon-map-marker"></span></div></td>
            {% if game.canedit %}
             <td>
               <div class="btn-group pull-left">
@@ -46,6 +59,7 @@
                   <li><a href="#game-{{ game.id }}-modal" data-toggle="modal">Game info</a></li>
                   <li><a href="#homeschedule-{{ game.id }}-modal" data-toggle="modal">Home Schedule</a></li>
                   <li><a href="#awayschedule-{{ game.id }}-modal" data-toggle="modal">Away Schedule</a></li>
+                  <li><a href="#linktoapgame-{{ game.id }}-modal" data-toggle="modal">Event on AllPlayers.com</a></li>
                 </ul>
                     <form style='margin: 0; padding: 0' name='dGame{{ game.id }}' id='dGame{{ game.id }}'>
                     <input type='hidden' class='dId' name='game_id' id='game_id' value='{{ game.id }}' />
@@ -59,9 +73,10 @@
             {{ game.awayschedule|raw }}
             {{ game.linktoapgame|raw }}
           {% else %}
-            <td></td>
           {% endif %}
         </tr>
     {% endfor %}
   </table>
  </div>
+
+

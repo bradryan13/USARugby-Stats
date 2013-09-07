@@ -47,14 +47,17 @@ $team_games = $db->getTeamGames($team_id);
 //  related group - try to look it up.
 if (empty($team_games)) {
 	// team_uuid in this case would be comp_uuid
+	$check_comp = 1;
 	$team_games = $db->getCompetitionGames($team_uuid);
 }
+	else {
+		$check_comp = 0;
+}
+
 if (empty($team_games)) {
 	echo '<!-- No Games -->';
 }
 else {
-
-
 	// Regular display.
 	if (empty($iframe)) {
 		echo "<table class='games-table' id='sort-games'><thead><th>Date</th><th>Home Team</th><th>Result/Time</th><th>Away Team</th><th>Type</th><th></th></thead>";
@@ -123,14 +126,18 @@ else {
 				$game_rows[] = $game;
 			}
 		}
-
 		if (empty($twig)) {
 			$loader = new Twig_Loader_Filesystem(__DIR__.'/views');
 			$twig = new Twig_Environment($loader, array());
 		}
+		if ($check_comp == '1') {
+		// team_uuid in this case would be comp_uuid
+		echo $twig->render('comp-games-iframe.twig', array('gamerows' => $game_rows));
+		}
+		else {
 		echo $twig->render('comp-games.twig', array('gamerows' => $game_rows));
+		}
 	}
-
 }
 ?>
 </div>
