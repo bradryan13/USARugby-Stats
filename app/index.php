@@ -576,7 +576,13 @@ function get_standings($comp_id, $db, $domain) {
         $team_metadata = $team_node->appendChild($doc->createElement('team-metadata'));
         $name = $team_metadata->appendChild($doc->createElement('name'));
         $name->setAttribute('full', $team['name']);
-        $name->setAttribute('logo', $domain . $team['logo_url']);
+        if(strpos($partial_image_url, "https://") !== false) {
+          $team_logo = str_replace($config['auth_domain'], $config['cdn'], $partial_image_url);
+        }
+        else {
+          $team_logo = $config['cdn'] . $partial_image_url;
+        }
+        $name->setAttribute('logo', $team_logo);
 
         $team_stats = $team_node->appendChild($doc->createElement('team-stats'));
         $team_stats->setAttribute('events-played', $record['total_games']);
