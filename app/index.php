@@ -278,6 +278,11 @@ $app->get('/processqueue', function() use ($app) {
     return $app->redirect('/');
 });
 
+$app->get('/group_above', function(Request $request) use ($app) {
+    Resque::enqueue('get_group_above', 'GetGroupAbove');
+    return new Response('Group above enqueued.', 200);
+});
+
 /**
  * Post callback for updating and synching groups and players from allplayers.
  */
