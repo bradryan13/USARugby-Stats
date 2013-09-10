@@ -26,8 +26,13 @@ function teamName($id, $link = TRUE)
 
 function getFullImageUrl($partial_image_url) {
     include './config.php';
-    $image_url = $config['cdn'] . $partial_image_url;
-    return $image_url;
+    if(strpos($partial_image_url, "https://") !== false) {
+      $team_logo = str_replace($config['auth_domain'], $config['cdn'], $partial_image_url);
+    }
+    else {
+      $team_logo = $config['cdn'] . $partial_image_url;
+    }
+    return $team_logo;
 }
 
 /**

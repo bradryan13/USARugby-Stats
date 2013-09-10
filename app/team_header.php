@@ -2,7 +2,7 @@
 	<div class="container">
 	<div class="team-logo">
 				<!-- Problems with AllPlayers SSL Certificate  -->
-				<?php echo "<img src='$team_logo' alt='{$team['name']}'/>";  ?>
+				<?php echo "<img src='$team_logo' alt='{$team['name']}' style='max-width:100px'/>";  ?>
 	</div>
     <div class="team-name">
         <?php echo "<h1 class='w-logo'>{$team['name']}</h1>"; ?>
