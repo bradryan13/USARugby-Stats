@@ -300,7 +300,6 @@ table.normal.table.team-schedule-games div.location a + span.icon-map-marker {
 table.normal.table.team-schedule-games {
   font-size: .92em;
   margin-bottom: 0px;
-  border: 1px solid #ebebeb;
 }
 
 table.normal.table.team-schedule-games tr:nth-child(3n+1) {
@@ -370,7 +369,7 @@ th.home-right {
 
 th.score-center, td.score-center {
   text-align: center;
-  width: 10%;
+  width: 12%;
 }
 
 th.opponentgames {

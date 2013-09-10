@@ -12,6 +12,10 @@ $comp_id = $request->get('comp_id');
 $resources_by_team = $request->get('resources_by_team');
 $teams_by_resource = $request->get('teams_by_resource');
 $selected_resource = $request->get('selected_resource');
+$field_location = $request->get('field_loc');
+$field_address = $request->get('field_addr');
+
+
 
 $client = APSource::SessionSourceFactory();
 $home_team = $db->getTeam($home);
@@ -41,8 +45,11 @@ $game_info = array(
     '4_sign' => '0',
     'home_sign' => '0',
     'away_sign' => '0',
+    'field_loc' => $field_location,
+    'field_addr' => $field_address,
     'uuid' => NULL,
 );
+
 $game = $db->addGame($game_info);
 $game_id = mysql_insert_id();
 

@@ -28,7 +28,9 @@
           <td class="score-center">{{ game.score|raw }}</td>
           <td>{{ game.away_id|raw }}</td>
           <td class="league">{{ game.league }}</td>
-          <td><div class="location">{{ game.field|raw }}<span class="icon-map-marker"></span></div></td>
+          <td> 
+              <div class="location">{{ game.location|raw }}<span class="icon-map-marker"></span></div>   
+          </td>
            {% if game.canedit %}
             <td>
               <div class="btn-group pull-left">

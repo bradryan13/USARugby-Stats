@@ -22,7 +22,7 @@ class DataSource {
      * Add a game.
      */
     public function addGame($game_info) {
-        $columns = array('id', 'user_create', 'comp_id', 'comp_game_id', 'home_id', 'away_id', 'kickoff', 'field_num', 'home_score', 'away_score', 'ref_id', 'ref_sign', '4_sign', 'home_sign', 'away_sign', 'uuid');
+        $columns = array('id', 'user_create', 'comp_id', 'comp_game_id', 'home_id', 'away_id', 'kickoff', 'field_num', 'home_score', 'away_score', 'ref_id', 'ref_sign', '4_sign', 'home_sign', 'away_sign', 'uuid','field_loc', 'field_addr');
         $values = '';
         $count = 1;
         $max_count = count($columns);
@@ -242,7 +242,7 @@ class DataSource {
         $query = "SELECT type FROM comps WHERE id = $comp_id";
         $result = mysql_result(mysql_query($query), 0);
         $forfeit_points = 1;
-        $tie_points = 1;
+        $tie_points = 2;
         if ($result) {
             if ($result == 1) {
                 $win_points = 4;

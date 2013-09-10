@@ -31,16 +31,10 @@ if (empty($game)) {
 echo "<li>". compNameNL($game['comp_id'], empty($iframe))."</li>";
 echo "<li>". date('F j, Y', strtotime($game['kickoff']))."</li>";
 echo "<li>Kickoff: ".date('g:i', strtotime($game['kickoff']))."</li>";
-if (!empty($game['field_num'])) {
-    $resource = $db->getResource($game['field_num']);
-    $loc_url = getResourceMapUrl($resource);
-    if (!empty($loc_url)) {
-        echo "<li> Field: ". $resource['title'] . " (<a href='$loc_url' target='_blank'>Map</a>)</li>";
-    }
-    else {
-        echo "<li> Field: ". $game['field_num'] . "</li>";
-    }
+if (!empty($game['field_loc']) && !empty($game['field_addr'])) {
+    echo "<li>Location: <a target='_blank' href ='https://maps.google.com/?q=" . $game['field_addr'] . "'>" . $game['field_loc'] . "<span class='icon-map-marker'></span></a></li>";
 }
+
 if (empty($iframe)) {
 echo '<li class="game-iframe"><a href="#iframe-modal" data-toggle="modal" class="red">Game iFrame</a></li>';
 }

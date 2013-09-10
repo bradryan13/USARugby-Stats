@@ -24,8 +24,7 @@ if ((!$ops = $request->get('ops')) || empty($iframe)) {
 ?>
 
 <?php
-    
-//Get the Team Header 
+    //Get the Team Header 
 include_once './game_header.php';
     
     if (!empty($game_id)) {

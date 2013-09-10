@@ -559,6 +559,8 @@ $(document).ready(function() {
         $('#add_game').attr('disabled','disabled');
         $.post('/add_game_process.php', {
           gnum: formData.gnum,
+          field_loc: formData.field_loc,
+          field_addr: formData.field_addr,
           kdate: formData.kdate,
           koh: formData.koh,
           kom: formData.kom,
@@ -695,6 +697,8 @@ $(document).ready(function() {
         $.post('/edit_game_info_process.php', {
           field: formData.field,
           gnum: formData.gnum,
+          field_addr: formData.field_addr,
+          field_loc: formData.field_loc,
           kdate: formData.kdate,
           koh: formData.koh,
           kom: formData.kom,

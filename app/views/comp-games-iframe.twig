@@ -1,28 +1,32 @@
 <div>
 <script type="text/javascript" charset="utf-8">   
 $(document).ready(function(){
+  $('.dataTables_filter input').attr('placeholder', 'Filter Games');
+  $('div.dataTables_filter input').focus();
   $('#comp-games').dataTable({
     "bAutoWidth": true,
-    "bPaginate" : false,
-    "bProcessing": false,
-    "sScrollY": "1400",
-    "bSort": false
-  })
-  $('.dataTables_filter input').attr('placeholder', 'Filter Games');
-  $('div.dataTables_filter input').focus()
+    "sPaginationType": "full_numbers",
+    "sDom": '<"top" f>, t <"bottom" ip>',
+    "bSort": false,
+    "iDisplayLength": 40,
+    }).yadcf([
+      {column_number : 5, data:["Upcoming Matches","Results"], filter_container_id: "filter", filter_default_label: "All Matches", filter_reset_button_text: false
+      }]);
 });
 </script>
 
-<div id="external_filter_container" class="no-clear-filter"></div>
-
 <div id="comp-iframe">
+<div id="filter"></div>
   <table id="comp-games" class="normal table team-schedule-games">
-    <thead class="schedules-table-header"><tr>
+    <thead class="schedules-table-header">
+      <tr>
       <th>Game</th>
       <th class="schide">Game #</th>
       <th class="home-right">Home</th>
       <th class="score-center">Score</th>
       <th class="opponentgames">Away</th>
+      <th class="opponentgames">Location</th>
+      <th class="check-complete">Complete</th>
        {% if game.canedit %}<th></th>{% endif %}
       </tr></th>
     </thead>
@@ -34,6 +38,8 @@ $(document).ready(function(){
             <td></td>
             <td></td>
             <td></td>
+            <td class="check-complete"> {{ game.check_complete|raw }} </td>
+            <td></td>
           </tr>
           {% endif %}
           <tr class="game">
@@ -41,7 +47,11 @@ $(document).ready(function(){
           <td class="admindate">{{ game.kickoff}}</td>
           <td class="home-right">{{ game.home_id|raw}}</td>
           <td class="score-center">{{ game.score|raw }}</td>
-          <td>{{ game.away_id|raw }}</td>
+          <td class="away-team">{{ game.away_id|raw }}</td>
+          <td class="check-complete"> {{ game.check_complete|raw }} </td>
+          <td> 
+              {{ game.location|raw }}   
+          </td>
            {% if game.canedit %}
             <td>
               <div class="btn-group pull-left">

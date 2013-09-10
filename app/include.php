@@ -38,6 +38,9 @@ include_once './other_funcs.php';
   <script src="/assets/js/vendor/jquery.timeentry.pack.js" type='text/javascript'></script>
   <script src="/assets/js/vendor/jquery.dataTables.yadcf.js" type='text/javascript'></script>
   <script src="/assets/js/vendor/intro.js" type="text/javascript"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+  <script src="/assets/js/vendor/jquery.geocomplete.js"></script>
+
 <?php if (!empty($iframe)) { ?>
   <script src='https://www.allplayers.com/iframe.js?usar_stats' type='text/javascript'></script>
 <?php } ?>
