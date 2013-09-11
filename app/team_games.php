@@ -9,12 +9,9 @@ if (!empty($team_uuid)) {
 	$team = $db->getTeam($team_id);
 	$game_rows = array();
 }
-
 if (empty($team_id)) {
 	$team_id = $request->get('team_id');
 }
-
-
 ?>
 <div>
 <script type="text/javascript" charset="utf-8">		
@@ -28,13 +25,6 @@ $(document).ready(function(){
 				 "aTargets": [ -1 ] // <-- gets last column and turns off sorting
 			} ]
   })
-/*
-    .yadcf([
-    {column_number : 0, data:["2013","2012"], filter_container_id: "external_filter_container", filter_default_label: "All Seasons", filter_reset_button_text: false}
-    ]);
-    $('.dataTables_filter input').attr('placeholder', 'Filter Games');
-	$('div.dataTables_filter input').focus()
-});
 </script>
 
 <div id="external_filter_container" class="no-clear-filter"></div>
@@ -124,10 +114,10 @@ else {
 
 			// If game date has not passed, show game instead of score
 			date_default_timezone_set('America/Denver');
-			$current_time = date('YMdHis', strtotime("+5 minutes"));
-			$kickoffdate = date('YMdHis', strtotime($team_game['kickoff']));
+			$current_time = date('YmdHis', strtotime("+5 minutes"));
+			$kickoffstamp = date('YmdHis', strtotime($team_game['kickoff']));
 
-			if ($current_time > $kickoffdate) { 
+			if ($current_time > $kickoffstamp) { 
 				$game['check_complete'] = 'Results';
 				if ($team_game['status'] == 18) {
 					$game['score'] = "<b><a target='_blank' href='game.php?iframe=1&id=" . $team_game['id'] . "'> {$team_game['home_score']} - {$team_game['away_score']} <i class='icon-time'></i></a></b>";
