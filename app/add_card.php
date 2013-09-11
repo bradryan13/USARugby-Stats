@@ -7,13 +7,17 @@
         <div class="error-message"></div>
       </div>
       
-      		<div class="control">
+      		<div class="control clearfix">
+              <div class="min">
                 <input type="text" name="cardmin" id="cardmin" placeholder='Min' class='input-mini required' data-minute-max-value="121">
+              </div>
+              <div class="action-type">
                 <select name='cardtype' id='cardtype' data-placeholder="Card Type" class='required input-200p chzn-select'>
                   <option value=''></option>
                   <option value='22'>Red Card</option>
                   <option value='21' selected="selected">Yellow Card</option>
                 </select>
+              </div>
 	  		</div>
             
             <div class="control">

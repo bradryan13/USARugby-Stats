@@ -1,5 +1,5 @@
    <div class='add-controls status'>
-   <div class='span4'>
+   <div class='span2'>
     <form name='addstatus' id='addstatus' method='POST' action=''>
       <div class="alert error alert-error" id="form-validation-error">
         <button type="button" class="close" data-dismiss="alert">×</button>

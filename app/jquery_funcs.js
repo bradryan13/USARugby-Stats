@@ -102,7 +102,7 @@ $(document).ready(function() {
       spinnerBigImage: ''
     });
 
-    $(".chzn-select").chosen({allow_single_deselect: true, no_results_test: "No results matched"});
+    $(".chzn-select").chosen({allow_single_deselect: true, width: "100%", no_results_test: "No results matched"});
     $('#available-fields').live('click', function(e) {
       e.preventDefault();
       resourceSync.initSync();
