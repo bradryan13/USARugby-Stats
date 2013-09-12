@@ -485,7 +485,13 @@ function get_player_stat_data($player_id, $comp_id = NULL, $iframe = FALSE) {
             else {
                 $game_data = $stat_data[$game_id];
             }
-            $competing_team = ($game_event['home_id'] == $player_team['id']) ? $game_event['away_id'] : $game_event['home_id'];
+
+            if ($game_event['home_id'] = $player_team['id']) {
+                $competing_team = $game_event['away_id'];
+            }   else {
+                $competing_team = $game_event['home_id'];
+            }
+
             $kickoff = new DateTime($game_event['kickoff']);
             $kickoff_year = new DateTime($game_event['kickoff']);
             $kickoff_year->add(new DateInterval('P365D'));
