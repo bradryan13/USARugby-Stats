@@ -27,7 +27,7 @@ $comp_id = $_GET['id'];
           <div class="control-group">
             <label for="field_loc" id="field_loc_label" class="control-label">Field Name</label>
             <div class="controls">
-               <input id='field_loc' name='fied_loc' type='text' size='50' class="input-medium required" placeholder="Field Location">
+               <input id='field_loc' name='fied_loc' type='text' size='50' class="input-medium" placeholder="Field Location">
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@ $comp_id = $_GET['id'];
           <div class="control-group">
             <label for="field_addr" id="field_addr_label" class="control-label">Field Address</label>
             <div class="controls">
-               <input id='field_addr' name='field_addr' type='text' size='100' class="input-medium required" placeholder="Field Address">
+               <input id='field_addr' name='field_addr' type='text' size='100' class="input-medium" placeholder="Field Address">
             </div>
           </div>
         </div>
