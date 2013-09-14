@@ -37,3 +37,12 @@ input[type="text"] {
 .game-meta {
 	border: 1px solid #F0F0F0;
 }
+
+#maincontent table td {
+	padding: 1px 10px;
+	font-size: 9px;
+}
+
+#events td:last-child a {
+	display: none;
+}
