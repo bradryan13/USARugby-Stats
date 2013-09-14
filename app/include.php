@@ -23,7 +23,7 @@ include_once './db.php';
   <link href="/assets/css/vendor/chosen.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/style.css" rel="stylesheet" type="text/css"> 
-  <link href="/assets/css/print.css" rel="stylesheet" type="text/css">   
+  <link href="/assets/css/print.css" media="print" rel="stylesheet" type="text/css">   
 
   <!-- Fonts -->
   <script type="text/javascript" src="//use.typekit.net/dqm3mdr.js"></script>
