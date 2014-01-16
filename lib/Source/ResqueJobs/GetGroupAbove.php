@@ -22,11 +22,11 @@ class GetGroupAbove {
 	public function perform() {
 		$db = new DataSource();
 		$config = $this->config;
-    $teams = $db->getAllTeams();
-    foreach ($teams as $team) {
-      if (!$team['group_above_uuid']) {
-        Resque::enqueue('get_group', 'GetGroup', array('team_uuid' => $team['uuid']));
-      }   
-    }
-  }
+    		$teams = $db->getAllTeams();
+   		foreach ($teams as $team) {
+      			if (!$team['group_above_uuid'] && !$team['deleted'] && $team['type'] == 'team') {
+        			Resque::enqueue('get_group', 'GetGroup', array('team_uuid' => $team['uuid']));
+      			}   
+		}
+    	}
 }

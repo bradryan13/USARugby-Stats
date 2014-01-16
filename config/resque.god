@@ -1,6 +1,6 @@
 app_root = ENV['RESQUE_APP_ROOT']
 app_root ||= "/mnt/apci/usarugbystats"
-num_workers = 5
+num_workers = 3
 
 num_workers.times do |num|
   God.watch do |w|

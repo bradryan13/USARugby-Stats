@@ -173,6 +173,13 @@ class DataSource {
         return $result;
     }
 
+    public function updateTeamDelete($team_uuid) {
+	$team_uuid = mysql_escape_string($team_uuid);
+	$query = "UPDATE teams SET deleted=1 WHERE uuid='$team_uuid'";
+	$result = mysql_query($query);
+	return $result;
+    }
+
     public function getTeamGames($team_id) {
         $query = "SELECT t2.id FROM teams t JOIN teams t2 ON t2.group_above_uuid = t.uuid WHERE t.id = $team_id";
         $result = mysql_query($query);
