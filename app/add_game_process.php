@@ -17,7 +17,13 @@ $field_address = $request->get('field_addr');
 
 
 
-$client = APSource::SessionSourceFactory();
+if ($oauth_disabled) {
+  $client = APSource::BasicAuthFactory($_SESSION['user'], $_SESSION['password']);
+}
+else {
+  $client = APSource::SessionSourceFactory();
+}
+
 $home_team = $db->getTeam($home);
 $away_team = $db->getTeam($away);
 $userTimezone = new DateTimeZone((isset($config['timezone']) ? $config['timezone'] : 'America/Chicago'));

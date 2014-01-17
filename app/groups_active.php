@@ -5,7 +5,7 @@ include_once './include.php';
 use Source\APSource;
 
 $teams = array();
-$client = APSource::SessionSourceFactory();
+$client = APSource::BasicAuthFactory($_SESSION['user'], $_SESSION['password']);
 if (isset($_POST['submit'])) {
     unset($_POST['post']);
     unset($_POST['check_all']);
