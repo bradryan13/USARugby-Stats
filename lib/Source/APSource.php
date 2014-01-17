@@ -7,11 +7,33 @@ use AllPlayers\Client;
 use Guzzle\Plugin\Log\LogPlugin;
 use Guzzle\Service\Inspector;
 use Guzzle\Service\Resource\ResourceIteratorClassFactory;
+use Guzzle\Plugin\Cookie\CookiePlugin;
+use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
+use Guzzle\Http\Cookie;
 
 class APSource extends Client {
     public static function SessionSourceFactory($base_url = 'https://www.pdup.allplayers.com', LogPlugin $log_plugin = null) {
         $attributes = $_SESSION['_sf2_attributes'];
         return APSource::SourceFactory($attributes, $base_url, $log_plugin);
+    }
+
+    public static function BasicAuthFactory($username, $password, $client = null, $base_url = 'https://www.allplayers.com') {
+        $client = ClientFactory::BasicAuthFactory($base_url, $username, $password, $client);
+        return $client;
+    }
+
+    public static function SessionFactory($cookie_plugin = null, $base_url = 'https://www.allplayers.com') {
+        $cookiePlugin = new CookiePlugin(new ArrayCookieJar());
+        $cookie = new Cookie();
+        $cookie->setName('CHOCOLATECHIPSSL');
+        $cookie->setValue(rawurlencode($_COOKIE['CHOCOLATECHIPSSL']));
+        $cookie->setDomain($base_url);
+        $cookie->setSecure(TRUE);
+        $cookie->setPath('/');
+        $cookie->setExpires(time() + 5000);
+        $cookiePlugin->getCookieJar()->add($cookie);
+        $client = ClientFactory::SessionFactory($base_url, $cookie_plugin);
+        return $client;
     }
 
     public static function SourceFactory($attributes = null, $base_url = 'https://www.pdup.allplayers.com', LogPlugin $log_plugin = null) {

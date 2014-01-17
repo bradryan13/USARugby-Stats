@@ -5,7 +5,12 @@ include_once './include.php';
 use Source\APSource;
 
 $teams = array();
-$client = APSource::SessionSourceFactory();
+if ($oauth_disabled) {
+    $client = APSource::BasicAuthFactory($_SESSION['user'], $_SESSION['password']);
+}
+else {
+    $client = APSource::SessionSourceFactory();
+}
 $teams = $db->getAllTeams();
 
 if (isset($_POST['submit'])) {
