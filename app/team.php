@@ -18,6 +18,14 @@ if ($request->get('refresh')) {
     }
 }
 include_once './team_header.php';
+
+ 
+echo "<h2>Event Rosters</h2>";
+
+//Get the rosters for this team
+include_once './team_event_rosters.php';
+echo "<br/>";
+
 include_once './team_games.php';
 
 include_once './footer.php';
