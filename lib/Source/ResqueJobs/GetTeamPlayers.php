@@ -16,7 +16,6 @@ class GetTeamPlayers {
 	public function __construct()
 	{
 		include __DIR__ . '/../../../app/config.php';
-		Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
 		$this->config = $config;
 	}
 	
@@ -25,6 +24,10 @@ class GetTeamPlayers {
 		$config = $this->config;
 		$now = date('Y-m-d H:i:s');
 		$team_uuid = $this->args['team_uuid'];
+		$team = $db->getTeam($team_uuid);
+		if ($team['group_above_uuid']) {
+			$team_uuid = $team['group_above_uuid'];
+		}
 		$existing_players = $db->getTeamPlayers($team_uuid);
 		$user = $db->getUser($config['admin_user_uuid']);
 		$oauth_config = array(

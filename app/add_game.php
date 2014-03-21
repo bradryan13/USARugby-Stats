@@ -23,6 +23,24 @@ $comp_id = $_GET['id'];
         </div>
 
 
+        <div id="game-wrapper" class="span1">
+          <div class="control-group">
+            <label for="field_loc" id="field_loc_label" class="control-label">Field Name</label>
+            <div class="controls">
+               <input id='field_loc' name='fied_loc' type='text' size='50' class="input-medium" placeholder="Field Location">
+            </div>
+          </div>
+        </div>
+
+        <div id="game-wrapper" class="span1">
+          <div class="control-group">
+            <label for="field_addr" id="field_addr_label" class="control-label">Field Address</label>
+            <div class="controls">
+               <input id='field_addr' name='field_addr' type='text' size='100' class="input-medium" placeholder="Field Address">
+            </div>
+          </div>
+        </div>
+
         <div id="date-wrapper" class="span1">
           <div class="control-group">
             <label for="kdate" id="kdate_label" class="control-label">Start Date</label>
@@ -94,17 +112,7 @@ $comp_id = $_GET['id'];
             </div>
           </div>
         </div>
-         <div id="field-wrapper" class="span2">
-          <div class="control-group">
-            <div id="available-fields"><a href="#" class="add-field"><div style="margin-bottom: 5px;">Show available fields</a></div></div>
-            <div class="controls">
-              <select id='field' data-placeholder='Select Field' name='field' id='field' class='input-medium chzn-select'>
-                <option value=''></option>
-              </select>
-            </div>
-          </div>
-        </div>
-
+      
         <div id="submit-wrapper" class="span1">
           <div class="control-group">
             <label for="submit" id="submit_label" class="control-label">&nbsp;</label>
@@ -123,6 +131,10 @@ $comp_id = $_GET['id'];
 
 <!--this is to hide the errors after a jquery refresh upon adding a new team to the comp-->
 <script type='text/javascript'>$('.error').not(function(index){return $(this).hasClass('control-group');}).hide();</script>
-
+<script>
+      $(function(){
+        $("#field_addr").geocomplete()
+      });
+    </script>
 <?php
 include_once './footer.php';

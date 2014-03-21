@@ -116,6 +116,8 @@ CREATE TABLE `games` (
   `away_sign` int(1) NOT NULL,
   `uuid` char(36) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
+  `field_loc` char(50) DEFAULT '',
+  `field_addr` varchar(200) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

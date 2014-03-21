@@ -35,13 +35,13 @@ if (count($homeps) > count($awayps)) {
     $max = count($awayps);
 }
 ?>
-<div class="row-fluid">
+<div class="row-fluid game-rosters-intro">
 <div class="span6">
 
 <?php
 echo "<table class='table rosters'>";
 $link = empty($iframe);
-echo "<thead><tr><th>#</th><th>Position</th><th>" . teamNameNL($away_id, $link) . "</th><th class='frout'>FR</th></tr></thead>";
+echo "<thead><tr><th>#</th><th>POS</th><th>" . teamNameNL($away_id, $link) . "</th><th class='frout'>FR</th></tr></thead>";
 
 //0 element has been filtered above so start at 1
 //displaying number, name, FR capable
@@ -60,7 +60,7 @@ for ($i=1; $i<=$max; $i++) {
 }
 
 if (editCheck() && empty($iframe)) {
-    echo "<td colspan='4'><a class='left' href='game_roster.php?gid=$game_id&tid=$away_id'>Edit Roster</a></td>\n";
+    echo "<td class='edit-rosters-intro' colspan='4'><a class='left' href='game_roster.php?gid=$game_id&tid=$away_id'>Edit Roster</a></td>\n";
 }
 
 echo "</table>";
@@ -71,7 +71,7 @@ echo "</table>";
 <?php
 echo "<table class='table rosters'>";
 $link = empty($iframe);
-echo "<thead><tr><th>#</th><th>Position</th><th>" . teamNameNL($home_id, $link) . "</th><th class='frout'>FR</th></tr></thead>";
+echo "<thead><tr><th>#</th><th>POS</th><th>" . teamNameNL($home_id, $link) . "</th><th class='frout'>FR</th></tr></thead>";
 
 //0 element has been filtered above so start at 1
 //displaying number, name, FR capable
@@ -90,7 +90,7 @@ for ($i=1; $i<=$max; $i++) {
 }
 
 if (editCheck() && empty($iframe)) {
-    echo "<td colspan='4'><a class='left' href='game_roster.php?gid=$game_id&tid=$away_id'>Edit Roster</a></td>\n";
+    echo "<td class='edit-rosters-intro' colspan='4'><a class='left' href='game_roster.php?gid=$game_id&tid=$home_id'>Edit Roster</a></td>\n";
 }
 
 echo "</table>";

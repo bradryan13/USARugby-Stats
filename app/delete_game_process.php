@@ -31,7 +31,12 @@ if ($numrows) {
             $result = mysql_query($query);
 
             // Delete the remote game from AP.
-            $client = APSource::SessionSourceFactory();
+            if ($oauth_disabled) {
+                $client = APSource::BasicAuthFactory($_SESSION['user'], $_SESSION['password']);
+            }
+            else {
+                $client = APSource::SessionSourceFactory();
+            }
             $client->deleteEvent($row['uuid']);
         }
     }

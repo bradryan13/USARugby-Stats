@@ -3,15 +3,94 @@ body {
   padding: 0;
   ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
+
+/* 5.1 Index  */
+
+div#bg {
+	position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    background: url('../img/index-bg3.jpg') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+
+.index-logo {
+	width: 350px;
+	position: absolute;
+	top: 5%;
+	left: 5%;
+}
+
+.index-contact {
+	top: 5%;
+	right: 5%;
+	position: absolute;
+}
+
+.index-contact a {
+	color: #FFF;
+	font-size: 14px;
+}
+
+.index-contact a:hover {
+	text-decoration: none;
+}
+
+#login {
+   width: 80%;
+   height: 300px;
+   position: absolute;
+   left: 50%;
+   top: 50%; 
+   margin-left: -40%;
+   margin-top: -100px;
+}
+
+#login h1 {
+	text-align: center;
+	color: #FFF;
+	font-size: 60px;
+}
+
+#login .form-inline {
+text-align: center;
+}
+
+#login .btn-primary {
+	background: #B52437;
+	text-shadow: none;
+	box-shadow: none;
+	padding: 2px 20px;
+}
+
+#login .btn-primary:hover {
+	background: #C4263B;
+}
+
+#login #access-code {
+	padding: 10px 40px;
+	font-size: 22px;
+	line-height: 28px;
+	width: 160px;
+	-webkit-transition: 120ms linear all;
+	-moz-transition: 120ms linear all;
+	transition: 120ms linear all;
+}
+
+#login #provideAccess {
+	padding: 10px 20px;
+	border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+}
+
 div.navbar-inverse {
   padding: 0 10px;
 }
-table.table {
-    max-width: 800px;
-    min-width: 300px;
-}
-
-
 div#hero-clipboard {
   overflow: hidden;
 }
@@ -83,14 +162,6 @@ table.normal.table.team-schedule-games a {
   text-decoration: none;
 }
 
-table.normal.table.team-schedule-games tr.daterow {
-   background: #EEE;
-   background: -moz-linear-gradient(top, #F0F0F0 0%, #EBEBEB 100%); 
-   background: -webkit-linear-gradient(top, #F0F0F0 0%, #EBEBEB 100%);
-   background: -o-linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
-   background: -ms-linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
-   background: linear-gradient(top, #F0F0F0 0%,#EBEBEB 100%); 
-}
 table.normal.table.team-schedule-games tr.game:nth-child(2n+1) {
 }
 
@@ -101,13 +172,6 @@ table.normal.table.team-schedule-games td.iframedate {
 table.normal.table.team-schedule-games a:hover {
   color: #000;
   text-decoration: underline;
-}
-
-table.normal.table.team-schedule-games td {
-  padding: 5px;
-  box-shadow: inset 0px 2px 6px -5px black;
-  -webkit-box-shadow: inset 0px 2px 6px -5px black;
-  -moz-box-shadow: inset 0px 2px 6px -5px black;
 }
 
 table.normal.table.team-schedule-games th {
@@ -236,7 +300,6 @@ table.normal.table.team-schedule-games div.location a + span.icon-map-marker {
 table.normal.table.team-schedule-games {
   font-size: .92em;
   margin-bottom: 0px;
-  border: 1px solid #ebebeb;
 }
 
 table.normal.table.team-schedule-games tr:nth-child(3n+1) {
@@ -306,7 +369,7 @@ th.home-right {
 
 th.score-center, td.score-center {
   text-align: center;
-  width: 10%;
+  width: 12%;
 }
 
 th.opponentgames {
@@ -455,10 +518,6 @@ div.location {
 
 #maincontent div.location {
   float:none;
-}
-
-#maincontent div#games {
-  margin-right: 20px;
 }
 
 #maincontent table.normal.table.team-schedule-games a {

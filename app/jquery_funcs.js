@@ -102,7 +102,7 @@ $(document).ready(function() {
       spinnerBigImage: ''
     });
 
-    $(".chzn-select").chosen({allow_single_deselect: true, no_results_test: "No results matched"});
+    $(".chzn-select").chosen({allow_single_deselect: true, width: "100%", no_results_test: "No results matched"});
     $('#available-fields').live('click', function(e) {
       e.preventDefault();
       resourceSync.initSync();
@@ -559,6 +559,8 @@ $(document).ready(function() {
         $('#add_game').attr('disabled','disabled');
         $.post('/add_game_process.php', {
           gnum: formData.gnum,
+          field_loc: formData.field_loc,
+          field_addr: formData.field_addr,
           kdate: formData.kdate,
           koh: formData.koh,
           kom: formData.kom,
@@ -695,6 +697,8 @@ $(document).ready(function() {
         $.post('/edit_game_info_process.php', {
           field: formData.field,
           gnum: formData.gnum,
+          field_addr: formData.field_addr,
+          field_loc: formData.field_loc,
           kdate: formData.kdate,
           koh: formData.koh,
           kom: formData.kom,
@@ -1036,5 +1040,58 @@ $(document).ready(function() {
 
         return false;
     });
+    
+   
+    $(".scoreboard h1").css('font-size',function(){
+        var $numWords = $(this).text().length; // get length of text for current p element
+        if (($numWords >= 1) && ($numWords < 25)) {
+            return "200%";
+        }
+        else if (($numWords >= 22) && ($numWords < 40)) {
+            return "150%";
+        }
+        else if (($numWords >= 40) && ($numWords < 100)) {
+            return "100%";
+        }
+        else if (($numWords >= 100) && ($numWords < 140)) {
+            return "75%";
+        }
+        else {
+            return "100%";
+        }           
+    });  
+    
+    $(".table.rosters th").css('font-size',function(){
+        var $numWords = $(this).text().length; // get length of text for current p element
+        if (($numWords >= 1) && ($numWords < 25)) {
+            return "100%";
+        }
+        else if (($numWords >= 22) && ($numWords < 35)) {
+            return "90%";
+        }
+        else if (($numWords >= 35) && ($numWords < 45)) {
+            return "60%";
+        }
+        else if (($numWords >= 45) && ($numWords < 50)) {
+            return "70%";
+        }
+        else {
+            return "60%";
+        } 
+     });   
+      
+     $(".team-name h1").css('font-size',function(){
+        var $numWords = $(this).text().length; // get length of text for current p element
+        if (($numWords >= 1) && ($numWords < 30)) {
+            return "300%";
+        }
+        else if (($numWords >= 30) && ($numWords < 45)) {
+            return "250%";
+        }
+        else {
+            return "200%";
+        }  
+    });
+                                 
 
 });

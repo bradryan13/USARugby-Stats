@@ -31,23 +31,17 @@ if (empty($game)) {
 echo "<li>". compNameNL($game['comp_id'], empty($iframe))."</li>";
 echo "<li>". date('F j, Y', strtotime($game['kickoff']))."</li>";
 echo "<li>Kickoff: ".date('g:i', strtotime($game['kickoff']))."</li>";
-if (!empty($game['field_num'])) {
-    $resource = $db->getResource($game['field_num']);
-    $loc_url = getResourceMapUrl($resource);
-    if (!empty($loc_url)) {
-        echo "<li> Field: ". $resource['title'] . " (<a href='$loc_url' target='_blank'>Map</a>)</li>";
-    }
-    else {
-        echo "<li> Field: ". $game['field_num'] . "</li>";
-    }
+if (!empty($game['field_loc']) && !empty($game['field_addr'])) {
+    echo "<li>Location: <a target='_blank' href ='https://maps.google.com/?q=" . $game['field_addr'] . "'>" . $game['field_loc'] . "<span class='icon-map-marker'></span></a></li>";
 }
+
 if (empty($iframe)) {
-echo '<li><a href="#iframe-modal" data-toggle="modal" class="red">Game iFrame</a></li>';
+echo '<li class="game-iframe"><a href="#iframe-modal" data-toggle="modal" class="red">Game iFrame</a></li>';
 }
 
 if (editCheck() && empty($iframe)) {
-    echo "<input type='button' class='btn-no' id='eShow' name='eShow' value='Edit Game' />";
-    echo "<input type='hidden' id='game_id' value='$game_id' />";
+    echo "<li class='edit-game-button'><input type='button' class='btn-no' id='eShow' name='eShow' value='Edit Game' />";
+    echo "<input type='hidden' id='game_id' value='$game_id' /></li>";
 }
 ?>
 </ul></div></div>

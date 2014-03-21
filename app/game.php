@@ -24,8 +24,7 @@ if ((!$ops = $request->get('ops')) || empty($iframe)) {
 ?>
 
 <?php
-    
-//Get the Team Header 
+    //Get the Team Header 
 include_once './game_header.php';
     
     if (!empty($game_id)) {
@@ -116,6 +115,65 @@ include_once './game_header.php';
     ?>
   </div>
 </div>
+<script type="text/javascript">
+	  document.getElementById('startButton').onclick = function() {
+        var intro = introJs();
+            intro.setOptions({
+            steps: [
+              {
+                element: '.game-iframe',
+                intro: "Get an embeddable iFrame of this game."
+              },
+              {
+                element: document.querySelectorAll('.edit-game-button')[0],
+                intro: "Click here to edit the game date and kickoff time.",
+                position: ''
+              },
+              {
+                element: document.querySelectorAll ('.edit-rosters-intro')[0],
+                intro: 'Submit or edit your roster here.',
+                position: 'bottom'
+              },
+               {
+                element: '#events',
+                intro: 'Match Events are automatically updated after being submitted.',
+                position: 'top'
+              },
+              {
+                element: '#events_filter',
+                intro: 'Filter game events with any keyword.',
+                position: 'bottom'
+              },
+              {
+                element: '#external_filter_container',
+                intro: 'Filter scores, subs, or cards.',
+                position: 'bottom'
+              },
+              {
+                element: '#score_submit .span4',
+                intro: "Add a score by entering the minute of the score, type of score, and player/team.",
+                position: 'top'
+              },
+              {
+                element: '#sub_submit .span4',
+                intro: 'Add subs.',
+                position: 'top'
+              },
+              {
+                element: '#card_submit .span4',
+                intro: 'Add cards.',
+                position: 'top'
+              },
+              {
+                element: '#status_submit',
+                intro: 'Update the game status and report game signatures.',
+                position: 'top'
+              }          
+            ]
+          });
+          intro.start();
+      };
+    </script>
 <?php
 
 

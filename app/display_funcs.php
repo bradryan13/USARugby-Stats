@@ -1,6 +1,7 @@
 <?php
 
 use Source\DataSource;
+
 /**
  *
  *
@@ -14,20 +15,24 @@ function teamName($id, $link = TRUE)
     $result = mysql_query($query);
     while ($row = mysql_fetch_assoc($result)) {
         if (!empty($link)) {
-          $output = "<a href='team.php?id={$row['id']}'>{$row['short']}</a>";
-        }
-        else {
-          $output = $row['short'];
+            $output = "<a href='team.php?id={$row['id']}'>{$row['short']}</a>";
+        } else {
+            $output = $row['short'];
         }
     }
 
     return (isset($output) && $output) ? $output : '';
 }
 
-function getFullImageUrl($partial_image_url) {
+function getFullImageUrl($partial_image_url)
+{
     include './config.php';
-    $image_url = $config['cdn'] . $partial_image_url;
-    return $image_url;
+    if (strpos($partial_image_url, "https://") !== false) {
+        $team_logo = str_replace($config['auth_domain'], $config['cdn'], $partial_image_url);
+    } else {
+        $team_logo = $config['cdn'] . $partial_image_url;
+    }
+    return $team_logo;
 }
 
 /**
@@ -40,7 +45,7 @@ function teamNameF($id)
 {
     $query = "SELECT id, name FROM `teams` WHERE id = $id";
     $result = mysql_query($query);
-    while ($row=mysql_fetch_assoc($result)) {
+    while ($row = mysql_fetch_assoc($result)) {
 
         $output = "<a href='team.php?id={$row['id']}'>{$row['name']}</a>";
     }
@@ -58,7 +63,7 @@ function teamNameNL($id)
 {
     $query = "SELECT id, name FROM `teams` WHERE id = $id";
     $result = mysql_query($query);
-    while ($row=mysql_fetch_assoc($result)) {
+    while ($row = mysql_fetch_assoc($result)) {
 
         $output = "{$row['name']}";
     }
@@ -76,13 +81,12 @@ function compName($id, $link = TRUE)
 {
     $query = "SELECT id, name FROM `comps` WHERE id = $id";
     $result = mysql_query($query);
-    while ($row=mysql_fetch_assoc($result)) {
-      if ($link) {
-        $output = "<a href='comp.php?id={$row['id']}'>{$row['name']}</a>";
-      }
-      else {
-        $output = $row['name'];
-      }
+    while ($row = mysql_fetch_assoc($result)) {
+        if ($link) {
+            $output = "<a href='comp.php?id={$row['id']}'>{$row['name']}</a>";
+        } else {
+            $output = $row['name'];
+        }
     }
 
     return (isset($output) && $output) ? $output : '';
@@ -99,12 +103,11 @@ function compNameNL($id)
 {
     $query = "SELECT id, name FROM `comps` WHERE id = $id";
     $result = mysql_query($query);
-    while ($row=mysql_fetch_assoc($result)) {
-            $output = $row['name'];
+    while ($row = mysql_fetch_assoc($result)) {
+        $output = $row['name'];
     }
     return $output;
 }
-
 
 
 /**
@@ -116,7 +119,7 @@ function compNameNL($id)
 function playerName($id, $iframe = FALSE, $game_id = NULL)
 {
     if (empty($twig)) {
-        $loader = new Twig_Loader_Filesystem(__DIR__.'/views');
+        $loader = new Twig_Loader_Filesystem(__DIR__ . '/views');
         $twig = new Twig_Environment($loader, array());
     }
 
@@ -124,14 +127,14 @@ function playerName($id, $iframe = FALSE, $game_id = NULL)
         return '';
     }
     if (empty($db)) {
-      $db = new DataSource();
+        $db = new DataSource();
     }
     $player = $db->getPlayer($id);
     if (empty($player)) {
         return '';
     }
     $player['picture_url'] = getFullImageUrl($player['picture_url']);
-    $player['full_name'] = $player['firstname'] . ' ' .$player['lastname'];
+    $player['full_name'] = $player['firstname'] . ' ' . $player['lastname'];
     $player['entity'] = 'player';
     $player['id'] = $id;
     $player['settings'] = array('iframe' => $iframe);
@@ -154,13 +157,13 @@ function playerNumber($game_id, $team_id, $player_id)
         return '';
     }
     if (empty($db)) {
-      $db = new DataSource();
+        $db = new DataSource();
     }
     $roster = $db->getRoster($game_id, $team_id);
     $player_ids = $roster['player_ids'];
     $numbers = $roster['numbers'];
     $numvals = explode('-', $numbers);
-    $cplayers = explode('-', substr($player_ids, 1, (strlen($player_ids)-2)));
+    $cplayers = explode('-', substr($player_ids, 1, (strlen($player_ids) - 2)));
     foreach ($cplayers as $row => $id) {
         if ($id == $player_id) {
             return $numvals[$row + 1];
@@ -179,7 +182,7 @@ function rplayerName($id)
 {
     $query = "SELECT id,firstname,lastname FROM `players` WHERE id = $id";
     $result = mysql_query($query);
-    while ($row=mysql_fetch_assoc($result)) {
+    while ($row = mysql_fetch_assoc($result)) {
 
         $output = "{$row['lastname']}, {$row['firstname']}";
     }
@@ -197,7 +200,7 @@ function eType($id)
 {
     $query = "SELECT name FROM `event_types` WHERE event_id = $id";
     $result = mysql_query($query);
-    while ($row=mysql_fetch_assoc($result)) {
+    while ($row = mysql_fetch_assoc($result)) {
 
         $output = "{$row['name']}";
     }
@@ -229,9 +232,9 @@ function accessName($access)
 {
     if ($access == 1) {
         $output = 'Administrator';
-    } elseif ($access==2) {
+    } elseif ($access == 2) {
         $output = 'Referee';
-    } elseif ($access==3) {
+    } elseif ($access == 3) {
         $output = 'Team Specific';
     } else {
         $output = 'View Only';
@@ -249,7 +252,8 @@ function accessName($access)
  */
 function editCheck($pagelvl = 2, $team_id = -2)
 {
-    if ((isset($_SESSION['access']) && $_SESSION['access']<=$pagelvl) || (isset($_SESSION['teamid']) && $_SESSION['teamid']==$team_id)) {
+    require './config.php';
+    if ((isset($_SESSION['access']) && $_SESSION['access'] <= $pagelvl) || (isset($_SESSION['teamid']) && $_SESSION['teamid'] == $team_id) || $_SESSION['user'] == $config['usarugbyadmin']) {
         return true;
     } else {
         return false;
@@ -257,29 +261,31 @@ function editCheck($pagelvl = 2, $team_id = -2)
 }
 
 
-function get_header_string($op) {
-  switch ($op) {
-    case 'game_events':
-      $headers = array(
-        'minute',
-        'type',
-        'team',
-        'player'
-      );
-  }
-  $header_string = '<tr class="header-game-events">';
-  foreach ($headers as $header) {
-    $header_string .= '<th>' . ucfirst($header) . '</th>';
-  }
-  $header_string .= '</tr>';
-  return $header_string;
+function get_header_string($op)
+{
+    switch ($op) {
+        case 'game_events':
+            $headers = array(
+                'minute',
+                'type',
+                'team',
+                'player'
+            );
+    }
+    $header_string = '<tr class="header-game-events">';
+    foreach ($headers as $header) {
+        $header_string .= '<th>' . ucfirst($header) . '</th>';
+    }
+    $header_string .= '</tr>';
+    return $header_string;
 }
 
 /**
  *
  * @return array of available status names
  */
-function game_status_list() {
+function game_status_list()
+{
     $query = "SELECT * FROM `game_status` ORDER BY status_name ASC";
     $result = mysql_query($query);
     while ($row = mysql_fetch_assoc($result)) {
@@ -295,7 +301,8 @@ function game_status_list() {
  *
  * @return status(name) of game
  */
-function game_status($game_id) {
+function game_status($game_id)
+{
     $query = "SELECT s.status_name FROM game_status s, games g WHERE g.id = $game_id AND g.status = s.id";
     $result = mysql_query($query);
     while ($row = mysql_fetch_assoc($result)) {

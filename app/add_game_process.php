@@ -12,8 +12,18 @@ $comp_id = $request->get('comp_id');
 $resources_by_team = $request->get('resources_by_team');
 $teams_by_resource = $request->get('teams_by_resource');
 $selected_resource = $request->get('selected_resource');
+$field_location = $request->get('field_loc');
+$field_address = $request->get('field_addr');
 
-$client = APSource::SessionSourceFactory();
+
+
+if ($oauth_disabled) {
+  $client = APSource::BasicAuthFactory($_SESSION['user'], $_SESSION['password']);
+}
+else {
+  $client = APSource::SessionSourceFactory();
+}
+
 $home_team = $db->getTeam($home);
 $away_team = $db->getTeam($away);
 $userTimezone = new DateTimeZone((isset($config['timezone']) ? $config['timezone'] : 'America/Chicago'));
@@ -26,6 +36,7 @@ $date_time_ap = $date_time_ap->format('Y-m-d\TH:i:s');
 $kfull = $date_time->format('Y-m-d H:i:\0\0');
 
 $game_info = array(
+    'id' => '',
     'user_create' => $_SESSION['user'],
     'comp_id' => $comp_id,
     'comp_game_id' => $game_num,
@@ -40,8 +51,11 @@ $game_info = array(
     '4_sign' => '0',
     'home_sign' => '0',
     'away_sign' => '0',
+    'field_loc' => $field_location,
+    'field_addr' => $field_address,
     'uuid' => NULL,
 );
+
 $game = $db->addGame($game_info);
 $game_id = mysql_insert_id();
 
@@ -74,9 +88,7 @@ else {
 }
 
 include './config.php';
-Resque::setBackend('redis://redis:' . $config['redis_password'] . '@' . $config['redis_host']);
-Resque::enqueue('create_game', 'CreateGame', array('event' => $event, 'game_id' => $game_id, 'teams_by_resource' => $teams_by_resource, 'resource_by_team' => $resource_by_team));
-
+Resque::enqueue('create_game', 'CreateGame', array('event' => $event, 'game_id' => $game_id, 'teams_by_resource' => $teams_by_resource, 'resource_by_team' => $resources_by_team));
 $now = date('Y-m-d H:i:s');
 $numbers = '-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-';
 $frontrows = '-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-';

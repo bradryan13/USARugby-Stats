@@ -6,22 +6,21 @@
         <button type="button" class="close" data-dismiss="alert">×</button>
         <div class="error-message"></div>
       </div>
-
-	  		 <div class="control">
-              <input type="text" name="submin" id="submin" placeholder='Min' class='input-mini required' data-minute-max-value="121">
-         
-
-              <select name='subtype' id='subtype' data-placeholder='Sub Type' class='chzn-select input-200p required'>
-                <option value=''></option>
-                <option value='15'>Blood</option>
-                <option value='13'>Injury</option>
-                <option value='17'>Front Row Card</option>
-                <option value='11' selected="selected">Tactical</option>
-              </select>
+	  		 <div class="control clearfix">
+              <div class="min">
+                <input type="text" name="submin" id="submin" placeholder='Min' class='input-mini required' data-minute-max-value="121">
+              </div>
+              <div class="action-type">
+                <select name='subtype' id='subtype' data-placeholder='Sub Type' class='chzn-select input-200p required'>
+                  <option value=''></option>
+                  <option value='15'>Blood</option>
+                  <option value='13'>Injury</option>
+                  <option value='17'>Front Row Card</option>
+                  <option value='11' selected="selected">Tactical</option>
+                </select>
+              </div>
      		 </div>
          		 <div class="control">
-
-    
                 <select name='player_on' id='player_on' data-placeholder="Player On" class='input-100 required chzn-select'>
                   <option value=""></option>
                 <?php
