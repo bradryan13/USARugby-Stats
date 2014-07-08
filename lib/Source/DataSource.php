@@ -278,7 +278,7 @@ class DataSource {
                     $record['favor'] += $team_game['home_score'];
                     $record['against'] += $team_game['away_score'];
                     if ($status == 'Home Forfeit') {
-                        $record['favor'] = 0;
+                        #$record['favor'] = 0;
                         $record['points'] -= $forfeit_points;
                         $record['forfeits'] += 1;
                         if ($team_game['away_score'] < 20) {
@@ -314,7 +314,7 @@ class DataSource {
                     $record['favor'] += $team_game['away_score'];
                     $record['against'] += $team_game['home_score'];
                     if ($status == 'Away Forfeit') {
-                        $record['favor'] = 0;
+                        #$record['favor'] = 0;
                         $record['points'] -= $forfeit_points;
                         $record['forfeits'] += 1;
                         if ($team_game['home_score'] < 20) {
